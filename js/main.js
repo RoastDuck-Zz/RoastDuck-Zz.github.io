@@ -1,104 +1,320 @@
-$(function () {
-    // resize window
-    $(window).resize(function () {
-        if ($(window).width() < 1280 && $(window).width()>540) {
-            $(".page").css({"width": $(window).width() - $(".side-card").width() - 90, "float": "left"})
-        } else {
-            $(".page").removeAttr("style")
-        }
+// utils
+const util = {
+
+  // https://github.com/jerryc127/hexo-theme-butterfly
+  diffDate: (d, more = false) => {
+    const dateNow = new Date()
+    const datePost = new Date(d)
+    const dateDiff = dateNow.getTime() - datePost.getTime()
+    const minute = 1000 * 60
+    const hour = minute * 60
+    const day = hour * 24
+
+    let result
+    if (more) {
+      const dayCount = dateDiff / day
+      const hourCount = dateDiff / hour
+      const minuteCount = dateDiff / minute
+
+      if (dayCount > 14) {
+        result = null
+      } else if (dayCount >= 1) {
+        result = parseInt(dayCount) + ' ' + ctx.date_suffix.day
+      } else if (hourCount >= 1) {
+        result = parseInt(hourCount) + ' ' + ctx.date_suffix.hour
+      } else if (minuteCount >= 1) {
+        result = parseInt(minuteCount) + ' ' + ctx.date_suffix.min
+      } else {
+        result = ctx.date_suffix.just
+      }
+    } else {
+      result = parseInt(dateDiff / day)
+    }
+    return result
+  },
+
+  copy: (id, msg) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.select();
+      document.execCommand("Copy");
+      if (msg && msg.length > 0) {
+        hud.toast(msg, 2500);
+      }
+    }
+  },
+
+  toggle: (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.toggle("display");
+    }
+  },
+
+  scrollTop: () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  },
+
+  scrollComment: () => {
+    document.getElementById('comments').scrollIntoView({ behavior: "smooth" });
+  },
+
+  viewportLazyload: (target, func, enabled = true) => {
+    if (!enabled || !("IntersectionObserver" in window)) {
+      func();
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].intersectionRatio > 0) {
+        func();
+        observer.disconnect();
+      }
     });
+    observer.observe(target);
+  }
+}
 
-    // menu
-    $(".menus_icon").click(function () {
-        if ($(".header_wrap").hasClass("menus-open")) {
-            $(".header_wrap").removeClass("menus-open").addClass("menus-close")
-        } else {
-            $(".header_wrap").removeClass("menus-close").addClass("menus-open")
+const hud = {
+  toast: (msg, duration) => {
+    const d = Number(isNaN(duration) ? 2000 : duration);
+    var el = document.createElement('div');
+    el.classList.add('toast');
+    el.classList.add('show');
+    el.innerHTML = msg;
+    document.body.appendChild(el);
+
+    setTimeout(function () { document.body.removeChild(el) }, d);
+
+  },
+
+}
+
+// defines
+
+const l_body = document.querySelector('.l_body');
+
+
+const init = {
+  toc: () => {
+    utils.jq(() => {
+      const scrollOffset = 32;
+      var segs = [];
+      $("article.md-text :header").each(function (idx, node) {
+        segs.push(node);
+      });
+      function activeTOC() {
+        var scrollTop = $(this).scrollTop();
+        var topSeg = null;
+        for (var idx in segs) {
+          var seg = $(segs[idx]);
+          if (seg.offset().top > scrollTop + scrollOffset) {
+            continue;
+          }
+          if (!topSeg) {
+            topSeg = seg;
+          } else if (seg.offset().top >= topSeg.offset().top) {
+            topSeg = seg;
+          }
         }
-    })
-
-    $(".m-social-links").click(function () {
-        if ($(".author-links").hasClass("is-open")) {
-            $(".author-links").removeClass("is-open").addClass("is-close")
-        } else {
-            $(".author-links").removeClass("is-close").addClass("is-open")
+        if (topSeg) {
+          $("#data-toc a.toc-link").removeClass("active");
+          var link = "#" + topSeg.attr("id");
+          if (link != '#undefined') {
+            const highlightItem = $('#data-toc a.toc-link[href="' + encodeURI(link) + '"]');
+            if (highlightItem.length > 0) {
+              highlightItem.addClass("active");
+            }
+          } else {
+            $('#data-toc a.toc-link:first').addClass("active");
+          }
         }
-    })
-
-    $(".site-nav").click(function () {
-        if ($(".nav").hasClass("nav-open")) {
-            $(".nav").removeClass("nav-open").addClass("nav-close")
-        } else {
-            $(".nav").removeClass("nav-close").addClass("nav-open")
+      }
+      function scrollTOC() {
+        const e0 = document.querySelector('#data-toc .toc');
+        const e1 = document.querySelector('#data-toc .toc a.toc-link.active');
+        if (e0 == null || e1 == null) {
+          return;
         }
+        const offsetBottom = e1.getBoundingClientRect().bottom - e0.getBoundingClientRect().bottom + 100;
+        const offsetTop = e1.getBoundingClientRect().top - e0.getBoundingClientRect().top - 64;
+        if (offsetTop < 0) {
+          e0.scrollBy({ top: offsetTop, behavior: "smooth" });
+        } else if (offsetBottom > 0) {
+          e0.scrollBy({ top: offsetBottom, behavior: "smooth" });
+        }
+      }
+
+      var timeout = null;
+      window.addEventListener('scroll', function () {
+        activeTOC();
+        if (timeout !== null) clearTimeout(timeout);
+        timeout = setTimeout(function () {
+          scrollTOC();
+        }.bind(this), 50);
+      });
     })
-
-    $(document).click(function(e){
-        var target = $(e.target);
-        if(target.closest(".nav").length != 0) return;
-        $(".nav").removeClass("nav-open").addClass("nav-close")
-        if(target.closest(".author-links").length != 0) return;
-        $(".author-links").removeClass("is-open").addClass("is-close")
-        if((target.closest(".menus_icon").length != 0) || (target.closest(".menus_items").length != 0)) return;
-        $(".header_wrap").removeClass("menus-open").addClass("menus-close")
+  },
+  sidebar: () => {
+    utils.jq(() => {
+      $("#data-toc a.toc-link").click(function (e) {
+        sidebar.dismiss();
+      });
     })
-
-    // 显示 cdtop
-    $(document).ready(function ($) {
-        var offset = 100,
-            scroll_top_duration = 700,
-            $back_to_top = $('.nav-wrap');
-
-        $(window).scroll(function () {
-            ($(this).scrollTop() > offset) ? $back_to_top.addClass('is-visible') : $back_to_top.removeClass('is-visible');
+  },
+  relativeDate: (selector) => {
+    selector.forEach(item => {
+      const $this = item
+      const timeVal = $this.getAttribute('datetime')
+      let relativeValue = util.diffDate(timeVal, true)
+      if (relativeValue) {
+        $this.innerText = relativeValue
+      }
+    })
+  },
+  /**
+   * Tabs tag listener (without twitter bootstrap).
+   */
+  registerTabsTag: function () {
+    // Binding `nav-tabs` & `tab-content` by real time permalink changing.
+    document.querySelectorAll('.tabs .nav-tabs .tab').forEach(element => {
+      element.addEventListener('click', event => {
+        event.preventDefault();
+        // Prevent selected tab to select again.
+        if (element.classList.contains('active')) return;
+        // Add & Remove active class on `nav-tabs` & `tab-content`.
+        [...element.parentNode.children].forEach(target => {
+          target.classList.toggle('active', target === element);
         });
-
-        $(".cd-top").on('click', function (event) {
-            event.preventDefault();
-            $('body,html').animate({
-                scrollTop: 0,
-            }, scroll_top_duration);
+        // https://stackoverflow.com/questions/20306204/using-queryselector-with-ids-that-are-numbers
+        const tActive = document.getElementById(element.querySelector('a').getAttribute('href').replace('#', ''));
+        [...tActive.parentNode.children].forEach(target => {
+          target.classList.toggle('active', target === tActive);
         });
+        // Trigger event
+        tActive.dispatchEvent(new Event('tabs:click', {
+          bubbles: true
+        }));
+      });
     });
 
-    // pjax
-    $(document).pjax('a[target!=_blank]','.page', {
-        fragment: '.page',
-        timeout: 5000
-    });
-    $(document).on({
-        'pjax:click': function() {
-            $('body,html').animate({
-                scrollTop: 0,
-            }, 700);
-        },
-        'pjax:end': function() {
-            if ($(".header_wrap").hasClass("menus-open")) {
-                $(".header_wrap").removeClass("menus-open").addClass("menus-close")
-            }
-            if ($(".author-links").hasClass("is-open")) {
-                $(".author-links").removeClass("is-open").addClass("is-close")
-            }
-            if ($(".nav").hasClass("nav-open")) {
-                $(".nav").removeClass("nav-open").addClass("nav-close")
-            }
+    window.dispatchEvent(new Event('tabs:register'));
+  },
+
+  canonicalCheck: () => {
+    const canonical = window.canonical;
+    function originStatusCheck() {
+      return new Promise((resolve) => {
+        if (window.canonical.originalHost === window.location.hostname) {
+          resolve(true);
+          return;
         }
-    });
-
-    // smooth scroll
-    $(function () {
-        $('a[href*=\\#]:not([href=\\#])').click(function () {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 700);
-                    return false;
-                }
-            }
+        const scriptUrl = `https://${window.canonical.originalHost}${window.canonical.param.checklink}`;
+        const script = document.createElement('script');
+        script.src = scriptUrl;
+        script.type = 'text/javascript';
+        script.onload = function () { resolve(true); };
+        script.onerror = function () { resolve(false); };
+        document.head.appendChild(script);
+      });
+    }
+    async function showTip(isOfficial = false) {
+      const meta = document.createElement('meta');
+      meta.name = 'robots';
+      meta.content = 'noindex, nofollow';
+      document.head.appendChild(meta);
+      const notice = document.createElement('div');
+      const originalURL = `https://${canonical.originalHost}`;
+      const currentURL = canonical.param.permalink.startsWith("http") ? canonical.param.permalink : originalURL;
+      if (isOfficial) {
+        const closeEnable = window.localStorage.getItem('Stellar.canonical.closeEnable') === 'true'
+        const closedToday = window.localStorage.getItem('Stellar.canonical.closeTime') === new Date().toDateString()
+        if ((closeEnable && closedToday) || !(await originStatusCheck())) return;
+        notice.className = 'canonical-tip official';
+        notice.innerHTML = `
+          <a href="${currentURL}" target="_self" rel="noopener noreferrer">
+          本站为官方备用站，仅供应急。点击移步主站<br>${originalURL}
+          </a>
+          ${canonical.closeEnable ? '<button id="canonical-close">' + canonical.closeText || '关闭提示' + '</button>' : ''}
+        `;
+      } else {
+        notice.className = 'canonical-tip unofficial';
+        notice.innerHTML = `
+        <a href="${currentURL}" target="_self" rel="noopener noreferrer">
+        <div class="headline icon">☠️</div>
+        本站为非法克隆站，请前往官方源站访问。<br>
+        源站：${originalURL}
+        </a>
+        `;
+      }
+      document.body.appendChild(notice);
+      const closeBtn = notice.querySelector('#canonical-close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function () {
+          window.localStorage.setItem('Stellar.canonical.closeEnable', "true")
+          window.localStorage.setItem('Stellar.canonical.closeTime', new Date().toDateString())
+          notice.style.display = 'none';
         });
-    });
+      }
+    }
+    if (!canonical.originalHost) return;
+    const currentURL = new URL(window.location.href);
+    const currentHost = currentURL.hostname.replace(/^www\./, '');
+    if (currentHost == 'localhost') return;
+    const encodedCurrentHost = window.btoa(currentHost);
+    const isCurrentHostValid = canonical.encoded === encodedCurrentHost;
+    const canonicalTag = document.querySelector('link[rel="canonical"]');
+    if (!canonicalTag) {
+      if (isCurrentHostValid) {
+        return;
+      }
+      if (canonical.officialHosts?.includes(currentHost)) {
+        showTip(true);
+        return;
+      }
+      showTip(false);
+      return;
+    }
+    const canonicalURL = new URL(canonicalTag.href);
+    const canonicalHost = canonicalURL.hostname.replace(/^www\./, '');
+    const encodedCanonicalHost = window.btoa(canonicalHost);
+    const isCanonicalHostValid = canonical.encoded === encodedCanonicalHost;
+    if (isCanonicalHostValid && isCurrentHostValid) {
+      return;
+    }
+    showTip(canonical.officialHosts?.includes(currentHost));
+  }
 
-})
+}
+
+
+// Stellar namespace
+window.stellar = window.stellar || {};
+
+/**
+ * Initialize page components
+ * Called on initial load and after PJAX navigation
+ */
+stellar.initPage = function () {
+  init.toc();
+  init.sidebar();
+  init.relativeDate(document.querySelectorAll('#post-meta time'));
+  init.registerTabsTag();
+  
+  // Reinitialize comments after PJAX navigation
+  if (stellar.initComments) {
+    for (const commentSystem in stellar.initComments) {
+      if (typeof stellar.initComments[commentSystem] === 'function') {
+        stellar.initComments[commentSystem]();
+      }
+    }
+  }
+};
+
+// Initial page load
+stellar.initPage();
+init.canonicalCheck();
+
+// Listen for PJAX navigation complete
+document.addEventListener('pjax:complete', function () {
+  stellar.initPage();
+});
