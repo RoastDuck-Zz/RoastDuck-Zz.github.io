@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://roastduck-zz.github.io/img/avatar.jpg">
 <meta property="article:published_time" content="2026-02-27T03:43:00.000Z">
-<meta property="article:modified_time" content="2026-02-28T12:07:30.251Z">
+<meta property="article:modified_time" content="2026-03-02T14:18:30.295Z">
 <meta property="article:author" content="Roast Duck">
 <meta property="article:tag" content="ESP32-S3">
 <meta property="article:tag" content="嵌入式">
@@ -51,7 +51,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Roast Duck","sameAs":[],"image":"https://RoastDuck-Zz.github.io/img/avatar.jpg"},"dateCreated":"2026-02-27T11:43:00+08:00","dateModified":"2026-02-28T20:07:30+08:00","datePublished":"2026-02-27T11:43:00+08:00","description":"","headline":"五自由度焊接机械臂","mainEntityOfPage":{"@type":"WebPage","@id":"https://roastduck-zz.github.io/2026/02/27/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E5%85%A8%E8%AE%B0%E5%BD%95/"},"publisher":{"@type":"Organization","name":"Roast Duck","sameAs":[],"image":"https://RoastDuck-Zz.github.io/img/avatar.jpg","logo":{"@type":"ImageObject","url":"https://RoastDuck-Zz.github.io/img/avatar.jpg"}},"url":"https://roastduck-zz.github.io/2026/02/27/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E5%85%A8%E8%AE%B0%E5%BD%95/","keywords":"机器人, ESP32-S3, 嵌入式","thumbnailUrl":"/img/robot_bg.jpg","image":1}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Roast Duck","sameAs":[],"image":"https://RoastDuck-Zz.github.io/img/avatar.jpg"},"dateCreated":"2026-02-27T11:43:00+08:00","dateModified":"2026-03-02T22:18:30+08:00","datePublished":"2026-02-27T11:43:00+08:00","description":"","headline":"五自由度焊接机械臂","mainEntityOfPage":{"@type":"WebPage","@id":"https://roastduck-zz.github.io/2026/02/27/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E5%85%A8%E8%AE%B0%E5%BD%95/"},"publisher":{"@type":"Organization","name":"Roast Duck","sameAs":[],"image":"https://RoastDuck-Zz.github.io/img/avatar.jpg","logo":{"@type":"ImageObject","url":"https://RoastDuck-Zz.github.io/img/avatar.jpg"}},"url":"https://roastduck-zz.github.io/2026/02/27/%E6%AF%95%E4%B8%9A%E8%AE%BE%E8%AE%A1%E5%85%A8%E8%AE%B0%E5%BD%95/","keywords":"机器人, ESP32-S3, 嵌入式","thumbnailUrl":"/img/robot_bg.jpg","image":1}</script>
   
 </head>
 <body><div id="l_cover"></div><div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
@@ -86,7 +86,7 @@
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
 <span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-02-27T03:43:00.000Z">2026-02-27</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-02-28T12:07:30.251Z">2026-02-28</time></span></div></div></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-02-27T03:43:00.000Z">2026-02-27</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-03-02T14:18:30.295Z">2026-03-02</time></span></div></div></div>
     
     <div class="bottom only-title">
       
@@ -99,6 +99,8 @@
   </div>
   </div><article class="md-text content"><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>其实我是想做一款机械臂，可以通过图像识别、语音输入进行控制的机械臂，不过当时毕业设计选题随便选的，就只能做这个了。</p>
 <p>目前是准备使用ESP32-S3-DevKitC-1进行制作的，我这一块是N32R16V的版本，应该是很够用了，图像识别部分是准备用OV2640，因为也没有多少钱去购买其它摄像头，资金充足的话就购买其他摄像头了，以后有钱了再进行更新吧。当然我现在也不知道这块摄像头能否负担起我进行图像识别的任务，如果不行的话就要换其他的摄像头了。舵机部分是想使用总线舵机，现在在幻尔买的总线舵机，还没开始使用，因为资料还没下载全，等下载全了再看看。现在手里是有五个MG996R舵机、一个SG90舵机，暂时先不考虑用这个几个了吧，因为属实是没有那么多GPIO口。</p>
+<hr>
+<p>今天测试了一下通过WiFi控制两个舵机，由于摄像头受电磁干扰无法正常工作，于是我又买了一块ESP32-CAM，我准备通过这个来完成视觉识别部分，通过WiFi连接将视觉识别到的信息传输给主控制板，从而控制舵机进行转动。<br>此外，我还买了三个总线舵机，两个双轴、一个单轴的，单轴的用于底座大臂的旋转，三个双轴的用于其余几个关节的旋转，至于末端执行器，就用SG90，毕竟SG90比较轻。</p>
 </article>
 <div class="article-footer">
     <section id="license">
