@@ -17,26 +17,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>RoastDuck</title>
+  <title>从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32) - RoastDuck</title>
 
   
-    <meta name="description" content="个人博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="RoastDuck">
-<meta property="og:url" content="https://roastduck-zz.github.io/wiki/robot/kinematics/">
+    <meta name="description" content="基于ROS的机器人系统课程设计">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)">
+<meta property="og:url" content="https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/">
 <meta property="og:site_name" content="RoastDuck">
-<meta property="og:description" content="个人博客">
+<meta property="og:description" content="基于ROS的机器人系统课程设计">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://roastduck-zz.github.io/img/avatar.jpg">
-<meta property="article:published_time" content="2026-02-27T03:17:31.641Z">
-<meta property="article:modified_time" content="2026-02-27T03:17:29.394Z">
+<meta property="article:published_time" content="2026-03-16T06:05:01.000Z">
+<meta property="article:modified_time" content="2026-03-16T06:08:41.449Z">
 <meta property="article:author" content="Roast Duck">
+<meta property="article:tag" content="ROS">
+<meta property="article:tag" content="STM32">
+<meta property="article:tag" content="嵌入式开发">
+<meta property="article:tag" content="机器人工程">
+<meta property="article:tag" content="树莓派">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://roastduck-zz.github.io/img/avatar.jpg">
   
   
   
-  
+  <meta name="keywords" content="ROS,STM32,树莓派,机器人工程,嵌入式开发">
 
   <!-- feed -->
   
@@ -48,10 +53,10 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"https://roastduck-zz.github.io/wiki/robot/kinematics","author":{"@type":"Person","name":"Roast Duck","sameAs":[],"image":"https://RoastDuck-Zz.github.io/img/avatar.jpg"},"name":"RoastDuck","description":"","url":"https://roastduck-zz.github.io/wiki/robot/kinematics"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Roast Duck","sameAs":[],"image":"https://RoastDuck-Zz.github.io/img/avatar.jpg"},"dateCreated":"2026-03-16T14:05:01+08:00","dateModified":"2026-03-16T14:08:41+08:00","datePublished":"2026-03-16T14:05:01+08:00","description":"","headline":"从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)","mainEntityOfPage":{"@type":"WebPage","@id":"https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/"},"publisher":{"@type":"Organization","name":"Roast Duck","sameAs":[],"image":"https://RoastDuck-Zz.github.io/img/avatar.jpg","logo":{"@type":"ImageObject","url":"https://RoastDuck-Zz.github.io/img/avatar.jpg"}},"url":"https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/","keywords":"ROS, STM32, 树莓派, 机器人工程, 嵌入式开发","thumbnailUrl":null,"image":[]}</script>
   
 </head>
-<body><div id="l_cover"></div><div class="l_body content" id="start" layout="page" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+<body><div id="l_cover"></div><div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/img/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">RoastDuck</div><div class="sub cap">嵌入式开发
@@ -64,6 +69,8 @@
 <div class="widgets">
 <div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
 
+
+
 <widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/"><span class="title">从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)</span></a><a class="item title" href="/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/"><span class="title">五自由度焊接机械臂</span></a><a class="item title" href="/2026/03/03/%E6%A1%8C%E5%AE%A0/"><span class="title">桌宠</span></a></div></widget>
 </div>
 
@@ -72,13 +79,86 @@
 
 
 
-<article class="md-text content"></article>
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-03-16T06:05:01.000Z">2026-03-16</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-03-16T06:08:41.449Z">2026-03-16</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><blockquote>
+<p><strong>前言：</strong><br>在本科的《ROS 机器人系统课程设计》中，我作为团队负责人，带领7人团队基于 Yahboom ROSMASTER X3 平台完成了一次深度的二次开发。<br>这个项目没有采用简单的单片机“大包大揽”，而是构建了工业界标准的**“树莓派(大脑) + STM32(躯干)”主从控制架构**。</p>
+</blockquote>
+<h2 id="一、-硬件物理架构"><a href="#一、-硬件物理架构" class="headerlink" title="一、 硬件物理架构"></a>一、 硬件物理架构</h2><ul>
+<li><strong>上位机（算力大脑）：树莓派 4B</strong> * <strong>环境</strong>：运行 Ubuntu 操作系统与 ROS 环境。<ul>
+<li><strong>职责</strong>：专职处理高算力任务。包括运行基于激光雷达的 SLAM 建图算法、路径规划算法，以及调用 USB 摄像头运行 OpenCV 视觉识别。同时，它还开启了 AP 热点，负责与手机端的 TCP&#x2F;IP 网络通讯。</li>
+</ul>
+</li>
+<li><strong>下位机（执行躯干）：STM32F103 扩展板</strong><ul>
+<li><strong>职责</strong>：作为纯粹的底层执行器，负责高频读取底盘的电机编码器数据和 IMU 数据，运行电机 PID 闭环控制算法，并输出 PWM 波精准驱动麦克纳姆轮。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="二、-神经网：独立制定的-UART-串口数据帧协议"><a href="#二、-神经网：独立制定的-UART-串口数据帧协议" class="headerlink" title="二、 神经网：独立制定的 UART 串口数据帧协议"></a>二、 神经网：独立制定的 UART 串口数据帧协议</h2><p>上下位机各司其职，它们之间必须有一条稳定可靠的数据通道。为了保证 ROS 下发的速度指令能够无延迟、无乱码地到达 STM32，我<strong>设计了一套基于 UART 串口的数据帧协议</strong>。</p>
+<h3 id="1-数据帧结构设计"><a href="#1-数据帧结构设计" class="headerlink" title="1. 数据帧结构设计"></a>1. 数据帧结构设计</h3><p>在复杂的电机运行环境下，电磁干扰极易导致串口丢包或串码。我设计的定长数据帧（例如 10 字节）结构如下：</p>
+<ul>
+<li><strong>双包头防错位</strong>：<code>0x55 0xAA</code>（极大地降低了误判概率）。</li>
+<li><strong>功能码与长度位</strong>：标识当前指令是控制线速度、角速度还是操作外设。</li>
+<li><strong>有效数据段 (Payload)</strong>：4 个字节。针对 ROS 传来的浮点数速度（<code>cmd_vel</code>），为了避免跨平台大小端和精度问题，我们在树莓派端采用**“乘 1000 放大转 16 位整型”**的策略发送，STM32 接收后再除以 1000 还原。</li>
+<li><strong>校验和 (Checksum)</strong>：累加求和校验，只有校验通过的包才会被 STM32 执行。</li>
+</ul>
+<h3 id="2-STM32-端的“状态机”解析"><a href="#2-STM32-端的“状态机”解析" class="headerlink" title="2. STM32 端的“状态机”解析"></a>2. STM32 端的“状态机”解析</h3><p>在 STM32 接收端，我没有使用死板的延时等待，而是在串口接收中断中引入了<strong>状态机（State Machine）机制</strong>进行逐字节解析。只有当“包头1 -&gt; 包头2 -&gt; 数据 -&gt; 校验和”完整走完状态流转，系统才会更新电机目标速度。这使得底盘在高速运动时依然稳如泰山。</p>
+<hr>
+<h2 id="三、-核心算法部署：让机器人“看得见、走得稳”"><a href="#三、-核心算法部署：让机器人“看得见、走得稳”" class="headerlink" title="三、 核心算法部署：让机器人“看得见、走得稳”"></a>三、 核心算法部署：让机器人“看得见、走得稳”</h2><p>打通了底层通信后，我们在 ROS 空间中部署了导航栈的核心算法：</p>
+<h3 id="1-建图算法：Gmapping"><a href="#1-建图算法：Gmapping" class="headerlink" title="1. 建图算法：Gmapping"></a>1. 建图算法：Gmapping</h3><p>我们采用了基于 2D 激光雷达和里程计的 <strong>Gmapping 算法</strong> 进行室内环境建图。<br>它底层的 RBPF（粒子滤波）机制在中小场景下表现非常出色。由于我在 STM32 底层做好了严格的电机 PID 闭环，这为 Gmapping 提供了极高精度的 <code>/odom</code>（里程计）数据，有效避免了因轮子打滑导致的地图飘移或重影。</p>
+<h3 id="2-局部路径规划：TEB-Time-Elastic-Band"><a href="#2-局部路径规划：TEB-Time-Elastic-Band" class="headerlink" title="2. 局部路径规划：TEB (Time Elastic Band)"></a>2. 局部路径规划：TEB (Time Elastic Band)</h3><p>在动态避障方面，我们没有使用默认的 DWA，而是配置了 <strong>TEB 算法</strong>。<br>TEB 最大的优势在于它基于 g2o 图优化引擎，能够将底盘的运动学约束（如最大线速度、角速度限制）融入计算。这使得上位机下发的速度曲线非常平滑，不仅能完美避开动态障碍物，还能防止底层电机因指令突变而产生电流过载。</p>
+<h3 id="3-多模态交互与视觉"><a href="#3-多模态交互与视觉" class="headerlink" title="3. 多模态交互与视觉"></a>3. 多模态交互与视觉</h3><p>借助于树莓派的无线网络能力，我们实现了通过手机 APP 连接局域网进行多模态遥控，并能低延迟拉取摄像头和雷达的视频流。同时结合 OpenCV 实现了对特定目标的视觉追踪。</p>
+<hr>
+<h2 id="四、-总结与踩坑记录"><a href="#四、-总结与踩坑记录" class="headerlink" title="四、 总结与踩坑记录"></a>四、 总结与踩坑记录</h2><p>在整机联调过程中，也遇到过不少坑：</p>
+<ol>
+<li><strong>虚拟机网络连接问题</strong>：最初使用 NAT 模式无法与小车通信，最终通过排查和配置桥接模式解决。</li>
+<li><strong>底层硬件响应延迟</strong>：早期由于串口接收逻辑不佳，导致模式切换时卡顿。后来重构为状态机中断接收后，延迟问题彻底解决。</li>
+</ol>
+<p>通过这个项目，我深刻体会到了**“软硬件协同设计”**的魅力。从上层的 ROS 算法到中间的通信协议，再到最底层的寄存器与外设驱动，全栈打通的成就感是无与伦比的。未来我也会在嵌入式与机器人领域继续深耕！</p>
+<blockquote>
+<p><strong>最后，感谢团队里每一位小伙伴的付出与配合！</strong></p>
+</blockquote>
+</article>
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+</div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/2026/03/03/%E6%A1%8C%E5%AE%A0/">桌宠</a></div></section></div>
+
+
+
 
 
 
 <footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Roast Duck</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar 1.33.1</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
 </div></footer>
-<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right"></aside><div class='float-panel'>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right"><div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E7%A1%AC%E4%BB%B6%E7%89%A9%E7%90%86%E6%9E%B6%E6%9E%84"><span class="toc-text">一、 硬件物理架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E7%A5%9E%E7%BB%8F%E7%BD%91%EF%BC%9A%E7%8B%AC%E7%AB%8B%E5%88%B6%E5%AE%9A%E7%9A%84-UART-%E4%B8%B2%E5%8F%A3%E6%95%B0%E6%8D%AE%E5%B8%A7%E5%8D%8F%E8%AE%AE"><span class="toc-text">二、 神经网：独立制定的 UART 串口数据帧协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%95%B0%E6%8D%AE%E5%B8%A7%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">1. 数据帧结构设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-STM32-%E7%AB%AF%E7%9A%84%E2%80%9C%E7%8A%B6%E6%80%81%E6%9C%BA%E2%80%9D%E8%A7%A3%E6%9E%90"><span class="toc-text">2. STM32 端的“状态机”解析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E6%A0%B8%E5%BF%83%E7%AE%97%E6%B3%95%E9%83%A8%E7%BD%B2%EF%BC%9A%E8%AE%A9%E6%9C%BA%E5%99%A8%E4%BA%BA%E2%80%9C%E7%9C%8B%E5%BE%97%E8%A7%81%E3%80%81%E8%B5%B0%E5%BE%97%E7%A8%B3%E2%80%9D"><span class="toc-text">三、 核心算法部署：让机器人“看得见、走得稳”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%BB%BA%E5%9B%BE%E7%AE%97%E6%B3%95%EF%BC%9AGmapping"><span class="toc-text">1. 建图算法：Gmapping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B1%80%E9%83%A8%E8%B7%AF%E5%BE%84%E8%A7%84%E5%88%92%EF%BC%9ATEB-Time-Elastic-Band"><span class="toc-text">2. 局部路径规划：TEB (Time Elastic Band)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%A4%9A%E6%A8%A1%E6%80%81%E4%BA%A4%E4%BA%92%E4%B8%8E%E8%A7%86%E8%A7%89"><span class="toc-text">3. 多模态交互与视觉</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E6%80%BB%E7%BB%93%E4%B8%8E%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95"><span class="toc-text">四、 总结与踩坑记录</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
@@ -91,7 +171,7 @@
 
 <script type="text/javascript">
   window.canonical = {"closeEnable":true,"closeText":"关闭提示","originalHost":null,"officialHosts":["localhost"],"encoded":""};
-  window.canonical["param"] = {"permalink":"https://roastduck-zz.github.io/wiki/robot/kinematics","checklink":"/js/plugins/video.js"};
+  window.canonical["param"] = {"permalink":"https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/","checklink":"/js/plugins/video.js"};
   // Fix: Ensure page is at the correct top position on data load
   if (history.scrollRestoration) {
     history.scrollRestoration = 'auto';
