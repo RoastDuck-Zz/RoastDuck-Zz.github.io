@@ -1,0 +1,22 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "RoastDuck • All posts by \"机器人工程\" tag",
+    "description": "嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉",
+    "home_page_url": "https://RoastDuck-Zz.github.io",
+    "items": [
+        {
+            "id": "https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/",
+            "url": "https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/",
+            "title": "从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)",
+            "date_published": "2026-03-16T06:05:01.000Z",
+            "content_html": "<blockquote>\n<p><strong>前言：</strong><br />\n在本科的《ROS 机器人系统课程设计》中，我作为团队负责人，带领7人团队基于 Yahboom ROSMASTER X3 平台完成了一次深度的二次开发。<br />\n这个项目没有采用简单的单片机”大包大揽”，而是构建了工业界标准的**”树莓派 4B（大脑） + STM32F103 扩展板（躯干）”主从控制架构**。<br />\n项目最终成功部署了 Gmapping 建图与 TEB 局部路径规划，并结合 OpenCV 实现了视觉目标追踪与动态避障。</p>\n</blockquote>\n<h2 id=\"一-硬件物理架构\"><a class=\"anchor\" href=\"#一-硬件物理架构\">#</a> 一、 硬件物理架构</h2>\n<ul>\n<li><strong>上位机（算力大脑）：树莓派 4B</strong> * <strong>环境</strong>：运行 Ubuntu 操作系统与 ROS 环境。\n<ul>\n<li><strong>职责</strong>：专职处理高算力任务。包括运行基于激光雷达的 SLAM 建图算法、路径规划算法，以及调用 USB 摄像头运行 OpenCV 视觉识别。同时，它还开启了 AP 热点，负责与手机端的 TCP/IP 网络通讯。</li>\n</ul>\n</li>\n<li><strong>下位机（执行躯干）：STM32F103 扩展板</strong>\n<ul>\n<li><strong>职责</strong>：作为纯粹的底层执行器，负责高频读取底盘的电机编码器数据和 IMU 数据，运行电机 PID 闭环控制算法，并输出 PWM 波精准驱动麦克纳姆轮。</li>\n</ul>\n</li>\n</ul>\n<hr />\n<h2 id=\"二-神经网独立制定的-uart-串口数据帧协议\"><a class=\"anchor\" href=\"#二-神经网独立制定的-uart-串口数据帧协议\">#</a> 二、 神经网：独立制定的 UART 串口数据帧协议</h2>\n<p>上下位机各司其职，它们之间必须有一条稳定可靠的数据通道。为了保证 ROS 下发的速度指令能够无延迟、无乱码地到达 STM32，我<strong>设计了一套基于 UART 串口的数据帧协议</strong>。</p>\n<h3 id=\"1-数据帧结构设计\"><a class=\"anchor\" href=\"#1-数据帧结构设计\">#</a> 1. 数据帧结构设计</h3>\n<p>在复杂的电机运行环境下，电磁干扰极易导致串口丢包或串码。我设计的定长数据帧（例如 10 字节）结构如下：</p>\n<ul>\n<li><strong>双包头防错位</strong>：<code>0x55 0xAA</code>（极大地降低了误判概率）。</li>\n<li><strong>功能码与长度位</strong>：标识当前指令是控制线速度、角速度还是操作外设。</li>\n<li><strong>有效数据段 (Payload)</strong>：4 个字节。针对 ROS 传来的浮点数速度（<code>cmd_vel</code>），为了避免跨平台大小端和精度问题，我们在树莓派端采用**“乘 1000 放大转 16 位整型”**的策略发送，STM32 接收后再除以 1000 还原。</li>\n<li><strong>校验和 (Checksum)</strong>：累加求和校验，只有校验通过的包才会被 STM32 执行。</li>\n</ul>\n<h3 id=\"2-stm32-端的状态机解析\"><a class=\"anchor\" href=\"#2-stm32-端的状态机解析\">#</a> 2. STM32 端的“状态机”解析</h3>\n<p>在 STM32 接收端，我没有使用死板的延时等待，而是在串口接收中断中引入了<strong>状态机（State Machine）机制</strong>进行逐字节解析。只有当“包头1 -&gt; 包头2 -&gt; 数据 -&gt; 校验和”完整走完状态流转，系统才会更新电机目标速度。这使得底盘在高速运动时依然稳如泰山。</p>\n<hr />\n<h2 id=\"三-核心算法部署让机器人看得见-走得稳\"><a class=\"anchor\" href=\"#三-核心算法部署让机器人看得见-走得稳\">#</a> 三、 核心算法部署：让机器人“看得见、走得稳”</h2>\n<p>打通了底层通信后，我们在 ROS 空间中部署了导航栈的核心算法：</p>\n<h3 id=\"1-建图算法gmapping\"><a class=\"anchor\" href=\"#1-建图算法gmapping\">#</a> 1. 建图算法：Gmapping</h3>\n<p>我们采用了基于 2D 激光雷达和里程计的 <strong>Gmapping 算法</strong> 进行室内环境建图。<br />\n它底层的 RBPF（粒子滤波）机制在中小场景下表现非常出色。由于我在 STM32 底层做好了严格的电机 PID 闭环，这为 Gmapping 提供了极高精度的 <code>/odom</code>（里程计）数据，有效避免了因轮子打滑导致的地图飘移或重影。</p>\n<h3 id=\"2-局部路径规划teb-time-elastic-band\"><a class=\"anchor\" href=\"#2-局部路径规划teb-time-elastic-band\">#</a> 2. 局部路径规划：TEB (Time Elastic Band)</h3>\n<p>在动态避障方面，我们没有使用默认的 DWA，而是配置了 <strong>TEB 算法</strong>。<br />\nTEB 最大的优势在于它基于 g2o 图优化引擎，能够将底盘的运动学约束（如最大线速度、角速度限制）融入计算。这使得上位机下发的速度曲线非常平滑，不仅能完美避开动态障碍物，还能防止底层电机因指令突变而产生电流过载。</p>\n<h3 id=\"3-多模态交互与视觉追踪\"><a class=\"anchor\" href=\"#3-多模态交互与视觉追踪\">#</a> 3. 多模态交互与视觉追踪</h3>\n<p>借助于树莓派的无线网络能力，我们在 ROS 空间中编写了通讯节点，打通了上下位机的完整数据流。基于局域网实现了手机 APP 遥控与摄像头/雷达视频流的低延迟拉取。同时，结合 OpenCV 部署了实时视觉目标追踪功能，实现了对特定颜色物体的识别、锁定与动态跟随避障。</p>\n<hr />\n<h2 id=\"四-总结与踩坑记录\"><a class=\"anchor\" href=\"#四-总结与踩坑记录\">#</a> 四、 总结与踩坑记录</h2>\n<p>在整机联调过程中，也遇到过不少坑：</p>\n<ol>\n<li><strong>虚拟机网络连接问题</strong>：最初使用 NAT 模式无法与小车通信，最终通过排查和配置桥接模式解决。</li>\n<li><strong>底层硬件响应延迟</strong>：早期由于串口接收逻辑不佳，导致模式切换时卡顿。后来重构为状态机中断接收后，延迟问题彻底解决。</li>\n</ol>\n<p>通过这个项目，我深刻体会到了**“软硬件协同设计”**的魅力。从上层的 ROS 算法到中间的通信协议，再到最底层的寄存器与外设驱动，全栈打通的成就感是无与伦比的。未来我也会在嵌入式与机器人领域继续深耕！</p>\n<blockquote>\n<p><strong>最后，感谢团队里每一位小伙伴的付出与配合！</strong></p>\n</blockquote>\n",
+            "tags": [
+                "ROS",
+                "STM32",
+                "树莓派",
+                "机器人工程",
+                "嵌入式开发"
+            ]
+        }
+    ]
+}

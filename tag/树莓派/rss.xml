@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>RoastDuck • Posts by &#34;树莓派&#34; tag</title>
+        <link>https://RoastDuck-Zz.github.io</link>
+        <description>嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉</description>
+        <language>zh-CN</language>
+        <pubDate>Mon, 16 Mar 2026 14:05:01 +0800</pubDate>
+        <lastBuildDate>Mon, 16 Mar 2026 14:05:01 +0800</lastBuildDate>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
+        <category>机器人</category>
+        <category>ESP32-S3</category>
+        <category>嵌入式</category>
+        <category>机器视觉</category>
+        <category>YOLOv8</category>
+        <category>3D打印</category>
+        <item>
+            <guid isPermalink="true">https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/</guid>
+            <title>从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)</title>
+            <link>https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/</link>
+            <category>ROS</category>
+            <category>STM32</category>
+            <category>树莓派</category>
+            <category>机器人工程</category>
+            <category>嵌入式开发</category>
+            <pubDate>Mon, 16 Mar 2026 14:05:01 +0800</pubDate>
+            <description><![CDATA[ &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;前言：&lt;/strong&gt;&lt;br /&gt;
+在本科的《ROS 机器人系统课程设计》中，我作为团队负责人，带领7人团队基于 Yahboom ROSMASTER X3 平台完成了一次深度的二次开发。&lt;br /&gt;
+这个项目没有采用简单的单片机”大包大揽”，而是构建了工业界标准的**”树莓派 4B（大脑） + STM32F103 扩展板（躯干）”主从控制架构**。&lt;br /&gt;
+项目最终成功部署了 Gmapping 建图与 TEB 局部路径规划，并结合 OpenCV 实现了视觉目标追踪与动态避障。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;一-硬件物理架构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#一-硬件物理架构&#34;&gt;#&lt;/a&gt; 一、 硬件物理架构&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;上位机（算力大脑）：树莓派 4B&lt;/strong&gt; * &lt;strong&gt;环境&lt;/strong&gt;：运行 Ubuntu 操作系统与 ROS 环境。
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;职责&lt;/strong&gt;：专职处理高算力任务。包括运行基于激光雷达的 SLAM 建图算法、路径规划算法，以及调用 USB 摄像头运行 OpenCV 视觉识别。同时，它还开启了 AP 热点，负责与手机端的 TCP/IP 网络通讯。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;下位机（执行躯干）：STM32F103 扩展板&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;职责&lt;/strong&gt;：作为纯粹的底层执行器，负责高频读取底盘的电机编码器数据和 IMU 数据，运行电机 PID 闭环控制算法，并输出 PWM 波精准驱动麦克纳姆轮。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;二-神经网独立制定的-uart-串口数据帧协议&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#二-神经网独立制定的-uart-串口数据帧协议&#34;&gt;#&lt;/a&gt; 二、 神经网：独立制定的 UART 串口数据帧协议&lt;/h2&gt;
+&lt;p&gt;上下位机各司其职，它们之间必须有一条稳定可靠的数据通道。为了保证 ROS 下发的速度指令能够无延迟、无乱码地到达 STM32，我&lt;strong&gt;设计了一套基于 UART 串口的数据帧协议&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;1-数据帧结构设计&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-数据帧结构设计&#34;&gt;#&lt;/a&gt; 1. 数据帧结构设计&lt;/h3&gt;
+&lt;p&gt;在复杂的电机运行环境下，电磁干扰极易导致串口丢包或串码。我设计的定长数据帧（例如 10 字节）结构如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;双包头防错位&lt;/strong&gt;：&lt;code&gt;0x55 0xAA&lt;/code&gt;（极大地降低了误判概率）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;功能码与长度位&lt;/strong&gt;：标识当前指令是控制线速度、角速度还是操作外设。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;有效数据段 (Payload)&lt;/strong&gt;：4 个字节。针对 ROS 传来的浮点数速度（&lt;code&gt;cmd_vel&lt;/code&gt;），为了避免跨平台大小端和精度问题，我们在树莓派端采用**“乘 1000 放大转 16 位整型”**的策略发送，STM32 接收后再除以 1000 还原。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;校验和 (Checksum)&lt;/strong&gt;：累加求和校验，只有校验通过的包才会被 STM32 执行。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;2-stm32-端的状态机解析&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-stm32-端的状态机解析&#34;&gt;#&lt;/a&gt; 2. STM32 端的“状态机”解析&lt;/h3&gt;
+&lt;p&gt;在 STM32 接收端，我没有使用死板的延时等待，而是在串口接收中断中引入了&lt;strong&gt;状态机（State Machine）机制&lt;/strong&gt;进行逐字节解析。只有当“包头1 -&amp;gt; 包头2 -&amp;gt; 数据 -&amp;gt; 校验和”完整走完状态流转，系统才会更新电机目标速度。这使得底盘在高速运动时依然稳如泰山。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;三-核心算法部署让机器人看得见-走得稳&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三-核心算法部署让机器人看得见-走得稳&#34;&gt;#&lt;/a&gt; 三、 核心算法部署：让机器人“看得见、走得稳”&lt;/h2&gt;
+&lt;p&gt;打通了底层通信后，我们在 ROS 空间中部署了导航栈的核心算法：&lt;/p&gt;
+&lt;h3 id=&#34;1-建图算法gmapping&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-建图算法gmapping&#34;&gt;#&lt;/a&gt; 1. 建图算法：Gmapping&lt;/h3&gt;
+&lt;p&gt;我们采用了基于 2D 激光雷达和里程计的 &lt;strong&gt;Gmapping 算法&lt;/strong&gt; 进行室内环境建图。&lt;br /&gt;
+它底层的 RBPF（粒子滤波）机制在中小场景下表现非常出色。由于我在 STM32 底层做好了严格的电机 PID 闭环，这为 Gmapping 提供了极高精度的 &lt;code&gt;/odom&lt;/code&gt;（里程计）数据，有效避免了因轮子打滑导致的地图飘移或重影。&lt;/p&gt;
+&lt;h3 id=&#34;2-局部路径规划teb-time-elastic-band&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-局部路径规划teb-time-elastic-band&#34;&gt;#&lt;/a&gt; 2. 局部路径规划：TEB (Time Elastic Band)&lt;/h3&gt;
+&lt;p&gt;在动态避障方面，我们没有使用默认的 DWA，而是配置了 &lt;strong&gt;TEB 算法&lt;/strong&gt;。&lt;br /&gt;
+TEB 最大的优势在于它基于 g2o 图优化引擎，能够将底盘的运动学约束（如最大线速度、角速度限制）融入计算。这使得上位机下发的速度曲线非常平滑，不仅能完美避开动态障碍物，还能防止底层电机因指令突变而产生电流过载。&lt;/p&gt;
+&lt;h3 id=&#34;3-多模态交互与视觉追踪&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-多模态交互与视觉追踪&#34;&gt;#&lt;/a&gt; 3. 多模态交互与视觉追踪&lt;/h3&gt;
+&lt;p&gt;借助于树莓派的无线网络能力，我们在 ROS 空间中编写了通讯节点，打通了上下位机的完整数据流。基于局域网实现了手机 APP 遥控与摄像头/雷达视频流的低延迟拉取。同时，结合 OpenCV 部署了实时视觉目标追踪功能，实现了对特定颜色物体的识别、锁定与动态跟随避障。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;四-总结与踩坑记录&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#四-总结与踩坑记录&#34;&gt;#&lt;/a&gt; 四、 总结与踩坑记录&lt;/h2&gt;
+&lt;p&gt;在整机联调过程中，也遇到过不少坑：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;虚拟机网络连接问题&lt;/strong&gt;：最初使用 NAT 模式无法与小车通信，最终通过排查和配置桥接模式解决。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;底层硬件响应延迟&lt;/strong&gt;：早期由于串口接收逻辑不佳，导致模式切换时卡顿。后来重构为状态机中断接收后，延迟问题彻底解决。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过这个项目，我深刻体会到了**“软硬件协同设计”**的魅力。从上层的 ROS 算法到中间的通信协议，再到最底层的寄存器与外设驱动，全栈打通的成就感是无与伦比的。未来我也会在嵌入式与机器人领域继续深耕！&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;最后，感谢团队里每一位小伙伴的付出与配合！&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

@@ -1,1144 +1,308 @@
-
-<!DOCTYPE html><html lang="zh-CN">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
-  
-  
-  <meta name="generator" content="Hexo 8.1.1">
-  <meta http-equiv='x-dns-prefetch-control' content='on' />
-  
-  <meta name="renderer" content="webkit">
-  <meta name="force-rendering" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-  <meta name="HandheldFriendly" content="True" >
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
-  <meta name="theme-color" content="#f9fafb">
-  <title>五自由度焊接机械臂 - RoastDuck</title>
-
-  
-    <meta name="description" content="一款具备视觉识别、可更换末端执行器的五自由度关节型机械臂。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="五自由度焊接机械臂">
-<meta property="og:url" content="https://roastduck-zz.github.io/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/">
-<meta property="og:site_name" content="RoastDuck">
-<meta property="og:description" content="一款具备视觉识别、可更换末端执行器的五自由度关节型机械臂。">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://roastduck-zz.github.io/img/avatar.jpg">
-<meta property="article:published_time" content="2026-02-27T03:43:00.000Z">
-<meta property="article:modified_time" content="2026-03-13T06:53:40.989Z">
-<meta property="article:author" content="Roast Duck">
-<meta property="article:tag" content="ESP32-S3">
-<meta property="article:tag" content="嵌入式">
-<meta property="article:tag" content="机器人">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://roastduck-zz.github.io/img/avatar.jpg">
-  
-  
-  
-  <meta name="keywords" content="机器人,ESP32-S3,嵌入式">
-
-  <!-- feed -->
-  
-
-  <link rel="stylesheet" href="/css/main.css?v=1.33.1">
-
-
-  
-
-  
-
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Roast Duck","sameAs":[],"image":"https://RoastDuck-Zz.github.io/img/avatar.jpg"},"dateCreated":"2026-02-27T11:43:00+08:00","dateModified":"2026-03-13T14:53:40+08:00","datePublished":"2026-02-27T11:43:00+08:00","description":"","headline":"五自由度焊接机械臂","mainEntityOfPage":{"@type":"WebPage","@id":"https://roastduck-zz.github.io/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/"},"publisher":{"@type":"Organization","name":"Roast Duck","sameAs":[],"image":"https://RoastDuck-Zz.github.io/img/avatar.jpg","logo":{"@type":"ImageObject","url":"https://RoastDuck-Zz.github.io/img/avatar.jpg"}},"url":"https://roastduck-zz.github.io/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/","keywords":"机器人, ESP32-S3, 嵌入式","thumbnailUrl":"/img/banner.jpg","image":1}</script>
-  
-</head>
-<body><div id="l_cover"></div><div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
-
-
-<header class="header"><div class="logo-wrap"><a class="avatar" href="/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/img/avatar.jpg" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main">RoastDuck</div><div class="sub cap">嵌入式开发
-</div></a></div></header>
-
-<div class="nav-area">
-
-<nav class="menu dis-select"></nav>
-</div>
-<div class="widgets">
-<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
-
-
-
-<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/"><span class="title">从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)</span></a><a class="item title" href="/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/"><span class="title">五自由度焊接机械臂</span></a><a class="item title" href="/2026/03/03/%E6%A1%8C%E5%AE%A0/"><span class="title">桌宠</span></a></div></widget>
-</div>
-
-</div></aside><div class="l_main" id="main">
-
-
-
-
-
-<div class="article banner top"><img class="lazy bg" data-src="/img/banner.jpg">
-  <div class="content">
-    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
-<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/categories/%E9%A1%B9%E7%9B%AE/">项目</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-02-27T03:43:00.000Z">2026-02-27</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-03-13T06:53:40.989Z">2026-03-13</time></span></div></div></div>
-    
-    <div class="bottom only-title">
-      
-      <div class="text-area">
-        <h1 class="text title"><span>五自由度焊接机械臂</span></h1>
-        
-      </div>
-    </div>
-    
-  </div>
-  </div><article class="md-text content"><blockquote>
-<p><strong>项目属性：</strong> 本科毕业设计（进行中）<br><strong>核心技术栈：</strong> <code>ESP32-S3</code> | <code>机器视觉</code> | <code>总线舵机控制</code> | <code>运动学逆解</code> | <code>SolidWorks建模</code> | <code>Wi-Fi通信</code></p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"/><meta name="theme-color" content="#222"/><meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/><meta name="renderer" content="webkit"/><link rel="icon" type="image/ico" sizes="32x32" href="/assets/favicon.ico"/><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/><link rel="alternate" href="/rss.xml" title="RoastDuck" type="application/rss+xml"><link rel="alternate" href="/atom.xml" title="RoastDuck" type="application/atom+xml"><link rel="alternate" type="application/json" title="RoastDuck" href="https://roastduck-zz.github.io/feed.json"/><link rel="preconnect" href="https://s4.zstatic.net"/><link rel="preconnect" href="https://at.alicdn.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CFredericka%20the%20Great:400,400italic,700,700italic%7CNoto%20Serif%20JP:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CInconsolata:400,400italic,700,700italic&display=swap&subset=latin,latin-ext" media="none" onload="this.media&#x3D;&#39;all&#39;"><link rel="modulepreload" href="/js/siteInit.js"></link><link rel="modulepreload" href="/js/nyx-player-FE24YN2V.js"></link><link rel="modulepreload" href="/js/copy-tex-YLMK62VZ.js"></link><link rel="modulepreload" href="/js/post-LB3SHHYW.js"></link><link rel="modulepreload" href="/js/chunk-FSQMPFCT.js"></link><link rel="modulepreload" href="/js/index.esm-TGHNHYZG.js"></link><link rel="modulepreload" href="/js/chunk-D4ZSMMI3.js"></link><link rel="modulepreload" href="/js/chunk-7MGNIAIC.js"></link><link rel="stylesheet" href="/css/siteInit.css" media="none" onload="this.media&#x3D;&#39;all&#39;"></link><link rel="preload" href="https://bing.img.run/1920x1080.php" as="image" fetchpriority="high"><link rel="preload" href="https://bing.img.run/1920x1080.php" as="image" fetchpriority="high"><link rel="preload" href="https://bing.img.run/1920x1080.php" as="image" fetchpriority="high"><link rel="preload" href="https://bing.img.run/1920x1080.php" as="image" fetchpriority="high"><link rel="preload" href="https://bing.img.run/1920x1080.php" as="image" fetchpriority="high"><link rel="preload" href="https://bing.img.run/1920x1080.php" as="image" fetchpriority="high"><meta name="keywords" content="机器人,嵌入式,YOLOv8,"/><meta name="description" content="毕业设计全记录：从 SolidWorks 结构设计到 YOLOv8 视觉引导，一台低成本五自由度焊接机器人的完整开发过程。"/><link rel="canonical" href="https://roastduck-zz.github.io/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/"><link rel="stylesheet" href="/css/post.css?v=0.5.4"><link rel="stylesheet" href="/css/mermaid.css?v=0.5.4"><!-- 临时处理--><link rel="stylesheet" media="none" onload="this.media='all'" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css"><title>从零造一台会「看」的焊接机器人——五自由度机械臂全栈开发手记</title><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="pagefind_mount"></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">从零造一台会「看」的焊接机器人——五自由度机械臂全栈开发手记</h1><div class="meta"><span class="item" title="创建时间：2026-02-27 11:43:00"><span class="icon"><i class="ic i-calendar"></i></span><span class="text">发表于</span><time itemprop="dateCreated datePublished" datetime="2026-02-27T11:43:00+08:00">2026-02-27</time></span><span class="item" title="本文字数"><span class="icon"><i class="ic i-pen"></i></span><span class="text">本文字数</span><span>7.8k</span><span class="text">字</span></span><span class="item" title="阅读时长"><span class="icon"><i class="ic i-clock"></i></span><span class="text">阅读时长</span><span>7 分钟</span></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span><span class="line"></span><span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">RoastDuck</a></li></ul><ul class="right" id="rightNav"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div class="pjax" id="imgs"><ul><li class="item" style="background-image: url(&quot;https://bing.img.run/1920x1080.php&quot;);"></li><li class="item" style="background-image: url(&quot;https://bing.img.run/1920x1080.php&quot;);"></li><li class="item" style="background-image: url(&quot;https://bing.img.run/1920x1080.php&quot;);"></li><li class="item" style="background-image: url(&quot;https://bing.img.run/1920x1080.php&quot;);"></li><li class="item" style="background-image: url(&quot;https://bing.img.run/1920x1080.php&quot;);"></li><li class="item" style="background-image: url(&quot;https://bing.img.run/1920x1080.php&quot;);"></li></ul></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"></use><use xlink:href="#gentle-wave" x="48" y="3"></use><use xlink:href="#gentle-wave" x="48" y="5"></use><use xlink:href="#gentle-wave" x="48" y="7"></use></g></svg></div><main><div class="inner"><div class="pjax" id="main"><div class="article wrap"><div class="breadcrumb" itemListElement itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i><span><a href="/">首页</a></span><i class="ic i-angle-right"></i><span class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/%E9%A1%B9%E7%9B%AE/" itemprop="item" rel="index" title="分类于项目"><span itemprop="name">项目<meta itemprop="position" content="0"/></span></a></span></div><article class="post block" itemscope="itemscope" itemtype="http://schema.org/Article" data-pagefind-body="data-pagefind-body" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://roastduck-zz.github.io/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/"/><span hidden="hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><meta itemprop="image" content="/assets/img/avatar.jpg"/><meta itemprop="name" content="RoastDuck"/><meta itemprop="description" content="嵌入式软件开发 | 机器人 | ROS, 嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉"/></span><span hidden="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="RoastDuck"/></span><div class="body md" itemprop="articleBody"><blockquote>
+<p><strong>一句话总结：</strong> 用不到一千块的硬件成本，从零造了一台会自己「看」焊缝、自动追踪焊接的五自由度机械臂。</p>
 </blockquote>
-<p>本项目旨在从零开发一台具备环境感知与空间定位能力的五自由度机械臂，主要应用于模拟焊缝轨迹识别与自动化焊接作业。为了在成本、性能与布线优雅度之间取得最佳平衡，项目采用双 ESP32 协同计算架构，并结合了总线舵机与轻量级 PWM 舵机的混合驱动方案。</p>
-<hr>
-<h3 id="硬件架构与选型逻辑"><a href="#硬件架构与选型逻辑" class="headerlink" title="硬件架构与选型逻辑"></a>硬件架构与选型逻辑</h3><p>本项目的硬件系统分为“控制中枢”、“视觉节点”与“执行机构”三大模块。以下是核心元器件的选型考量：</p>
-<h4 id="1-控制中枢：ESP32-S3-DevKitC-1"><a href="#1-控制中枢：ESP32-S3-DevKitC-1" class="headerlink" title="1. 控制中枢：ESP32-S3-DevKitC-1"></a>1. 控制中枢：ESP32-S3-DevKitC-1</h4><ul>
-<li><strong>选型理由：</strong> 作为机械臂的“大脑”，需要高频处理复杂的<strong>运动学正逆解矩阵计算</strong>，并调度多个舵机。ESP32-S3 拥有强大的双核处理能力，且自带完善的 Wi-Fi 外设。在进行无线数据吞吐和浮点运算时具有极高的性价比与开发效率。</li>
+<hr />
+<h2 id="为什么要做这个"><a class="anchor" href="#为什么要做这个">#</a> 为什么要做这个？</h2>
+<p>大四毕业设计，我选的题目是「五自由度关节型焊接机器人结构设计与控制系统设计」。听起来很教科书，但背后的动机很实在：</p>
+<p>市面上稍微像样的工业焊接机器人动辄十几万，对中小企业或者个人工坊来说门槛太高。我就想试试——<strong>能不能用消费级的硬件，搭出一台具备基本视觉引导能力的焊接机械臂？</strong></p>
+<p>带着这个问题，我花了几个月时间，从 SolidWorks 画图开始，一步步走到了 YOLOv8 视觉闭环控制。这篇文章把整个过程记录下来，重点讲我踩过的坑、用到的技术方案，以及一些收获。</p>
+<hr />
+<h2 id="整体思路五轴怎么分配"><a class="anchor" href="#整体思路五轴怎么分配">#</a> 整体思路：五轴怎么分配？</h2>
+<p>工业上常见的焊接机器人是六轴的。六轴的好处是末端姿态有更大的冗余空间，但代价是——多一个关节意味着多一套舵机和传动结构，控制算法的复杂度也是指数级上升。</p>
+<p>仔细分析了焊接这个场景后，我发现：<strong>焊枪的姿态其实不需要六轴那么大的冗余</strong>。只要能保证焊枪垂直于焊缝表面（调整推拉角），末端有效覆盖工作空间就够了。于是我把方案精简成了五轴：</p>
+<table>
+<thead>
+<tr>
+<th>关节</th>
+<th>作用</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>J1</td>
+<td>基座水平回转</td>
+<td>腰</td>
+</tr>
+<tr>
+<td>J2</td>
+<td>大臂俯仰</td>
+<td>肩</td>
+</tr>
+<tr>
+<td>J3</td>
+<td>小臂俯仰</td>
+<td>肘</td>
+</tr>
+<tr>
+<td>J4</td>
+<td>腕部俯仰</td>
+<td>腕</td>
+</tr>
+<tr>
+<td>J5</td>
+<td>末端自旋</td>
+<td>手</td>
+</tr>
+</tbody>
+</table>
+<p>五个自由度在 200mm 工作半径内能覆盖所有必要姿态，又比六轴少了一套驱动，省钱也省心。</p>
+<hr />
+<h2 id="机械结构solidworks-3d-打印的反复拉锯"><a class="anchor" href="#机械结构solidworks-3d-打印的反复拉锯">#</a> 机械结构：SolidWorks + 3D 打印的反复拉锯</h2>
+<p>机械臂的骨架是整个系统的物理基础。我用 <strong>SolidWorks</strong> 从零画了全套三维模型——基座、第一连杆、主承力连杆（大臂+小臂）、末端快换接口。</p>
+<h3 id="材料怎么选"><a class="anchor" href="#材料怎么选">#</a> 材料怎么选？</h3>
+<p>3D 打印的常用材料就那几种。我专门做了个对比：</p>
+<table>
+<thead>
+<tr>
+<th>材料</th>
+<th>弯曲强度</th>
+<th>热变形温度</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通 PLA</td>
+<td>较高</td>
+<td>极低</td>
+<td>靠近焊接热源会软化，一票否决</td>
+</tr>
+<tr>
+<td>ABS</td>
+<td>中等</td>
+<td>较高</td>
+<td>收缩率大，打出来电机安装孔都对不准</td>
+</tr>
+<tr>
+<td><strong>9600 高韧性树脂</strong></td>
+<td>极高</td>
+<td>59°C</td>
+<td>光固化精度极高，耐热阈值够用，选了它</td>
+</tr>
+</tbody>
+</table>
+<p>最终用了 SLA 光固化 9600 树脂，通过嘉立创的 3D 打印服务下单。树脂材料打出来的件表面特别细腻，装配公差控制在了一个非常舒服的范围。</p>
+<h3 id="设计上的一些关键考量"><a class="anchor" href="#设计上的一些关键考量">#</a> 设计上的一些关键考量</h3>
+<p><strong>基座：</strong> 直径做得比较大，阶梯圆盘式。因为整条手臂伸展出去时基座承受的力矩最大，底盘不稳后面都是白搭。</p>
+<p><strong>第一连杆高度 39mm：</strong> 这个数字不是拍脑袋定的。太矮了——大臂低头时会撞到基座上的电子舱；太高了——重心上移，基座关节要多克服额外的重力矩。39mm 是我在 SolidWorks 里反复做干涉检查后确定的平衡值。</p>
+<p><strong>埋线设计：</strong> 每个连杆内部都预留了走线孔和理线槽。这条经验来自之前做其他项目的教训——多轴运动时电线缠绕是很头疼的问题。把线藏在骨架里面，外观干净，物理上也杜绝了快速转动时扯断信号线的风险。转角处全部做了圆角处理，减少 3D 打印应力集中的问题。</p>
+<p><strong>末端执行器：</strong> 做成了模块化的快拆接口。现在装的是模拟焊枪，以后换爪头、吸盘都很方便，不用重新设计整条手臂。</p>
+<hr />
+<h2 id="硬件方案esp32-s3-凭什么当主控"><a class="anchor" href="#硬件方案esp32-s3-凭什么当主控">#</a> 硬件方案：ESP32-S3 凭什么当主控？</h2>
+<p>单片机选型这件事，我在 Arduino UNO、STM32、ESP32-S3 三者之间纠结了很久。</p>
+<h3 id="为什么不用-arduino-uno"><a class="anchor" href="#为什么不用-arduino-uno">#</a> 为什么不用 Arduino UNO？</h3>
+<p>ATmega328P，8 位架构，主频才 16MHz，SRAM 只有 2KB。驱动几个舵机还行，但想让它同时处理 OV3660 摄像头的图像数据？门都没有。连 DVP 接口都没有。</p>
+<h3 id="stm32-呢"><a class="anchor" href="#stm32-呢">#</a> STM32 呢？</h3>
+<p>STM32F4/H7 系列是工业级的标杆。定时器精度高，PWM 输出稳，驱动舵机是一把好手。但问题有两个：一是自带 Wi-Fi 的型号少且贵，想无线传图还得外挂模块，硬件复杂度直接翻倍；二是开发环境（HAL 库、时钟树配置）学习曲线陡峭，对于毕设周期来说时间成本太高。</p>
+<h3 id="esp32-s3-的取舍"><a class="anchor" href="#esp32-s3-的取舍">#</a> ESP32-S3 的取舍</h3>
+<p>最后选了 <strong>ESP32-S3-DevKitC-1</strong>。Xtensa 32 位 LX7 双核，主频 240MHz，自带 Wi-Fi/BLE 和 DVP 摄像头接口，关键是一片才几十块。它的向量指令集对神经网络推理有加速作用——虽然主要 AI 推理放上位机，但端侧做一些轻量预处理时很有用。</p>
+<p>说实话，ESP32-S3 在极端环境下的硬件定时器精度不如 STM32，但对于桌面级的焊接场景完全够用。这个价格有这些功能，性价比真的离谱。</p>
+<hr />
+<h2 id="舵机配置非对称驱动的逻辑"><a class="anchor" href="#舵机配置非对称驱动的逻辑">#</a> 舵机配置：非对称驱动的逻辑</h2>
+<p>五轴都用一个型号的舵机当然方便，但力学上不合理。</p>
+<p><strong>基座、大臂、小臂（J1-J3）：MG996R 金属齿轮舵机</strong>，13kg·cm 扭矩。这几个关节需要承载整机重力矩和动态冲击，扭矩不够会直接抖。</p>
+<p><strong>腕部自旋（J5）：SG90 微型舵机</strong>，仅 9g 重。末端轻量化有什么好处？转动惯量小。J2、J3 不用额外对抗末端的惯性载荷，整条手臂的动态响应速度明显提升。</p>
+<p>中间的 J4（腕部俯仰）用了另一颗 MG996R——这个关节需要承受焊枪和摄像头的重量，SG90 扛不住。</p>
+<h3 id="pwm-驱动为什么要加-pca9685"><a class="anchor" href="#pwm-驱动为什么要加-pca9685">#</a> PWM 驱动：为什么要加 PCA9685？</h3>
+<p>ESP32-S3 本身能输出 PWM，但引脚数量有限。更关键的是——主控要同时处理 Wi-Fi 图像透传、运动学逆解、PID 计算，根本没精力一直维持 PWM 波形。</p>
+<p><strong>PCA9685</strong> 解决了这个问题。它通过 I²C 总线（只要两根线 SDA/SCL）就能输出 16 路 PWM，内置独立时钟。主控下完角度指令后就能去做别的事，PCA9685 自己维持波形。这是一种<strong>硬件级任务卸载</strong>。</p>
+<p>驱动频率统一设定为 50Hz，0°-180° 映射到 150-600 的脉宽计数值。12 位分辨率（4096 级）对于舵机的微调完全够用。</p>
+<h3 id="供电隔离差点重启到崩溃"><a class="anchor" href="#供电隔离差点重启到崩溃">#</a> 供电隔离：差点重启到崩溃</h3>
+<p>多颗 MG996R 同时在重载下换向时，瞬间电流非常大。如果把舵机电源和主控逻辑电源共用一路，电压波动会直接导致 ESP32-S3 低压复位——Wi-Fi 断开、程序重跑。</p>
+<p>解决方案是 <strong>XL4015 双通道降压模块</strong>，物理隔离两路供电：</p>
+<ul>
+<li><strong>动力链路</strong>：给舵机群供电，5A 额定，扛得住多轴齐动时的瞬态功率</li>
+<li><strong>逻辑链路</strong>：给 ESP32-S3、PCA9685 逻辑部分、OV3660 传感器供电，稳压滤波</li>
 </ul>
-<h4 id="2-视觉节点：ESP32-S3-CAM"><a href="#2-视觉节点：ESP32-S3-CAM" class="headerlink" title="2. 视觉节点：ESP32-S3-CAM"></a>2. 视觉节点：ESP32-S3-CAM</h4><ul>
-<li><strong>选型理由：</strong> 作为机械臂的“眼睛”，独立负责前端图像采集与特征提取。选用带摄像头接口的 S3 模块，可以将视觉处理的算力从主控中剥离出来（边缘计算），避免抢占主控的运动控制资源。</li>
+<p>这个方案也是踩坑踩出来的——之前调试时经常莫名其妙重启，排查了半天才发现是电源纹波导致的。</p>
+<hr />
+<h2 id="运动学手算逆解的快乐"><a class="anchor" href="#运动学手算逆解的快乐">#</a> 运动学：手算逆解的快乐</h2>
+<p>有了机械结构，下一步就是用数学描述它的运动。</p>
+<h3 id="d-h-建模"><a class="anchor" href="#d-h-建模">#</a> D-H 建模</h3>
+<p>我采用改进的 D-H 参数法，在相邻连杆间建立 4×4 齐次变换矩阵。每个关节固连一个空间直角坐标系，然后把物理尺寸代入：</p>
+<ul>
+<li>l₀ = 28mm：基座中心到肩关节轴线的水平偏移</li>
+<li>d₁ = 85mm：基座旋转轴垂直高度</li>
+<li>l₂ = 105mm：大臂有效杆长</li>
+<li>d₄ = 100mm（原设121mm，建模优化后调整）：小臂有效杆长</li>
+<li>d₆ = 50mm：末端法兰到腕关节偏移</li>
 </ul>
-<h4 id="3-主体执行机构：幻尔（Hiwonder）串行总线舵机"><a href="#3-主体执行机构：幻尔（Hiwonder）串行总线舵机" class="headerlink" title="3. 主体执行机构：幻尔（Hiwonder）串行总线舵机"></a>3. 主体执行机构：幻尔（Hiwonder）串行总线舵机</h4><ul>
-<li><strong>选型理由：</strong> 机械臂的底座与主臂承担了极大的扭矩，且对定位精度要求极高。弃用传统的 MG996R，改用 <strong>HTS-25L（大扭矩底座&#x2F;大臂）</strong> 和 <strong>HX-08L（轻量小臂）</strong> 总线舵机。<ul>
-<li><strong>极简走线：</strong> 支持“手拉手”串联，只需一根线连回主控，彻底消除了多舵机方案中“杜邦线乱飞”的痛点。</li>
-<li><strong>状态回传：</strong> 支持双向通讯，可实时回传当前的角度、电压和温度，为实现闭环控制与防堵转保护提供了物理基础。</li>
-</ul>
-</li>
-</ul>
-<h4 id="4-末端姿态执行：SG90-微型舵机"><a href="#4-末端姿态执行：SG90-微型舵机" class="headerlink" title="4. 末端姿态执行：SG90 微型舵机"></a>4. 末端姿态执行：SG90 微型舵机</h4><ul>
-<li><strong>选型理由：</strong> 机械臂的末端（夹持焊接探头）仅需微调姿态，无需大扭矩。选用仅重 9 克的 SG90，能够<strong>极大降低机械臂末端的负载与转动惯量</strong>，减轻底部总线舵机的维持压力，使整机动态响应更加迅速平滑。</li>
-</ul>
-<hr>
-<h3 id="通信架构与软件实现"><a href="#通信架构与软件实现" class="headerlink" title="通信架构与软件实现"></a>通信架构与软件实现</h3><h4 id="双板-Wi-Fi-无线解耦"><a href="#双板-Wi-Fi-无线解耦" class="headerlink" title="双板 Wi-Fi 无线解耦"></a>双板 Wi-Fi 无线解耦</h4><ul>
-<li><strong>架构优势：</strong> 弃用传统的 UART 串口物理接线，主从板之间采用 <strong>Wi-Fi</strong> 进行通信。视觉摄像头可以无所顾忌地安装在机械臂末端或全局任意位置，<strong>彻底避免了机械臂大幅度运动时导致的线束缠绕与拉扯断裂问题</strong>。</li>
-<li><strong>数据流向：</strong> <code>S3-CAM 捕捉图像</code> ➔ <code>OpenCV 提取焊缝轮廓坐标</code> ➔ <code>打包为坐标偏移量</code> ➔ <code>通过 Wi-Fi 发送至主控</code> ➔ <code>主控接收并执行逆解</code>。</li>
-</ul>
-<h4 id="运动控制指令"><a href="#运动控制指令" class="headerlink" title="运动控制指令"></a>运动控制指令</h4><p>主控板解析出空间目标坐标后，运行自研的运动学逆解算法算出 5 个关节的目标角度，随后通过总线协议下发给主臂舵机组，并通过 PWM 信号微调末端 SG90 的姿态。</p>
-<hr>
-<h3 id="机械设计与进度展望"><a href="#机械设计与进度展望" class="headerlink" title="机械设计与进度展望"></a>机械设计与进度展望</h3><ul>
-<li><strong>SolidWorks 结构自研：</strong> 针对幻尔总线舵机特殊的法兰盘孔位，目前正使用 SolidWorks 从零设计机械臂的连接件与底座，反复进行干涉检查与应力评估，准备进行后续的 3D 打印验证。</li>
-<li><strong>模块化快拆设计：</strong> 末端执行器预留了通用接口，使得该平台不仅限于焊接模拟，未来可快速换装夹爪、吸盘等工具，拓展物料搬运等应用场景。</li>
-<li><strong>当前阶段：</strong> 视觉识别逻辑与 Wi-Fi 双板通讯已初步跑通，底层控制协议已完成封装。目前正全力推进 SolidWorks 的三维建模与整机组装。</li>
-</ul>
+<p>正运动学就是给定五个关节角度，算出末端位姿。这一步相对直接。</p>
+<h3 id="逆运动学为什么要手推解析解而不是数值迭代"><a class="anchor" href="#逆运动学为什么要手推解析解而不是数值迭代">#</a> 逆运动学：为什么要手推解析解而不是数值迭代？</h3>
+<p>逆运动学是从目标位姿反推关节角度。有两种主流方法：</p>
+<ol>
+<li><strong>数值迭代法</strong>：类似牛顿法逐步逼近，通用但不保证收敛，而且每次迭代都要算矩阵乘法</li>
+<li><strong>解析法</strong>：利用几何关系直接推出封闭公式，一次算出结果</li>
+</ol>
+<p>我选了<strong>投影几何解析法</strong>。原因是 ESP32-S3 要同时处理 Wi-Fi 透传和中断响应，算力不能全砸在运动学上。数值迭代在单片机上的执行时间不可预测——有时候收敛快，有时候要迭代十几轮，这会影响闭环控制的实时性。</p>
+<p>解析法的推导过程：</p>
+<p><strong>第一步——求基座角 q₁：</strong> 把末端目标点投影到水平面，用 <code>atan2(y, x)</code> 直接算，一个三角函数搞定。</p>
+<p><strong>第二步——求大臂和小臂（q₂, q₃）：</strong> 这是最有意思的部分。把三维问题降维到二维——投影到由连杆 l₂ 和 d₄ 构成的垂直平面。然后用<strong>余弦定理</strong>：已知肩到腕的直线距离 s，以及两段连杆长度 l₂ 和 d₄，直接算出肘关节的内角。再加上投影的仰角分量，q₂ 和 q₃ 就出来了。</p>
+<p><strong>第三步——求末端姿态（q₄, q₅）：</strong> q₄ 根据目标俯仰角和已算出的 q₂+q₃ 反推。q₅ 单独由焊缝切向方向算偏转角。</p>
+<p>整个逆解过程在 ESP32-S3 上做到了微秒级输出，代价就是推导时在草稿纸上画了无数个三角形。</p>
 <blockquote>
-<p><em>“Talk is cheap. Show me the hardware.”</em></p>
+<p><strong>学习心得：</strong> 数学课上学余弦定理时觉得&quot;这玩意儿能有什么用&quot;，真到做项目才发现，把三维空间投影到二维平面然后用余弦定理，是最优雅的解法。工程实践是理论最好的老师。</p>
 </blockquote>
-</article>
-<div class="article-footer">
-    <section id="license">
-      <div class="header"><span>许可协议</span></div>
-      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
-</div>
-    </section>
-    
-
-</div>
-
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/2026/03/03/%E6%A1%8C%E5%AE%A0/">桌宠</a></div><div class="item" id="next"></div></section></div>
-
-
-
-
-
-
-<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/">Roast Duck</a> 使用 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar 1.33.1</a> 主题创建。<br>本博客所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
-</div></footer>
-<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right"><div class="widgets">
-
-
-
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E4%B8%8E%E9%80%89%E5%9E%8B%E9%80%BB%E8%BE%91"><span class="toc-text">硬件架构与选型逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%8E%A7%E5%88%B6%E4%B8%AD%E6%9E%A2%EF%BC%9AESP32-S3-DevKitC-1"><span class="toc-text">1. 控制中枢：ESP32-S3-DevKitC-1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%A7%86%E8%A7%89%E8%8A%82%E7%82%B9%EF%BC%9AESP32-S3-CAM"><span class="toc-text">2. 视觉节点：ESP32-S3-CAM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%B8%BB%E4%BD%93%E6%89%A7%E8%A1%8C%E6%9C%BA%E6%9E%84%EF%BC%9A%E5%B9%BB%E5%B0%94%EF%BC%88Hiwonder%EF%BC%89%E4%B8%B2%E8%A1%8C%E6%80%BB%E7%BA%BF%E8%88%B5%E6%9C%BA"><span class="toc-text">3. 主体执行机构：幻尔（Hiwonder）串行总线舵机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%9C%AB%E7%AB%AF%E5%A7%BF%E6%80%81%E6%89%A7%E8%A1%8C%EF%BC%9ASG90-%E5%BE%AE%E5%9E%8B%E8%88%B5%E6%9C%BA"><span class="toc-text">4. 末端姿态执行：SG90 微型舵机</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E4%BF%A1%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0"><span class="toc-text">通信架构与软件实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E6%9D%BF-Wi-Fi-%E6%97%A0%E7%BA%BF%E8%A7%A3%E8%80%A6"><span class="toc-text">双板 Wi-Fi 无线解耦</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6%E6%8C%87%E4%BB%A4"><span class="toc-text">运动控制指令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%BA%E6%A2%B0%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%BF%9B%E5%BA%A6%E5%B1%95%E6%9C%9B"><span class="toc-text">机械设计与进度展望</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a></div></widget>
-</div></aside><div class='float-panel'>
-  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
-  </button>
-  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
-  </button>
-</div>
-</div><div class="scripts">
-
-
-<script type="text/javascript">
-  window.canonical = {"closeEnable":true,"closeText":"关闭提示","originalHost":null,"officialHosts":["localhost"],"encoded":""};
-  window.canonical["param"] = {"permalink":"https://roastduck-zz.github.io/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/","checklink":"/js/plugins/video.js"};
-  // Fix: Ensure page is at the correct top position on data load
-  if (history.scrollRestoration) {
-    history.scrollRestoration = 'auto';
-  }
-  (function() {
-    const scrollHandler = () => {
-      const wikiCover = document.querySelector('#l_cover .l_cover.wiki');
-      const startEl = document.getElementById('start');
-      if (wikiCover && startEl) {
-        window.scrollTo(0, startEl.offsetTop);
-      } else {
-        window.scrollTo(0, 0);
-      }
-    };
-    if (document.readyState !== 'loading') scrollHandler();
-    else document.addEventListener('DOMContentLoaded', scrollHandler);
-  })();
-  const ctx = {
-    date_suffix: {
-      just: `刚刚`,
-      min: `分钟前`,
-      hour: `小时前`,
-      day: `天前`,
+<hr />
+<h2 id="视觉系统yolov8-为什么比传统方法强"><a class="anchor" href="#视觉系统yolov8-为什么比传统方法强">#</a> 视觉系统：YOLOv8 为什么比传统方法强？</h2>
+<p>焊接环境对视觉算法极其不友好——电弧强光闪烁、飞溅的火花、弥漫的烟尘。如果用传统的 OpenCV 方案（灰度化→高斯滤波→Canny 边缘检测→霍夫变换），在这种环境里基本就是白给：强光会让二值化阈值瞬间失效，烟尘会制造大量假边缘。</p>
+<h3 id="引入-yolov8"><a class="anchor" href="#引入-yolov8">#</a> 引入 YOLOv8</h3>
+<p>YOLOv8 是单阶段的端到端目标检测模型，不需要人工设计特征。模型自己从数据中学习焊缝的深层语义模式——即使部分被烟尘遮挡，也能靠上下文特征推断出焊缝位置。</p>
+<p>选择 YOLOv8 而不是其他模型的原因很简单：</p>
+<ul>
+<li>轻量化版本在保证精度的同时推理速度够快</li>
+<li>Ultralytics 库生态好，训练部署一条龙</li>
+<li>社区活跃，踩坑了有人可问</li>
+</ul>
+<h3 id="数据集训练不能没有好数据"><a class="anchor" href="#数据集训练不能没有好数据">#</a> 数据集：训练不能没有好数据</h3>
+<p>工业焊缝的开源数据集非常少。最后我在 <strong>Roboflow</strong> 平台上找到了一套高质量的焊缝检测数据——包含 V 型坡口、搭接、T 型接头等多种接头形式，覆盖了不同光照和烟尘条件下的场景。一共 838 张标注好的图片。</p>
+<p>但 838 张对于训练深度神经网络远远不够，容易过拟合。我写了个 Python 脚本做<strong>离线数据增强</strong>：</p>
+<ul>
+<li><strong>几何变换</strong>：随机水平/垂直翻转、限定角度旋转——模拟机械臂从不同位姿观察焊缝的视角变化</li>
+<li><strong>像素变换</strong>：高斯噪声——模仿焊接现场的金属粉尘和传感器噪声；亮度/对比度随机调整——模拟电弧起灭产生的极端光照变化</li>
+</ul>
+<p>增强后数据集扩展到 <strong>3352 张</strong>，按 8:1:1 随机拆分成训练集、验证集、测试集。训练时还用了 YOLO 自带的 <strong>Mosaic 增强</strong>——把四张不同场景的图随机拼接在一起训练，强制模型学习更多样化的背景特征。</p>
+<h3 id="训练过程"><a class="anchor" href="#训练过程">#</a> 训练过程</h3>
+<p>在 PyTorch 上跑，GPU 加速。关键参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>输入尺寸</td>
+<td>640×640</td>
+<td>平衡细节与速度</td>
+</tr>
+<tr>
+<td>Batch size</td>
+<td>16</td>
+<td>GPU 内存允许的范围</td>
+</tr>
+<tr>
+<td>初始学习率</td>
+<td>0.01</td>
+<td>SGD 优化器</td>
+</tr>
+<tr>
+<td>迭代轮次</td>
+<td>100</td>
+<td>约 80 轮后稳定</td>
+</tr>
+</tbody>
+</table>
+<p>从 Loss 曲线来看，定位损失和分类损失在前 80 轮平稳下降后就趋于稳定，没有出现过拟合也没有梯度爆炸——数据增强起了很大作用。</p>
+<h3 id="检测效果"><a class="anchor" href="#检测效果">#</a> 检测效果</h3>
+<p>最终模型在测试集上的成绩：</p>
+<ul>
+<li><strong>精确率 94.2%</strong>：预测为焊缝的框里，有 94.2% 确实是对的</li>
+<li><strong>召回率 91.5%</strong>：真实焊缝中，有 91.5% 被模型找到了</li>
+<li><strong>mAP@0.5 达 95.8%</strong>：综合指标，说明模型在各种背景下都能稳定检出焊缝</li>
+</ul>
+<p>从混淆矩阵看，模型把背景误判为焊缝的概率极低——这对于后续 PID 控制非常关键，因为如果出现假阳性，机械臂会追着一个不存在的东西跑。</p>
+<blockquote>
+<p><strong>学习心得：</strong> 做深度学习项目，80% 的时间花在数据上。数据集的多样性比模型参数的微调重要得多。之前调了半天模型 mAP 就是上不去，后来发现是训练集里缺少烟尘场景——加上增强策略后效果立竿见影。</p>
+</blockquote>
+<hr />
+<h2 id="视觉伺服从看到到走到"><a class="anchor" href="#视觉伺服从看到到走到">#</a> 视觉伺服：从「看到」到「走到」</h2>
+<p>检测到焊缝只是第一步，接下来要让机械臂<strong>追着焊缝走</strong>。</p>
+<h3 id="为什么选-ibvs-而不是-pbvs"><a class="anchor" href="#为什么选-ibvs-而不是-pbvs">#</a> 为什么选 IBVS 而不是 PBVS？</h3>
+<p>传统做法是<strong>基于位置的视觉伺服（PBVS）</strong>——先做手眼标定算出相机和机械臂基座的变换矩阵，再把图像坐标映射到三维空间。但问题是：标定精度高度依赖硬件安装精度，微型摄像头稍微有点位移或者 3D 打印件有微小形变，累积误差就会大到影响焊缝跟踪。</p>
+<p>我选了<strong>基于图像的视觉伺服（IBVS）</strong>——直接在二维图像平面里闭环，完全跳过手眼标定。逻辑很简单：维持焊缝中心在图像视野正中央。如果焊缝偏左了，就控制机械臂往左移，直到偏差归零。</p>
+<h3 id="像素级特征提取"><a class="anchor" href="#像素级特征提取">#</a> 像素级特征提取</h3>
+<p>YOLOv8 输出焊缝的边界框坐标。我取边界框的几何中心作为引导点：</p>
+<pre class="shiki shiki-themes vitesse-light vitesse-dark" style="background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee" tabindex="0"><code class="language-text"><span class="line"><span>cx = (x1 + x2) / 2</span></span>
+<span class="line"><span>cy = (y1 + y2) / 2</span></span></code></pre>
+<p>然后用<strong>低通滤波</strong>消除帧间噪声——避免因为某一帧的抖动让机械臂做出过度反应。</p>
+<h3 id="增量式-pid-控制器"><a class="anchor" href="#增量式-pid-控制器">#</a> 增量式 PID 控制器</h3>
+<p>控制目标是让焊缝中心锁定在图像中心点 (320, 240)。计算当前焊缝中心与靶心的像素偏差 <code>e_x</code>, <code>e_y</code>，输入双轴 PID 控制器，输出机械臂在 X/Y 方向的期望补偿速度。</p>
+<p>核心代码逻辑：</p>
+<pre class="shiki shiki-themes vitesse-light vitesse-dark" style="background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee" tabindex="0"><code class="language-text"><span class="line"><span>error = target - current</span></span>
+<span class="line"><span>integral += error * dt</span></span>
+<span class="line"><span>integral = clamp(integral, -1000, 1000)  // 抗积分饱和</span></span>
+<span class="line"><span>derivative = (error - prev_error) / dt</span></span>
+<span class="line"><span>output = Kp*error + Ki*integral + Kd*derivative</span></span></code></pre>
+<p>经过反复调参，最终锁定 <strong>Kp=0.04, Ki=0.001, Kd=0.015</strong>。当像素偏差落入预设死区（约 ±5 像素），期望速度归零，机械臂进入锁定状态。</p>
+<p><strong>积分限幅（Anti-Windup）</strong> 很重要——焊接过程中机身震动会产生微小超调，如果积分项不断累积，会导致系统越来越不稳定。加了限幅后，即使偶尔有较大偏差，系统也能快速恢复。</p>
+<h3 id="端云协同"><a class="anchor" href="#端云协同">#</a> 端云协同</h3>
+<p>这是整个系统架构的精髓：</p>
+<ol>
+<li><strong>ESP32-S3 端</strong>：负责图像采集（OV3660→DVP→Wi-Fi 透传）、接收上位机指令、通过 I²C 驱动 PCA9685 输出 PWM、执行舵机运动</li>
+<li><strong>上位机（PC）端</strong>：运行 YOLOv8 推理、计算像素偏差、跑 PID 控制器、解算速度级逆运动学、通过 UDP 下发关节速度指令</li>
+</ol>
+<p>为什么要这样分？因为 AI 推理需要算力——ESP32-S3 虽然有一定的神经网络加速能力，但跑 YOLOv8 的完整推理还是吃力。把推理放到上位机，ESP32-S3 专职做实时控制和通信，各司其职。</p>
+<p>通信延迟实测在 20ms 以内，闭环频率达到 15fps 以上，对桌面级焊接来说完全够用。</p>
+<blockquote>
+<p><strong>学习心得：</strong> 做嵌入式系统的边界很重要——知道什么该放在端侧、什么该放在云端。不是所有事情都要在单片机上做，把重型计算卸载到上位机，单片机只做它擅长的事（实时控制），这个架构思路来自实习时做 ESP32-S3 项目的经验。</p>
+</blockquote>
+<hr />
+<h2 id="轨迹规划lspb-解决启停抖动"><a class="anchor" href="#轨迹规划lspb-解决启停抖动">#</a> 轨迹规划：LSPB 解决启停抖动</h2>
+<p>舵机在启停瞬间很容易抖——特别是 MG996R 在承受负载时，PWM 信号突变会引发机械冲击。</p>
+<p>我引入了 <strong>LSPB 算法（Linear Segments with Parabolic Blends）</strong>。简单说：把每次运动切成三段——抛物线加速、匀速、抛物线减速。在启停阶段用抛物线平滑过渡，中间段保持匀速。</p>
+<p>实现时设定了 200ms 的加减速时间窗口。效果很明显——之前不加 LSPB 时机械臂停止会有一个&quot;弹回来&quot;的微震动，加上之后停止动作非常丝滑。这对于焊接场景尤其重要，因为末端抖动会直接影响焊缝成型质量。</p>
+<hr />
+<h2 id="实验结果"><a class="anchor" href="#实验结果">#</a> 实验结果</h2>
+<p>样机组装完成后做了两轮测试：</p>
+<p><strong>结构实验</strong>：实测有效工作半径达到了预期的 200mm。9600 树脂骨架在满载悬臂伸展时重心保持稳定，没有出现明显的结构抖动或丢步。</p>
+<p><strong>视觉伺服闭环实验</strong>：在人为移动焊缝工件位置后，系统在大约 2-3 秒内完成了重新锁定。YOLOv8 在复杂背景下（强光、烟尘模拟）依然稳定检出焊缝，mAP 保持在 95% 以上。低通滤波 + PID 的组合有效抑制了帧间抖动，末端轨迹平滑无跳变。</p>
+<hr />
+<h2 id="不足与改进方向"><a class="anchor" href="#不足与改进方向">#</a> 不足与改进方向</h2>
+<p>写完论文回头看，这套系统还有不少可以提升的地方：</p>
+<ol>
+<li>
+<p><strong>单目 → 双目/结构光</strong>：OV3660 是单目摄像头，没有深度信息。遇到高低起伏的工件时，只能依赖二维平面的像素偏差，没法精确获取焊缝的三维坐标。升级双目视觉或微型结构光是一个明确的方向。</p>
+</li>
+<li>
+<p><strong>材料耐热</strong>：9600 树脂虽然比 PLA 强，但热变形温度毕竟只有 59°C，离真正工业级应用还差得远。后续如果要把这套方案产品化，前端连杆必须换成铝合金 CNC 或者碳纤维复合材料。</p>
+</li>
+<li>
+<p><strong>舵机 → 闭环伺服电机</strong>：普通 PWM 舵机在长时间重载下会产生热漂移，而且没有位置反馈。换成带高分辨率编码器的闭环伺服电机，配合动力学重力补偿，重复定位精度能上一个量级。</p>
+</li>
+<li>
+<p><strong>模型的泛化能力</strong>：目前 YOLOv8 模型在训练过的焊缝类型上表现很好，但遇到完全没见过的接头形式会下降。需要持续扩展数据集。</p>
+</li>
+</ol>
+<hr />
+<h2 id="写在最后"><a class="anchor" href="#写在最后">#</a> 写在最后</h2>
+<p>这几个月从零搭一台机器人，最深的感受是——<strong>做硬件不像写代码，有 Bug 能随时改。一个 3D 打印件尺寸不对，就要重打再等几天；一个供电设计不合理，排查问题排查到怀疑人生。</strong></p>
+<p>但也是这个过程让我真正理解了什么是&quot;工程化思维&quot;——选型时的取舍、数学推导的应用、软硬件协同的边界划分。这些不是在课堂做题能学到的。</p>
+<p>如果你也对低成本机器臂或者嵌入式视觉感兴趣，欢迎交流。所有的 SolidWorks 模型、代码和训练数据我后续会整理放出来。</p>
+<blockquote>
+<p>毕设答辩结束，探索才刚刚开始。</p>
+</blockquote>
+<div class="tags"><a href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/" rel="tag"><i class="ic i-tag"></i>机器人</a><a href="/tags/ESP32-S3/" rel="tag"><i class="ic i-tag"></i>ESP32-S3</a><a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/" rel="tag"><i class="ic i-tag"></i>嵌入式</a><a href="/tags/%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89/" rel="tag"><i class="ic i-tag"></i>机器视觉</a><a href="/tags/YOLOv8/" rel="tag"><i class="ic i-tag"></i>YOLOv8</a><a href="/tags/3D%E6%89%93%E5%8D%B0/" rel="tag"><i class="ic i-tag"></i>3D打印</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i></span><span class="text">更新于 </span><time title="修改时间：2026-06-13 02:20:45" itemprop="dateModified" datetime="2026-06-13T02:20:45+08:00">2026-06-13</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i>赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img loading="lazy" src="/assets/wechatpay.png" alt="RoastDuck 微信支付"/><p>微信支付</p></div><div><img loading="lazy" src="/assets/alipay.png" alt="RoastDuck 支付宝"/><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者：</strong>RoastDuck<i class="ic i-at"><em>@</em></i>RoastDuck</li><li class="link"><strong>本文链接：</strong><a href="https://roastduck-zz.github.io/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/" title="从零造一台会「看」的焊接机器人——五自由度机械臂全栈开发手记">https://roastduck-zz.github.io/2026/02/27/五自由度机械臂/</a></li><li class="license"><strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"></div><div class="item right"><a href="/2026/03/03/%E6%A1%8C%E5%AE%A0/" rel="next" itemprop="url" data-background-image="https:&#x2F;&#x2F;bing.img.run&#x2F;1920x1080.php" title="桌宠"><span class="type">下一篇</span><span class="category"><i class="ic i-flag"></i>项目</span><h3>桌宠</h3></a></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%E8%BF%99%E4%B8%AA"><span class="toc-number">1.</span> <span class="toc-text"> 为什么要做这个？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%80%9D%E8%B7%AF%E4%BA%94%E8%BD%B4%E6%80%8E%E4%B9%88%E5%88%86%E9%85%8D"><span class="toc-number">2.</span> <span class="toc-text"> 整体思路：五轴怎么分配？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%BA%E6%A2%B0%E7%BB%93%E6%9E%84solidworks-3d-%E6%89%93%E5%8D%B0%E7%9A%84%E5%8F%8D%E5%A4%8D%E6%8B%89%E9%94%AF"><span class="toc-number">3.</span> <span class="toc-text"> 机械结构：SolidWorks + 3D 打印的反复拉锯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%90%E6%96%99%E6%80%8E%E4%B9%88%E9%80%89"><span class="toc-number">3.1.</span> <span class="toc-text"> 材料怎么选？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E5%85%B3%E9%94%AE%E8%80%83%E9%87%8F"><span class="toc-number">3.2.</span> <span class="toc-text"> 设计上的一些关键考量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E6%96%B9%E6%A1%88esp32-s3-%E5%87%AD%E4%BB%80%E4%B9%88%E5%BD%93%E4%B8%BB%E6%8E%A7"><span class="toc-number">4.</span> <span class="toc-text"> 硬件方案：ESP32-S3 凭什么当主控？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8-arduino-uno"><span class="toc-number">4.1.</span> <span class="toc-text"> 为什么不用 Arduino UNO？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stm32-%E5%91%A2"><span class="toc-number">4.2.</span> <span class="toc-text"> STM32 呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#esp32-s3-%E7%9A%84%E5%8F%96%E8%88%8D"><span class="toc-number">4.3.</span> <span class="toc-text"> ESP32-S3 的取舍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%88%B5%E6%9C%BA%E9%85%8D%E7%BD%AE%E9%9D%9E%E5%AF%B9%E7%A7%B0%E9%A9%B1%E5%8A%A8%E7%9A%84%E9%80%BB%E8%BE%91"><span class="toc-number">5.</span> <span class="toc-text"> 舵机配置：非对称驱动的逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#pwm-%E9%A9%B1%E5%8A%A8%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0-pca9685"><span class="toc-number">5.1.</span> <span class="toc-text"> PWM 驱动：为什么要加 PCA9685？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9B%E7%94%B5%E9%9A%94%E7%A6%BB%E5%B7%AE%E7%82%B9%E9%87%8D%E5%90%AF%E5%88%B0%E5%B4%A9%E6%BA%83"><span class="toc-number">5.2.</span> <span class="toc-text"> 供电隔离：差点重启到崩溃</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E5%8A%A8%E5%AD%A6%E6%89%8B%E7%AE%97%E9%80%86%E8%A7%A3%E7%9A%84%E5%BF%AB%E4%B9%90"><span class="toc-number">6.</span> <span class="toc-text"> 运动学：手算逆解的快乐</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#d-h-%E5%BB%BA%E6%A8%A1"><span class="toc-number">6.1.</span> <span class="toc-text"> D-H 建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%86%E8%BF%90%E5%8A%A8%E5%AD%A6%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%89%8B%E6%8E%A8%E8%A7%A3%E6%9E%90%E8%A7%A3%E8%80%8C%E4%B8%8D%E6%98%AF%E6%95%B0%E5%80%BC%E8%BF%AD%E4%BB%A3"><span class="toc-number">6.2.</span> <span class="toc-text"> 逆运动学：为什么要手推解析解而不是数值迭代？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E8%A7%89%E7%B3%BB%E7%BB%9Fyolov8-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AF%94%E4%BC%A0%E7%BB%9F%E6%96%B9%E6%B3%95%E5%BC%BA"><span class="toc-number">7.</span> <span class="toc-text"> 视觉系统：YOLOv8 为什么比传统方法强？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5-yolov8"><span class="toc-number">7.1.</span> <span class="toc-text"> 引入 YOLOv8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E8%AE%AD%E7%BB%83%E4%B8%8D%E8%83%BD%E6%B2%A1%E6%9C%89%E5%A5%BD%E6%95%B0%E6%8D%AE"><span class="toc-number">7.2.</span> <span class="toc-text"> 数据集：训练不能没有好数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="toc-number">7.3.</span> <span class="toc-text"> 训练过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B%E6%95%88%E6%9E%9C"><span class="toc-number">7.4.</span> <span class="toc-text"> 检测效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%86%E8%A7%89%E4%BC%BA%E6%9C%8D%E4%BB%8E%E7%9C%8B%E5%88%B0%E5%88%B0%E8%B5%B0%E5%88%B0"><span class="toc-number">8.</span> <span class="toc-text"> 视觉伺服：从「看到」到「走到」</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89-ibvs-%E8%80%8C%E4%B8%8D%E6%98%AF-pbvs"><span class="toc-number">8.1.</span> <span class="toc-text"> 为什么选 IBVS 而不是 PBVS？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%83%8F%E7%B4%A0%E7%BA%A7%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="toc-number">8.2.</span> <span class="toc-text"> 像素级特征提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E5%BC%8F-pid-%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="toc-number">8.3.</span> <span class="toc-text"> 增量式 PID 控制器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%AF%E4%BA%91%E5%8D%8F%E5%90%8C"><span class="toc-number">8.4.</span> <span class="toc-text"> 端云协同</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%A8%E8%BF%B9%E8%A7%84%E5%88%92lspb-%E8%A7%A3%E5%86%B3%E5%90%AF%E5%81%9C%E6%8A%96%E5%8A%A8"><span class="toc-number">9.</span> <span class="toc-text"> 轨迹规划：LSPB 解决启停抖动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C"><span class="toc-number">10.</span> <span class="toc-text"> 实验结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%B6%B3%E4%B8%8E%E6%94%B9%E8%BF%9B%E6%96%B9%E5%90%91"><span class="toc-number">11.</span> <span class="toc-text"> 不足与改进方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">12.</span> <span class="toc-text"> 写在最后</span></a></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li  class="active"><a href="/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/" rel="bookmark" title="从零造一台会「看」的焊接机器人——五自由度机械臂全栈开发手记">从零造一台会「看」的焊接机器人——五自由度机械臂全栈开发手记</a></li><li ><a href="/2026/03/03/%E6%A1%8C%E5%AE%A0/" rel="bookmark" title="桌宠">桌宠</a></li><li ><a href="/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/" rel="bookmark" title="从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)">从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><img class="image" loading="lazy" decoding="async" itemprop="image" alt="RoastDuck" src="/assets/img/avatar.jpg"/><p class="name" itemprop="name">RoastDuck</p><div class="description" itemprop="description">嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">3</span><span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">1</span><span class="name">分类</span></a></div><div class="item tags"><a href="/tags/"><span class="count">11</span><span class="name">标签</span></a></div></nav><div class="social"><a target="_blank" rel="noopener" href="https://github.com/yourname" class="item github" title="https:&#x2F;&#x2F;github.com&#x2F;yourname"><i class="ic i-github"></i></a><a target="_blank" rel="noopener" href="https://github.com/RoastDuck-Zz" class="item GitHub" title="https:&#x2F;&#x2F;github.com&#x2F;RoastDuck-Zz"><i class="ic i-github"></i></a></div><div class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li><li class="item"><a href="/about/" rel="section"><i class="ic i-user"></i>关于</a></li><li class="item"><a href="/archives/" rel="section"><i class="ic i-archive"></i>归档</a></li></div></div></div></div><ul id="quick"><li class="prev pjax"><a href="/2026/03/03/%E6%A1%8C%E5%AE%A0/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div><div id="player"></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/%E9%A1%B9%E7%9B%AE/" title="分类于项目">项目</a></div><span><a href="/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/">从零造一台会「看」的焊接机器人——五自由度机械臂全栈开发手记</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E9%A1%B9%E7%9B%AE/" title="分类于项目">项目</a></div><span><a href="/2026/03/03/%E6%A1%8C%E5%AE%A0/">桌宠</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E9%A1%B9%E7%9B%AE/" title="分类于项目">项目</a></div><span><a href="/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/">从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)</a></span></li></ul></div><div class="rpost pjax"><h2>最新评论</h2></div></div><div class="status"><div class="copyright">&copy; 2022 -<span itemprop="copyrightYear">2026</span><span class="with-love"><i class="ic i-sakura rotate"></i></span><span class="author" itemprop="copyrightHolder">RoastDuck @ RoastDuck</span></div><div class="count"><span class="post-meta-item-icon"><i class="ic i-chart-area"></i></span><span title="站点总字数">11k 字</span><span class="post-meta-divider"> | </span><span class="post-meta-item-icon"><i class="ic i-coffee"></i></span><span title="站点阅读时长">10 分钟</span></div><div class="powered-by">基于 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & Theme.<a target="_blank" rel="noopener" href="https://github.com/theme-shoka-x/hexo-theme-shokaX/">ShokaX</a></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL = {
+    ispost: true,
+    path: `2026/02/27/五自由度机械臂/`,
+    favicon: {
+        show: `（●´3｀●）やれやれだぜ`,
+        hide: `(´Д｀)大変だ！`
     },
-    root : `/`,
-    tag_plugins: {
-      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
-    }
-  };
-
-  // required plugins (only load if needs)
-  if (`local_search`) {
-    ctx.search = {};
-    ctx.search.service = `local_search`;
-    if (ctx.search.service == 'local_search') {
-      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":null,"sort":"-date"}`);
-      ctx.search[ctx.search.service] = service_obj;
-    }
-  }
-  const def = {
-    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
-    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
-    loading: `https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd`,
-  };
-  const deps = {
-    jquery: `https://gcore.jsdelivr.net/npm/jquery@3.7/dist/jquery.min.js`,
-    marked: `https://gcore.jsdelivr.net/npm/marked@13.0/lib/marked.umd.min.js`,
-    lazyload: `/%5Bobject%20Object%5D`
-  }
-</script>
-
-<script type="text/javascript">
-  
-  function RunItem() {
-    this.list = []; // 存放回调函数
-    this.start = () => {
-      for (var i = 0; i < this.list.length; i++) {
-        this.list[i].run();
-      }
-    };
-    this.push = (fn, name, setRequestAnimationFrame = true) => {
-      let myfn = fn
-      if (setRequestAnimationFrame) {
-        myfn = () => {
-          utils.requestAnimationFrame(fn)
-        }
-      }
-      var f = new Item(myfn, name);
-      this.list.push(f);
-    };
-    this.remove = (name) => {
-      // 倒序遍历避免 splice 后的索引问题
-      for (let index = this.list.length - 1; index >= 0; index--) {
-        const e = this.list[index];
-        if (e.name === name) {
-          this.list.splice(index, 1);
-        }
-      }
-    }
-    // 构造一个可以run的对象
-    function Item(fn, name) {
-      // 函数名称
-      this.name = name || fn.name;
-      // run方法
-      this.run = () => {
-        try {
-          fn()
-        } catch (error) {
-          console.log(error);
-        }
-      };
-    }
-  }
-
-  const utils = {
-    // 已加载样式缓存
-    _loadedStyles: new Set(),
-
-    // 懒加载 css https://github.com/filamentgroup/loadCSS
-    css: (href, before, media, attributes) => {
-      // 如果样式已加载，直接返回 null
-      if (utils._loadedStyles.has(href)) {
-        return null;
-      }
-      var doc = window.document;
-      var ss = doc.createElement("link");
-      var ref;
-      if (before) {
-        ref = before;
-      } else {
-        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
-        ref = refs[refs.length - 1];
-      }
-      var sheets = doc.styleSheets;
-      if (attributes) {
-        for (var attributeName in attributes) {
-          if (attributes.hasOwnProperty(attributeName)) {
-            ss.setAttribute(attributeName, attributes[attributeName]);
-          }
-        }
-      }
-      ss.rel = "stylesheet";
-      ss.href = href;
-      ss.media = "only x";
-      // 标记样式为已加载 (在创建元素后立即标记，防止重复创建)
-      utils._loadedStyles.add(href);
-      function ready(cb) {
-        if (doc.body) {
-          return cb();
-        }
-        setTimeout(function () {
-          ready(cb);
-        });
-      }
-      ready(function () {
-        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
-      });
-      var onloadcssdefined = function (cb) {
-        var resolvedHref = ss.href;
-        var i = sheets.length;
-        while (i--) {
-          if (sheets[i].href === resolvedHref) {
-            return cb();
-          }
-        }
-        setTimeout(function () {
-          onloadcssdefined(cb);
-        });
-      };
-      function loadCB() {
-        if (ss.addEventListener) {
-          ss.removeEventListener("load", loadCB);
-        }
-        ss.media = media || "all";
-      }
-      if (ss.addEventListener) {
-        ss.addEventListener("load", loadCB);
-      }
-      ss.onloadcssdefined = onloadcssdefined;
-      onloadcssdefined(loadCB);
-      return ss;
+    search: {
+        placeholder: "文章搜索",
+        empty: "关于 「 ${query} 」，什么也没搜到",
+        stats: "${time} ms 内找到 ${hits} 条结果"
     },
-
-    // 已加载脚本缓存
-    _loadedScripts: new Set(),
-
-    // 已加载元素缓存 (使用 WeakSet 追踪元素实例,避免 PJAX 导航时的状态混淆)
-    _loadedElements: new WeakSet(),
-
-    js: (src, opt) => new Promise((resolve, reject) => {
-      if (src.startsWith('/')) {
-        src = ctx.root + src.substring(1);
-      }
-      // 如果脚本已加载，直接返回
-      if (utils._loadedScripts.has(src)) {
-        resolve();
-        return;
-      }
-      var script = document.createElement('script');
-      script.src = src;
-      if (opt) {
-        for (let key of Object.keys(opt)) {
-          script[key] = opt[key]
-        }
-      } else {
-        // 默认异步，如果需要同步，第二个参数传入 {} 即可
-        script.async = true
-      }
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function () {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        utils._loadedScripts.add(src);
-        resolve()
-      }
-      document.head.appendChild(script)
-    }),
-
-    // PJAX 事件监听器管理
-    _pjaxListeners: new Set(),
-    
-    jq: (fn, pjax = true) => {
-      if (typeof jQuery === 'undefined') {
-        utils.js(deps.jquery).then(fn)
-      } else {
-        fn()
-      }
-      if (pjax && !fn._pjax_registered) {
-        document.addEventListener('pjax:complete', fn);
-        fn._pjax_registered = true;
-        utils._pjaxListeners.add(fn); // 追踪监听器以便清理
-      }
-    },
-    
-    // 清理所有 PJAX 事件监听器
-    cleanupPjaxListeners: () => {
-      utils._pjaxListeners.forEach(fn => {
-        document.removeEventListener('pjax:complete', fn);
-        fn._pjax_registered = false;
-      });
-      utils._pjaxListeners.clear();
-    },
-
-    onLoading: (el) => {
-      if (el) {
-        if ($(el).find('.loading-wrap').length === 0){
-          $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
-        }
-      }
-    },
-    onLoadSuccess: (el) => {
-      if (el) {
-        $(el).find('.loading-wrap').remove();
-      }
-    },
-    onLoadFailure: (el) => {
-      if (el) {
-        $(el).find('.loading-wrap svg').remove();
-        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
-        $(el).find('.loading-wrap').addClass('error');
-      }
-    },
-    request: (el, url, callback, onFailure) => {
-      // 检查元素实例是否已加载 (而不是检查属性)
-      if (el && utils._loadedElements.has(el)) {
-        return;
-      }
-      const maxRetry = 3;
-      let retryCount = 0;
-
-      return new Promise((resolve, reject) => {
-        const load = () => {
-          utils.onLoading?.(el);
-
-          let timedOut = false;
-          const timeout = setTimeout(() => {
-            timedOut = true;
-            console.warn('[request] 超时:', url);
-
-            if (++retryCount >= maxRetry) {
-              utils.onLoadFailure?.(el);
-              onFailure?.();
-              reject('请求超时');
-            } else {
-              setTimeout(load, 1000);
-            }
-          }, 5000);
-
-          fetch(url).then(resp => {
-            if (timedOut) return;
-            clearTimeout(timeout);
-
-            if (!resp.ok) throw new Error('响应失败');
-            return resp;
-          }).then(data => {
-            if (timedOut) return;
-            // 标记元素实例为已加载
-            if (el) utils._loadedElements.add(el);
-            utils.onLoadSuccess?.(el);
-            callback(data);
-            resolve(data);
-          }).catch(err => {
-            clearTimeout(timeout);
-            console.warn('[request] 错误:', err);
-
-            if (++retryCount >= maxRetry) {
-              utils.onLoadFailure?.(el);
-              onFailure?.();
-              reject(err);
-            } else {
-              setTimeout(load, 1000);
-            }
-          });
-        };
-
-        load();
-      });
-    },
-    requestWithoutLoading: (url, options = {}, maxRetry = 2, timeout = 5000) => {
-      return new Promise((resolve, reject) => {
-        let retryCount = 0;
-
-        const tryRequest = () => {
-          let timedOut = false;
-          const timer = setTimeout(() => {
-            timedOut = true;
-            if (++retryCount > maxRetry) reject('timeout');
-            else tryRequest();
-          }, timeout);
-
-          fetch(url, options)
-            .then(resp => {
-              clearTimeout(timer);
-              if (!resp.ok) throw new Error('bad response');
-              resolve(resp);
-            })
-            .catch(err => {
-              clearTimeout(timer);
-              if (++retryCount > maxRetry) reject(err);
-              else setTimeout(tryRequest, 500);
-            });
-        };
-
-        tryRequest();
-      });
-    },
-    /********************** requestAnimationFrame ********************************/
-    // 1、requestAnimationFrame 会把每一帧中的所有 DOM 操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
-    // 2、在隐藏或不可见的元素中，requestAnimationFrame 将不会进行重绘或回流，这当然就意味着更少的的 cpu，gpu 和内存使用量。
-    requestAnimationFrame: (fn) => {
-      if (!window.requestAnimationFrame) {
-        window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame;
-      }
-      window.requestAnimationFrame(fn)
-    },
-    dark: {},
-
-    // 插件初始化管理器 - 统一处理 DOMContentLoaded 和 pjax:complete 事件
-    _pluginInitializers: [],
-    _pluginCleanups: new Map(), // 存储每个插件的清理函数
-    
-    initPlugin: (initFn, name, options = {}) => {
-      if (!initFn || typeof initFn !== 'function') return;
-      
-      // 避免重复注册
-      const pluginName = name || initFn.name;
-      if (utils._pluginInitializers.some(p => p.name === pluginName)) return;
-      
-      // 包装初始化函数，添加防重复执行的保护
-      const wrappedInit = () => {
-        try {
-          // 在执行前先清理旧的资源
-          if (utils._pluginCleanups.has(pluginName)) {
-            const cleanup = utils._pluginCleanups.get(pluginName);
-            if (typeof cleanup === 'function') {
-              cleanup();
-            }
-          }
-          
-          // 执行初始化，可能返回清理函数
-          const cleanup = initFn();
-          
-          // 如果初始化函数返回了清理函数，保存它
-          if (typeof cleanup === 'function') {
-            utils._pluginCleanups.set(pluginName, cleanup);
-          }
-        } catch (error) {
-          console.error(`[Plugin ${pluginName}] 初始化失败:`, error);
-        }
-      };
-      
-      utils._pluginInitializers.push({ 
-        fn: wrappedInit, 
-        name: pluginName,
-        options: options 
-      });
-      
-      // 如果 DOM 已经加载完成，立即执行
-      if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        wrappedInit();
-      } else {
-        // 否则等待 DOMContentLoaded
-        window.addEventListener('DOMContentLoaded', wrappedInit, { once: true });
-      }
-    },
-
-    // 重新初始化所有插件（用于 PJAX 等场景）
-    reinitPlugins: () => {
-      utils._pluginInitializers.forEach(plugin => {
-        // 跳过标记为不需要重新初始化的插件
-        if (plugin.options.skipReinit) return;
-        
-        try {
-          plugin.fn();
-        } catch (error) {
-          console.error(`[Plugin ${plugin.name}] 重新初始化失败:`, error);
-        }
-      });
-    },
-    
-    // 清理所有插件资源
-    cleanupPlugins: () => {
-      utils._pluginCleanups.forEach((cleanup, name) => {
-        try {
-          cleanup();
-        } catch (error) {
-          console.error(`[Plugin ${name}] 清理失败:`, error);
-        }
-      });
-      utils._pluginCleanups.clear();
-    },
-    
-    // 清理所有资源（用于页面卸载或重置）
-    cleanupAll: () => {
-      utils.cleanupPlugins();
-      utils.cleanupPjaxListeners();
-    },
-  };
-
-  // 自动处理 PJAX 事件
-  document.addEventListener('pjax:before', () => {
-    // 在导航前清理旧的 PJAX 监听器（如果需要重新注册）
-    // 注意：这里不清理，因为监听器应该是持久的
-    // utils.cleanupPjaxListeners();
-  });
-  
-  document.addEventListener('pjax:complete', () => {
-    utils.reinitPlugins();
-  });
-
-  // utils.dark.mode 当前模式 dark or light
-  // utils.dark.toggle() 暗黑模式触发器
-  // utils.dark.push(callBack[,"callBackName"]) 传入触发器回调函数
-  utils.dark.method = {
-    toggle: new RunItem(),
-  };
-  utils.dark = Object.assign(utils.dark, {
-    push: utils.dark.method.toggle.push,
-  });
-</script>
-<script>
-  const sidebar = {
-    leftbar: () => {
-      if (l_body) {
-        l_body.toggleAttribute('leftbar');
-        l_body.removeAttribute('rightbar');
-      }
-    },
-    rightbar: () => {
-      if (l_body) {
-        l_body.toggleAttribute('rightbar');
-        l_body.removeAttribute('leftbar');
-      }
-    },
-    dismiss: () => {
-      if (l_body) {
-        l_body.removeAttribute('leftbar');
-        l_body.removeAttribute('rightbar');
-      }
-    },
-    toggleTOC: () => {
-      document.querySelector('#data-toc').classList.toggle('collapse');
+    nocopy: "false",
+    copyright: `复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。`,
+    copy_tex: false,
+    katex: false,
+    mermaid: true,
+    audio: undefined,
+    nocopy: false,
+    outime: true,
+    template: `<div class="note warning"><p><span class="label warning">文章时效性提示</span><br>这是一篇发布于 {{publish}} 天前，最后一次更新在 {{updated}} 天前的文章，部分信息可能已经发生改变，请注意甄别。</p></div>`,
+    quiz: {
+        choice: `单选题`,
+        multiple: `多选题`,
+        true_false: `判断题`,
+        essay: `问答题`,
+        gap_fill: `填空题`,
+        mistake: `错题备注`
     }
-  }
-</script>
-<script type="text/javascript">
-  (() => {
-    const tagSwitchers = document.querySelectorAll('.tag-subtree.parent-tag > a > .tag-switcher-wrapper')
-    for (const tagSwitcher of tagSwitchers) {
-      tagSwitcher.addEventListener('click', (e) => {
-        const parent = e.target.closest('.tag-subtree.parent-tag')
-        parent.classList.toggle('expanded')
-        e.preventDefault()
-      })
-    }
-
-    // Get active tag from query string, then activate it.
-    const urlParams = new URLSearchParams(window.location.search)
-    const activeTag = urlParams.get('tag')
-    if (activeTag) {
-      let tag = document.querySelector(`.tag-subtree[data-tag="${activeTag}"]`)
-      if (tag) {
-        tag.querySelector('a').classList.add('active')
-        
-        while (tag) {
-          tag.classList.add('expanded')
-          tag = tag.parentElement.closest('.tag-subtree.parent-tag')
-        }
-      }
-    }
-  })()
-</script>
-
-<script async src="https://gcore.jsdelivr.net/npm/vanilla-lazyload@19.1/dist/lazyload.min.js"></script>
-<script>
-  // https://www.npmjs.com/package/vanilla-lazyload
-  // Set the options globally
-  // to make LazyLoad self-initialize
-  window.lazyLoadOptions = {
-    elements_selector: ".lazy",
-    callback_loaded: (el) => {
-      el.classList.add('loaded');
-      const wrapper = el.closest('.lazy-box');
-      const icon = wrapper?.querySelector('.lazy-icon');
-      if (icon) icon.remove();
-    }
-  };
-  // Listen to the initialization event
-  // and get the instance of LazyLoad
-  window.addEventListener(
-    "LazyLoad::Initialized",
-    function (event) {
-      window.lazyLoadInstance = event.detail.instance;
-    },
-    false
-  );
-  document.addEventListener('DOMContentLoaded', function () {
-    window.lazyLoadInstance?.update();
-  });
-
-  window.wrapLazyloadImages = (container) => {
-    if (typeof container === 'string') {
-      container = document.querySelector(container);
-    }
-    if (!container) return;
-
-    const images = container.querySelectorAll('img');
-    images.forEach((img) => {
-      if (img.classList.contains('lazy')) return;
-
-      const src = img.getAttribute('src');
-      if (!src) return;
-
-      const wrapper = document.createElement('div');
-      wrapper.className = 'lazy-box';
-
-      const newImg = img.cloneNode();
-      newImg.removeAttribute('src');
-      newImg.setAttribute('data-src', src);
-      newImg.classList.add('lazy');
-
-      const icon = document.createElement('div');
-      icon.className = 'lazy-icon';
-      if (def.loading) {
-        icon.style.backgroundImage = `url("${def.loading}")`;
-      }
-
-      wrapper.appendChild(newImg);
-      wrapper.appendChild(icon);
-
-      img.replaceWith(wrapper);
-    });
-
-    // 通知 LazyLoad 更新
-    if (window.lazyLoadInstance?.update) {
-      window.lazyLoadInstance.update();
-    }
-  }
-
-</script>
-
-<!-- required -->
-<script src="/js/main.js?v=1.33.1" defer></script>
-
-<script type="text/javascript">
-  const applyTheme = (theme) => {
-    if (theme === 'auto') {
-      document.documentElement.removeAttribute('data-theme')
-    } else {
-      document.documentElement.setAttribute('data-theme', theme)
-    }
-
-    // applyThemeToGiscus(theme)
-  }
-
-  // FIXME: 这会导致无法使用 preferred_color_scheme 以外的主题
-  const applyThemeToGiscus = (theme) => {
-    // theme = theme === 'auto' ? 'preferred_color_scheme' : theme
-    const cmt = document.getElementById('giscus')
-    if (cmt) {
-      // This works before giscus load.
-      cmt.setAttribute('data-theme', theme)
-    }
-
-    const iframe = document.querySelector('#comments > section.giscus > iframe')
-    if (iframe) {
-      // This works after giscus loaded.
-      const src = iframe.src
-      const newSrc = src.replace(/theme=[\w]+/, `theme=${theme}`)
-      iframe.src = newSrc
-    }
-  }
-
-  const switchTheme = () => {
-    // light -> dark -> auto -> light -> ...
-    const currentTheme = document.documentElement.getAttribute('data-theme')
-    let newTheme;
-    switch (currentTheme) {
-      case 'light':
-        newTheme = 'dark'
-        break
-      case 'dark':
-        newTheme = 'auto'
-        break
-      default:
-        newTheme = 'light'
-    }
-    applyTheme(newTheme)
-    window.localStorage.setItem('Stellar.theme', newTheme)
-    utils.dark.mode = newTheme === 'auto' ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : newTheme;
-    utils.dark.method.toggle.start();
-
-    const messages = {
-      light: `切换到浅色模式`,
-      dark: `切换到深色模式`,
-      auto: `切换到跟随系统配色`,
-    }
-    hud?.toast?.(messages[newTheme])
-  }
-
-  (() => {
-    // Apply user's preferred theme, if any.
-    const theme = window.localStorage.getItem('Stellar.theme')
-    if (theme !== null) {
-      applyTheme(theme)
-    } else {
-      utils.dark.mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    }
-    utils.dark.method.toggle.start();
-  })()
-</script>
-
-
-<!-- optional -->
-
-
-
-<script defer>
-  const initServices = () => {
-    // 用于存储需要清理的资源
-    let timers = [];
-    
-    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":null},"ghinfo":{"js":"/js/services/ghinfo.js"},"rating":{"js":"/js/services/rating.js","api":"https://star-vote.xaox.cc/api/rating"},"vote":{"js":"/js/services/vote.js","api":"https://star-vote.xaox.cc/api/vote"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"friends_and_posts":{"js":"/js/services/friends_and_posts.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"},"voice":{"js":"/js/plugins/voice.js"},"video":{"js":"/js/plugins/video.js"},"download-file":{"js":"/js/plugins/download-file.js"},"twikoo":{"js":"/js/services/twikoo_latest_comment.js"},"waline":{"js":"/js/services/waline_latest_comment.js"},"artalk":{"js":"/js/services/artalk_latest_comment.js"},"giscus":{"js":"/js/services/giscus_latest_comment.js"},"contributors":{"edit_this_page":{"_posts/":null,"wiki/stellar/":"https://github.com/xaoxuu/hexo-theme-stellar-docs/blob/main/"},"js":"/js/services/contributors.js"},"rss":{"js":"/js/services/rss.js"}}`));
-    for (let id of Object.keys(ctx.services)) {
-      const js = ctx.services[id].js;
-      if (id == 'siteinfo') {
-        const cardlinks = document.querySelectorAll('a.link-card[cardlink]');
-        if (cardlinks?.length > 0) {
-          utils.js(js, { defer: true }).then(function () {
-            setCardLink(cardlinks);
-          });
-        }
-      } else if (id == 'ghinfo') {
-        const els = document.querySelectorAll('.ds-ghinfo');
-        if (els.length > 0) {
-          utils.js(js, { defer: true });
-        }
-      } else if (id == 'voice') {
-        const voiceAudios = document.querySelectorAll('.voice>audio');
-        if (voiceAudios?.length > 0) {
-          utils.js(js, { defer: true }).then(function () {
-            createVoiceDom(voiceAudios);
-          });
-        }
-      } else if (id == 'video') {
-        const videos = document.querySelectorAll('.video>video');
-        if (videos?.length > 0) {
-          utils.js(js, { defer: true }).then(function () {
-            videoEvents(videos);
-          });
-        }
-      } else if (id == 'download-file') {
-        const files = document.querySelectorAll('.chat-file');
-        if (files?.length > 0) {
-          utils.js(js, { defer: true }).then(function () {
-            downloadFileEvent(files);
-          });
-        }
-      } else {
-        const els = document.getElementsByClassName(`ds-${id}`);
-        if (els?.length > 0) {
-          utils.jq(() => {
-            if (id == 'timeline' || id == 'memos' || id == 'marked') {
-              utils.js(deps.marked).then(function () {
-                utils.js(js, { defer: true });
-              });
-            } else {
-              utils.js(js, { defer: true });
-            }
-          }, false);
-        }
-      }
-    }
-
-    // search
-    if (ctx.search && typeof searchFunc === 'function') {
-      const $inputArea = $("input#search-input");
-      if ($inputArea.length > 0 && !$inputArea[0]._searchInitialized) {
-        const path = ctx.search.path.startsWith('/') ? ctx.root + ctx.search.path.substring(1) : ctx.root + ctx.search.path;
-        const filter = $inputArea.attr('data-filter') || '';
-        searchFunc(path, filter, 'search-wrapper', 'search-input', 'search-result');
-        // 标记为已初始化，防止重复绑定
-        $inputArea[0]._searchInitialized = true;
-      }
-    }
-
-    // chat iphone time
-    let phoneTimes = document.querySelectorAll('.chat .status-bar .time');
-    let firstAdjustInterval = null;
-    let mainInterval = null;
-
-    if (phoneTimes.length > 0) {
-      NowTime();
-      const date = new Date();
-      const sec = date.getSeconds();
-      firstAdjustInterval = setInterval(firstAdjustTime, 1000 * (60 - sec));
-      timers.push(firstAdjustInterval);
-
-      function firstAdjustTime() {
-        NowTime();
-        if (firstAdjustInterval) {
-          clearInterval(firstAdjustInterval);
-          firstAdjustInterval = null;
-        }
-        mainInterval = setInterval(NowTime, 1000 * 60);
-        timers.push(mainInterval);
-      }
-
-      function NowTime() {
-        for (let i = 0; i < phoneTimes.length; ++i) {
-          const timeSpan = phoneTimes[i];
-          const date = new Date();
-          const hour = date.getHours();
-          const min = date.getMinutes();
-          timeSpan.innerHTML = check(hour) + ":" + check(min);
-        }
-      };
-
-      function check(val) {
-        if (val < 10) {
-          return ("0" + val);
-        }
-        return (val);
-      }
-    }
-
-    // chat quote - 存储事件监听器以便清理
-    const quoteClickHandlers = new Map();
-    const chat_quote_obverser = new IntersectionObserver((entries, observer) => {
-      entries.filter((entry) => { return entry.isIntersecting }).sort((a, b) => a.intersectionRect.y !== b.intersectionRect.y ? a.intersectionRect.y - b.intersectionRect.y : a.intersectionRect.x - b.intersectionRect.x).forEach((entry, index) => {
-          observer.unobserve(entry.target);
-          setTimeout(() => {
-            entry.target.classList.add('quote-blink');
-            setTimeout(() => {
-              entry.target.classList.remove('quote-blink');
-            }, 1000);
-          }, Math.max(100, 16) * (index + 1));
-        });
-    });
-
-    var chatQuotes = document.querySelectorAll(".chat .talk .quote");
-    chatQuotes.forEach((quote) => {
-      const handler = function () {
-        var chatCellDom = document.getElementById("quote-" + quote.getAttribute("quotedCellTag"));
-        if (chatCellDom) {
-          var chatDiv = chatCellDom.parentElement;
-          var mid = chatDiv.clientHeight / 2;
-          var offsetTop = chatCellDom.offsetTop;
-          if (offsetTop > mid - chatCellDom.clientHeight / 2) {
-            chatDiv.scrollTo({
-              top: chatCellDom.offsetTop - mid + chatCellDom.clientHeight / 2,
-              behavior: "smooth"
-            });
-          } else {
-            chatDiv.scrollTo({
-              top: 0,
-              behavior: "smooth"
-            });
-          }
-          chat_quote_obverser.observe(chatCellDom);
-        }
-      };
-      quote.addEventListener('click', handler);
-      quoteClickHandlers.set(quote, handler); // 保存处理器引用
-    });
-
-    // 返回清理函数，用于清理定时器和观察器
-    return () => {
-      // 清理所有定时器（包括可能未完成的 firstAdjustInterval）
-      timers.forEach(timer => {
-        if (timer) clearInterval(timer);
-      });
-      timers = [];
-      if (firstAdjustInterval) {
-        clearInterval(firstAdjustInterval);
-        firstAdjustInterval = null;
-      }
-      if (mainInterval) {
-        clearInterval(mainInterval);
-        mainInterval = null;
-      }
-      
-      // 断开观察器
-      if (chat_quote_obverser) {
-        chat_quote_obverser.disconnect();
-      }
-      
-      // 移除所有 click 事件监听器
-      quoteClickHandlers.forEach((handler, quote) => {
-        quote.removeEventListener('click', handler);
-      });
-      quoteClickHandlers.clear();
-    };
-  };
-
-  utils.initPlugin(initServices, 'services');
-</script>
-
-<script>
-  window.addEventListener('DOMContentLoaded', (event) => {
-    ctx.search = {
-      path: `/search.json`,
-    }
-    utils.js('/js/search/local-search.js', { defer: true });
-  });
-</script><script>
-  window.FPConfig = {
-    delay: 0,
-    ignoreKeywords: [],
-    maxRPS: 5,
-    hoverDelay: 25
-  };
-</script>
-<script defer src="https://gcore.jsdelivr.net/npm/flying-pages@2/flying-pages.min.js"></script><script>
-  ctx.fancybox = {
-    selector: `.timenode p>img`,
-    css: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css`,
-    js: `https://gcore.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js`
-  };
-  var selector = '[data-fancybox]:not(.error), .with-fancybox .atk-content img:not([atk-emoticon])';
-  if (ctx.fancybox.selector) {
-    selector += `, ${ctx.fancybox.selector}`
-  }
-  var needFancybox = document.querySelectorAll(selector).length !== 0;
-  if (!needFancybox) {
-    const memos = document.getElementsByClassName('ds-memos');
-    if (memos != undefined && memos.length > 0) {
-      needFancybox = true;
-    }
-    const fancybox = document.getElementsByClassName('with-fancybox');
-    if (fancybox != undefined && fancybox.length > 0) {
-      needFancybox = true;
-    }
-  }
-  if (needFancybox) {
-    utils.css(ctx.fancybox.css);
-    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
-      Fancybox.bind(selector, {
-        hideScrollbar: false,
-        Thumbs: {
-          autoStart: false,
-        },
-        caption: (fancybox, slide) => {
-          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
-        }
-      });
-    })
-  }
-</script>
-<script>
-  utils.initPlugin(() => {
-    const swiper_api = document.getElementById('swiper-api');
-    if (swiper_api != undefined) {
-      utils.css(`https://unpkg.com/swiper@10.3/swiper-bundle.min.css`);
-      utils.js(`https://unpkg.com/swiper@10.3/swiper-bundle.min.js`, { defer: true }).then(function () {
-        const effect = swiper_api.getAttribute('effect') || '';
-        var swiper = new Swiper('.swiper#swiper-api', {
-          slidesPerView: 'auto',
-          spaceBetween: 8,
-          centeredSlides: true,
-          effect: effect,
-          rewind: true,
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-        });
-      })
-    }
-  }, 'swiper');
-</script>
-
-<script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-  MathJax.Hub.Config({
-    tex2jax: {
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    }
-  });
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script defer type="text/javascript" src="https://gcore.jsdelivr.net/npm/mermaid@v9/dist/mermaid.min.js"></script>
-<script>
-  utils.initPlugin(() => {
-    const els = document.querySelectorAll('.mermaid');
-    if (els.length > 0) {
-      const mermaid_config = {
-        startOnLoad: false,
-        theme:
-          "auto" == "auto" &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "neutral",
-        logLevel: 3,
-        themeVariables: {
-          darkMode: true
-        },
-        flowchart: {
-          useMaxWidth: false,
-          htmlLabels: true,
-          curve: "linear"
-        },
-        gantt: {
-          axisFormat: "%Y/%m/%d"
-        },
-        sequence: {
-          actorMargin: 50
-        }
-      }
-      mermaid.initialize(mermaid_config);
-      mermaid.run();
-    }
-  }, 'mermaid');
-</script><script>
-  utils.initPlugin(() => {
-    const codeElements = document.querySelectorAll('.code');
-    if (codeElements.length > 0) {
-      ctx.copycode = {
-        default_text: `Copy`,
-        success_text: `Copied`,
-        toast: `复制成功`,
-      };
-      utils.js('/js/plugins/copycode.js', { defer: true }).then(() => {
-        if (typeof createCopyButtons === 'function') {
-          createCopyButtons(codeElements);
-        }
-      });
-    }
-  }, 'copycode');
-</script>
-
-
-<!-- inject -->
-
-</div><div class="page-loading-bar"><img src="https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd"></div></body></html>
+};
+</script><script src="/js/siteInit.js?v=0.5.4" type="module" fetchpriority="high" defer></script></body></html>
