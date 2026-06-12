@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>RoastDuck</title>
-        <link>https://RoastDuck-Zz.github.io</link>
+        <link>https://roastduck-zz.github.io</link>
         <description>嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉</description>
         <language>zh-CN</language>
         <pubDate>Mon, 16 Mar 2026 14:05:01 +0800</pubDate>
