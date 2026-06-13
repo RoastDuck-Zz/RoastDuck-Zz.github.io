@@ -2946,16 +2946,16 @@ use.stop-animation {
   top: -10%;
   left: -10%;
 }
-.social .item.github::before {
-  background-color: #191717;
+.social .item.g::before {
+  background-color: thu;
 }
-.social .item.github i {
-  color: #191717;
+.social .item.g i {
+  color: thu;
 }
-.social .item.GitHub::before {
+.social .item.h::before {
   background-color: #24292e;
 }
-.social .item.GitHub i {
+.social .item.h i {
   color: #24292e;
 }
 .social .item:focus i,

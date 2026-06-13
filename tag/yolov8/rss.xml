@@ -81,6 +81,7 @@
 &lt;hr /&gt;
 &lt;h2 id=&#34;机械结构solidworks-3d-打印的反复拉锯&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#机械结构solidworks-3d-打印的反复拉锯&#34;&gt;#&lt;/a&gt; 机械结构：SolidWorks + 3D 打印的反复拉锯&lt;/h2&gt;
 &lt;p&gt;机械臂的骨架是整个系统的物理基础。我用 &lt;strong&gt;SolidWorks&lt;/strong&gt; 从零画了全套三维模型——基座、第一连杆、主承力连杆（大臂+小臂）、末端快换接口。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;/img/robot-arm/structure-overview.png&#34; alt=&#34;五自由度机械臂结构总图&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;材料怎么选&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#材料怎么选&#34;&gt;#&lt;/a&gt; 材料怎么选？&lt;/h3&gt;
 &lt;p&gt;3D 打印的常用材料就那几种。我专门做了个对比：&lt;/p&gt;
 &lt;table&gt;
@@ -159,6 +160,7 @@
 &lt;li&gt;d₄ = 100mm（原设121mm，建模优化后调整）：小臂有效杆长&lt;/li&gt;
 &lt;li&gt;d₆ = 50mm：末端法兰到腕关节偏移&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;/img/robot-arm/dh-coordinate-system.png&#34; alt=&#34;D-H 空间坐标系&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;正运动学就是给定五个关节角度，算出末端位姿。这一步相对直接。&lt;/p&gt;
 &lt;h3 id=&#34;逆运动学为什么要手推解析解而不是数值迭代&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#逆运动学为什么要手推解析解而不是数值迭代&#34;&gt;#&lt;/a&gt; 逆运动学：为什么要手推解析解而不是数值迭代？&lt;/h3&gt;
 &lt;p&gt;逆运动学是从目标位姿反推关节角度。有两种主流方法：&lt;/p&gt;
@@ -228,6 +230,7 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;p&gt;从 Loss 曲线来看，定位损失和分类损失在前 80 轮平稳下降后就趋于稳定，没有出现过拟合也没有梯度爆炸——数据增强起了很大作用。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;/img/robot-arm/yolov8-loss-curve.png&#34; alt=&#34;YOLOv8 训练 Loss 下降曲线&#34; /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;检测效果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#检测效果&#34;&gt;#&lt;/a&gt; 检测效果&lt;/h3&gt;
 &lt;p&gt;最终模型在测试集上的成绩：&lt;/p&gt;
 &lt;ul&gt;
@@ -236,6 +239,7 @@
 &lt;li&gt;&lt;strong&gt;mAP@0.5 达 95.8%&lt;/strong&gt;：综合指标，说明模型在各种背景下都能稳定检出焊缝&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;从混淆矩阵看，模型把背景误判为焊缝的概率极低——这对于后续 PID 控制非常关键，因为如果出现假阳性，机械臂会追着一个不存在的东西跑。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;/img/robot-arm/weld-detection-result.png&#34; alt=&#34;复杂背景下焊缝检测效果&#34; /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;学习心得：&lt;/strong&gt; 做深度学习项目，80% 的时间花在数据上。数据集的多样性比模型参数的微调重要得多。之前调了半天模型 mAP 就是上不去，后来发现是训练集里缺少烟尘场景——加上增强策略后效果立竿见影。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -268,6 +272,7 @@
 &lt;/ol&gt;
 &lt;p&gt;为什么要这样分？因为 AI 推理需要算力——ESP32-S3 虽然有一定的神经网络加速能力，但跑 YOLOv8 的完整推理还是吃力。把推理放到上位机，ESP32-S3 专职做实时控制和通信，各司其职。&lt;/p&gt;
 &lt;p&gt;通信延迟实测在 20ms 以内，闭环频率达到 15fps 以上，对桌面级焊接来说完全够用。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;/img/robot-arm/system-architecture.png&#34; alt=&#34;端云协同系统控制架构&#34; /&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;学习心得：&lt;/strong&gt; 做嵌入式系统的边界很重要——知道什么该放在端侧、什么该放在云端。不是所有事情都要在单片机上做，把重型计算卸载到上位机，单片机只做它擅长的事（实时控制），这个架构思路来自实习时做 ESP32-S3 项目的经验。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -279,6 +284,7 @@
 &lt;hr /&gt;
 &lt;h2 id=&#34;实验结果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#实验结果&#34;&gt;#&lt;/a&gt; 实验结果&lt;/h2&gt;
 &lt;p&gt;样机组装完成后做了两轮测试：&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;/img/robot-arm/physical-prototype.png&#34; alt=&#34;五自由度机械臂实物样机&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;结构实验&lt;/strong&gt;：实测有效工作半径达到了预期的 200mm。9600 树脂骨架在满载悬臂伸展时重心保持稳定，没有出现明显的结构抖动或丢步。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;视觉伺服闭环实验&lt;/strong&gt;：在人为移动焊缝工件位置后，系统在大约 2-3 秒内完成了重新锁定。YOLOv8 在复杂背景下（强光、烟尘模拟）依然稳定检出焊缝，mAP 保持在 95% 以上。低通滤波 + PID 的组合有效抑制了帧间抖动，末端轨迹平滑无跳变。&lt;/p&gt;
 &lt;hr /&gt;
