@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>RoastDuck • Posts by &#34;rk3566&#34; tag</title>
+        <link>https://roastduck-zz.github.io</link>
+        <description>嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉</description>
+        <language>zh-CN</language>
+        <pubDate>Fri, 26 Jun 2026 18:00:00 +0800</pubDate>
+        <lastBuildDate>Fri, 26 Jun 2026 18:00:00 +0800</lastBuildDate>
+        <category>机器人</category>
+        <category>ESP32-S3</category>
+        <category>嵌入式</category>
+        <category>机器视觉</category>
+        <category>YOLOv8</category>
+        <category>3D打印</category>
+        <category>工作记录</category>
+        <category>周记</category>
+        <category>车载</category>
+        <category>视觉检测</category>
+        <category>AD</category>
+        <category>RK3566</category>
+        <category>PCB</category>
+        <category>康养机器人</category>
+        <category>跌倒检测</category>
+        <category>视觉</category>
+        <category>MoveNet</category>
+        <category>奥比中光</category>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <item>
+            <guid isPermalink="true">https://roastduck-zz.github.io/2026/06/26/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97[6%E6%9C%8822%E6%97%A5-6%E6%9C%8826%E6%97%A5]/</guid>
+            <title>第一周工作记录：从了解项目开始</title>
+            <link>https://roastduck-zz.github.io/2026/06/26/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97[6%E6%9C%8822%E6%97%A5-6%E6%9C%8826%E6%97%A5]/</link>
+            <category>机器人</category>
+            <category>工作记录</category>
+            <category>周记</category>
+            <category>车载</category>
+            <category>视觉检测</category>
+            <category>AD</category>
+            <category>RK3566</category>
+            <category>PCB</category>
+            <pubDate>Fri, 26 Jun 2026 18:00:00 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;这一周是我正式开始工作的第一周，时间是 2026 年 6 月 22 日到 6 月 26 日。相比一上来就进入具体开发任务，这一周更像是一个逐步建立项目地图的过程：先把公司正在做、已经交付、以及后续可能继续推进的项目大致过了一遍，再从每个项目里理解业务场景、机器人形态和系统分工。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;第一个接触的是一个车载陪伴机器人相关项目。这个项目的核心场景是在车内对驾驶员状态进行检测，判断驾驶员是否存在疲劳驾驶等风险，同时还具备语音对话能力。它不是单纯的聊天机器人，也不是单纯的驾驶员监测系统，而是把陪伴、交互和安全提醒放在同一个车载环境里考虑。对我来说，这个项目让我第一次把“机器人”这个词和真实的车载场景连接起来：它需要关注硬件位置、视觉输入、语音交互、状态判断，也需要考虑驾驶这个场景本身对稳定性和及时性的要求。在这个项目中，我还学会了使用 Altium Designer（AD）绘制 RK3566 开发板，这是我第一次接触 PCB 设计，从原理图到 Layout 再到出 Gerber 文件，整个过程让我对嵌入式硬件开发有了更直观的认识。&lt;/p&gt;
+&lt;p&gt;第二个重点了解的是一个院校合作项目。这个项目里同时使用了人形机器人和轮臂机器人，两类机器人承担的职责不同：人形机器人主要负责装配动作，轮臂机器人主要负责质量检测。轮臂机器人会拿起待检测物体并进行旋转，从多个面观察表面质量，重点判断是否存在划痕等问题。&lt;/p&gt;
+&lt;p&gt;这个项目里我印象比较深的是视觉检测方案的选择。原本我会自然地联想到 3D 相机，但实际评估后，当前检测任务使用 2D 相机已经可以满足需求，不需要上 3D 相机。这里体现出一个很重要的工程判断：不是设备越复杂越好，而是要看任务本身到底需要什么信息。对于表面划痕这类质量检测，如果目标、光照、拍摄角度和算法流程设计得当，2D 视觉方案反而更直接，也更利于控制成本和系统复杂度。硬件选型和检测软件方案由外部视觉方案团队协助完成，我主要是先从整体链路上理解它们如何和机器人动作配合。&lt;/p&gt;
+&lt;p&gt;第三个了解的是一个已经交付的海外项目。这个项目主体工作已经完成，目前更多集中在售后支持和问题跟进上。我参与了一次与项目相关人员的对接，主要是了解现场反馈、售后问题的背景，以及后续如何把问题描述清楚、把信息传递准确。虽然这部分不是直接写代码或调机器人，但我能明显感觉到它同样重要：项目交付之后，系统是否稳定、用户反馈如何、问题能否快速定位，都会影响项目最终的质量。&lt;/p&gt;
+&lt;p&gt;这一周下来，我对公司的项目形态有了一个初步认识。公司做的机器人项目并不是停留在单一设备上，而是经常需要把机器人本体、视觉检测、语音交互、现场流程和售后支持放在一起考虑。不同项目的技术重点也不同：车载项目更关注驾驶员状态和自然交互，院校合作项目更关注多机器人协同和质量检测，海外交付项目则让我看到交付之后仍然需要持续维护。&lt;/p&gt;
+&lt;p&gt;对我个人来说，第一周最大的收获不是掌握了某一个具体工具，而是开始理解项目背后的工程思维。一个方案能不能落地，往往不只取决于技术是否先进，还取决于它是否适合当前场景、是否能稳定运行、是否便于维护，以及团队之间的信息是否能顺畅流动。后面如果继续深入这些项目，我希望能从“知道项目在做什么”慢慢过渡到“知道自己能在其中解决什么问题”。&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

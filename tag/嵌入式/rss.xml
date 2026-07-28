@@ -7,17 +7,33 @@
         <language>zh-CN</language>
         <pubDate>Tue, 03 Mar 2026 11:01:00 +0800</pubDate>
         <lastBuildDate>Tue, 03 Mar 2026 11:01:00 +0800</lastBuildDate>
-        <category>ROS</category>
-        <category>STM32</category>
-        <category>树莓派</category>
-        <category>机器人工程</category>
-        <category>嵌入式开发</category>
         <category>机器人</category>
         <category>ESP32-S3</category>
         <category>嵌入式</category>
         <category>机器视觉</category>
         <category>YOLOv8</category>
         <category>3D打印</category>
+        <category>工作记录</category>
+        <category>周记</category>
+        <category>车载</category>
+        <category>视觉检测</category>
+        <category>AD</category>
+        <category>RK3566</category>
+        <category>PCB</category>
+        <category>康养机器人</category>
+        <category>跌倒检测</category>
+        <category>视觉</category>
+        <category>MoveNet</category>
+        <category>奥比中光</category>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/03/03/%E6%A1%8C%E5%AE%A0/</guid>
             <title>桌宠</title>

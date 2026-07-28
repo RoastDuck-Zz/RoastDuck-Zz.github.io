@@ -4,17 +4,33 @@
     <title>RoastDuck • Posts by &#34;项目&#34; category</title>
     <link href="https://roastduck-zz.github.io" />
     <updated>2026-03-16T06:05:01.000Z</updated>
-    <category term="ROS" />
-    <category term="STM32" />
-    <category term="树莓派" />
-    <category term="机器人工程" />
-    <category term="嵌入式开发" />
     <category term="机器人" />
     <category term="ESP32-S3" />
     <category term="嵌入式" />
     <category term="机器视觉" />
     <category term="YOLOv8" />
     <category term="3D打印" />
+    <category term="工作记录" />
+    <category term="周记" />
+    <category term="车载" />
+    <category term="视觉检测" />
+    <category term="AD" />
+    <category term="RK3566" />
+    <category term="PCB" />
+    <category term="康养机器人" />
+    <category term="跌倒检测" />
+    <category term="视觉" />
+    <category term="MoveNet" />
+    <category term="奥比中光" />
+    <category term="ROS" />
+    <category term="STM32" />
+    <category term="树莓派" />
+    <category term="机器人工程" />
+    <category term="嵌入式开发" />
+    <category term="项目交接" />
+    <category term="Remote-SSH" />
+    <category term="技术支持" />
+    <category term="APIE2026" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/</id>
         <title>从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)</title>

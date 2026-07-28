@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>RoastDuck • Posts by &#34;奥比中光&#34; tag</title>
+        <link>https://roastduck-zz.github.io</link>
+        <description>嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉</description>
+        <language>zh-CN</language>
+        <pubDate>Mon, 06 Jul 2026 18:00:00 +0800</pubDate>
+        <lastBuildDate>Mon, 06 Jul 2026 18:00:00 +0800</lastBuildDate>
+        <category>机器人</category>
+        <category>ESP32-S3</category>
+        <category>嵌入式</category>
+        <category>机器视觉</category>
+        <category>YOLOv8</category>
+        <category>3D打印</category>
+        <category>工作记录</category>
+        <category>周记</category>
+        <category>车载</category>
+        <category>视觉检测</category>
+        <category>AD</category>
+        <category>RK3566</category>
+        <category>PCB</category>
+        <category>康养机器人</category>
+        <category>跌倒检测</category>
+        <category>视觉</category>
+        <category>MoveNet</category>
+        <category>奥比中光</category>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <item>
+            <guid isPermalink="true">https://roastduck-zz.github.io/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/</guid>
+            <title>工作日志（6月29日-7月5日）：康养机器人视觉调试</title>
+            <link>https://roastduck-zz.github.io/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/</link>
+            <category>机器人</category>
+            <category>周记</category>
+            <category>康养机器人</category>
+            <category>跌倒检测</category>
+            <category>视觉</category>
+            <category>MoveNet</category>
+            <category>奥比中光</category>
+            <pubDate>Mon, 06 Jul 2026 18:00:00 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;本周我从北京前往泰安出差。公司在泰安设有一个机器人生产基地，目前派我过去协助调试并学习相关技术。公司当前主要有三个产品场景，本周我的精力全部集中在其中一个上——康养机器人。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;摄像头选型从-dcw2-到-gemini2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#摄像头选型从-dcw2-到-gemini2&#34;&gt;#&lt;/a&gt; 摄像头选型：从 DCW2 到 Gemini2&lt;/h2&gt;
+&lt;p&gt;视觉是康养机器人的核心感知能力，摄像头选型自然成了第一件事。我们使用的都是奥比中光（Orbbec）的深度摄像头，手头先后经手了两款型号：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;型号&lt;/th&gt;
+&lt;th&gt;RGB&lt;/th&gt;
+&lt;th&gt;深度&lt;/th&gt;
+&lt;th&gt;红外&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Dabai DCW2&lt;/td&gt;
+&lt;td&gt;✗&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Gemini2&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;td&gt;✓&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;最初我拿到的是一台 &lt;strong&gt;Dabai DCW2&lt;/strong&gt;。它具备红外和深度通道，但缺少 RGB 图像。这意味着一条路直接被堵死——视频通话功能无法实现，因为视频通话的传输对象是彩色画面，红外或深度图没有意义。但当时现场只有 DCW2，只能先将就着用，把跌倒检测部分先跑通。&lt;/p&gt;
+&lt;p&gt;后来换成了 &lt;strong&gt;Gemini2&lt;/strong&gt;，RGB、深度、红外三个通道都齐全。在康养场景下，RGB 通道用来做两件事：一是和手机 App 之间的视频通话，二是基于彩色图像做人体姿态估计。深度通道则用于确认跌倒状态——身体是否真的倒到了地面高度。红外虽然在 Gemini2 上有，但本阶段的检测链路没有用到它。&lt;/p&gt;
+&lt;h2 id=&#34;第一阶段dcw2-下的红外深度跌倒检测&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第一阶段dcw2-下的红外深度跌倒检测&#34;&gt;#&lt;/a&gt; 第一阶段：DCW2 下的红外/深度跌倒检测&lt;/h2&gt;
+&lt;p&gt;在没有 RGB 的条件下，跌倒检测只能依靠红外和深度数据。我选择直接上深度学习，而不是某种手工特征+规则的方法。原因很简单：跌倒是一个姿态在空间和时间上的变化过程，用规则很难覆盖不同角度、不同体态、不同倒地方式的场景；即使能写出来，维护和调参成本也会迅速膨胀。&lt;/p&gt;
+&lt;p&gt;模型方面，我从头设计了一个&lt;strong&gt;轻量化 CNN&lt;/strong&gt;，没有用任何预训练权重。做这个选择的考虑是：当时我们对机器人核心板的规格一无所知——不知道 CPU 算力、不知道 GPU 显存、不知道内存容量。在这种&amp;quot;黑盒&amp;quot;硬件上，稳妥的策略是把模型做到尽量轻，先保证能跑起来，再谈优化。这个思路后续也延续到了姿态检测方案的选型上。&lt;/p&gt;
+&lt;p&gt;数据集用的是 &lt;strong&gt;URFD（University of Rzeszów Fall Detection Dataset）&lt;/strong&gt;，这是跌倒检测领域一个比较经典的公开数据集。选它的一个直接原因是它包含深度图像序列——刚好和 DCW2 的深度通道对得上。下载深度部分的数据后，做了基本的预处理和训练。&lt;/p&gt;
+&lt;p&gt;最终效果是：&lt;strong&gt;可以做到初步的跌倒检测，但准确率不高&lt;/strong&gt;。这里&amp;quot;初步&amp;quot;的意思是，在比较标准的跌倒姿态下能够触发报警，但误报和漏报的概率都还比较大，远不足以支撑商业化落地。更关键的是 DCW2 本身没有 RGB，视频通话这个刚需场景完全无法覆盖，所以 DCW2 更像是一个过渡阶段的验证工具。&lt;/p&gt;
+&lt;h2 id=&#34;第二阶段换到-gemini2搭建-rgb-d-双模判断链路&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第二阶段换到-gemini2搭建-rgb-d-双模判断链路&#34;&gt;#&lt;/a&gt; 第二阶段：换到 Gemini2，搭建 RGB-D 双模判断链路&lt;/h2&gt;
+&lt;p&gt;拿到 Gemini2 之后，整个方案的思路就变了。现在 RGB 有了，可以同时做两件事：视频通话和 RGB 跌倒检测。&lt;/p&gt;
+&lt;h3 id=&#34;姿态检测模型选型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#姿态检测模型选型&#34;&gt;#&lt;/a&gt; 姿态检测模型选型&lt;/h3&gt;
+&lt;p&gt;对于 RGB 跌倒检测，最成熟的路线就是&lt;strong&gt;人体姿态估计 + 跌倒判断&lt;/strong&gt;：先检测人体的关键点在空间中的位置，再根据关键点的相对关系判断人体姿态是否处于&amp;quot;倒下&amp;quot;状态。&lt;/p&gt;
+&lt;p&gt;姿态检测我考察了两个模型：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;模型&lt;/th&gt;
+&lt;th&gt;显存需求&lt;/th&gt;
+&lt;th&gt;关键点数量&lt;/th&gt;
+&lt;th&gt;来源&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;MoveNet&lt;/td&gt;
+&lt;td&gt;~0.5 GB&lt;/td&gt;
+&lt;td&gt;17 个&lt;/td&gt;
+&lt;td&gt;Google&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MediaPipe Pose&lt;/td&gt;
+&lt;td&gt;~1 GB&lt;/td&gt;
+&lt;td&gt;33 个&lt;/td&gt;
+&lt;td&gt;Google&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;最终选择了 MoveNet。&lt;/strong&gt; 主要考量仍然是硬件不确定性——在不知道机器人核心板具体规格的情况下，0.5 GB 显存比 1 GB 显存的风险要低得多。虽然 MediaPipe Pose 提供了 33 个关键点，精度更高、姿态描述更丰富，但如果机器人带不动，一切都是空谈。&lt;/p&gt;
+&lt;p&gt;MoveNet 的 17 个关键点覆盖了人体主要关节（眼、耳、鼻、肩、肘、腕、髋、膝、踝），对于跌倒判断来说够用：跌倒的核心特征是躯干方向从垂直变为水平，以及关键点整体高度下降，这 17 个点足够描述这些变化。&lt;/p&gt;
+&lt;h3 id=&#34;双模判断策略rgb-怀疑-深度确认&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#双模判断策略rgb-怀疑-深度确认&#34;&gt;#&lt;/a&gt; 双模判断策略：RGB 怀疑 + 深度确认&lt;/h3&gt;
+&lt;p&gt;单靠 RGB 姿态来做跌倒判断有一个风险：在某些视角下，正常行为（比如弯腰捡东西、蹲下、躺下休息）和摔倒看起来很相似，仅凭姿态估计容易误判。但如果把深度信息也拉进来，情况就不同了——深度可以直接测量人体相对于地面的距离。&lt;/p&gt;
+&lt;p&gt;我设计的判断逻辑是一个&lt;strong&gt;两级确认&lt;/strong&gt;的流程：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;RGB 姿态检测（怀疑阶段）：&lt;/strong&gt; MoveNet 实时检测人体 17 个关键点，当检测到人体姿态由直立变为倒下状态（躯干接近水平）时，进入&amp;quot;怀疑跌倒&amp;quot;状态。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;深度确认（确认阶段）：&lt;/strong&gt; 进入怀疑状态后，通过深度通道计算人体与地面的实际距离。如果深度数据也确认人体已经落到地面高度，则判定为&amp;quot;确认跌倒&amp;quot;，触发报警。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这个双模设计的核心思路是&lt;strong&gt;让 RGB 负责灵敏，让深度负责可靠&lt;/strong&gt;。RGB 姿态检测对姿态变化敏感但容易误判；深度数据没有语义理解能力但能客观测量空间位置。两者互补，可以减少误报，提升实际场景下的可用性。&lt;/p&gt;
+&lt;h3 id=&#34;关于硬件信息缺失&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#关于硬件信息缺失&#34;&gt;#&lt;/a&gt; 关于硬件信息缺失&lt;/h3&gt;
+&lt;p&gt;在整个调试过程中，一个持续的困扰是我们对机器人的硬件规格几乎一无所知——不知道核心板的型号、算力、显存、内存。这些信息对于模型选型和性能评估来说是最基本的输入，但由于资料不齐全，所有选择都只能在&amp;quot;摸着石头过河&amp;quot;的状态下做。MoveNet 还是 MediaPipe Pose？不是因为充分评估后 MoveNet 更合适，而是因为 MoveNet 占用更小，在信息不透明的条件下风险更低。这种决策方式显然不是最理想的，但在现实条件下是唯一可行的。&lt;/p&gt;
+&lt;h2 id=&#34;音频调试中的沟通问题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#音频调试中的沟通问题&#34;&gt;#&lt;/a&gt; 音频调试中的沟通问题&lt;/h2&gt;
+&lt;p&gt;视觉方案基本跑通之后，下一步是让机器人能够发声——在报警触发时给出语音警告。我接入到机器人系统中尝试调试音频输出，但无论如何都出不了声。&lt;/p&gt;
+&lt;p&gt;排查了一轮之后，之前一直坐在这个机器人位子上的同事告诉我：&lt;strong&gt;我连的机器人不对，我连接到机器人下面那个小车上去了。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;问题在于，就是这位同事让我连小车的。他自己知道小车不具备音频输出能力，但还是让我用小车来做语音对话。当我找他索要资料的时候，资料给不全，方向也指错了。&lt;/p&gt;
+&lt;p&gt;这种事情在多人协作的项目中并不少见，但它反映出一个现实问题：&lt;strong&gt;当知识只存在于某一个人的脑子里、没有沉淀为文档或明确的交接流程时，后来的开发者会在错误的路径上消耗大量本可避免的时间。&lt;/strong&gt; 技术问题往往是可解的，真正拖慢进度的是信息不对称。这段经历也是一个提醒：在自己掌握某个模块之后，应该主动把关键信息——硬件拓扑、接口说明、已知限制——以某种形式记录下来，而不是默认&amp;quot;大家都知道&amp;quot;。&lt;/p&gt;
+&lt;h2 id=&#34;本周小结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#本周小结&#34;&gt;#&lt;/a&gt; 本周小结&lt;/h2&gt;
+&lt;p&gt;回头看这一周，核心工作可以概括为&amp;quot;在信息不完整的条件下，把康养机器人的视觉方案从零搭建到初步可用&amp;quot;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;完成了从 DCW2 到 Gemini2 的摄像头选型与方案切换。&lt;/li&gt;
+&lt;li&gt;搭建了 URFD 深度数据集上的轻量化跌倒检测模型（DCW2 阶段的过渡方案）。&lt;/li&gt;
+&lt;li&gt;选型并部署了 MoveNet 人体姿态估计模型，搭建 RGB 姿态检测 + 深度确认的双模跌倒判断链路。&lt;/li&gt;
+&lt;li&gt;初步完成了视频通话功能与手机 App 的对接。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下一步需要进一步优化跌倒检测的准确率、完善报警逻辑，以及解决音频输出问题。另外，如果能拿到机器人核心板的完整硬件规格，很多之前的&amp;quot;保守选择&amp;quot;就可以重新评估，说不定 MediaPipe Pose 真的能跑得动。&lt;/p&gt;
+&lt;p&gt;更重要的是，这一周让我深刻感受到：&lt;strong&gt;实际项目中的工程决策，往往不是选最优解，而是在当前约束条件下选最不差的那一个。&lt;/strong&gt; 硬件不确定、资料不全、信息不对称——这些不是&amp;quot;异常情况&amp;quot;，它们就是日常开发环境的一部分。在这些约束下仍然能推进工作，可能比在理想条件下写出完美方案更需要耐心和判断力。&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
