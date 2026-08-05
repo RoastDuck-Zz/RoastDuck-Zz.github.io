@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"/><meta name="theme-color" content="#222"/><meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1"/><meta name="renderer" content="webkit"/><link rel="icon" type="image/ico" sizes="32x32" href="/assets/favicon.ico"/><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"/><link rel="alternate" href="/rss.xml" title="RoastDuck" type="application/rss+xml"><link rel="alternate" href="/atom.xml" title="RoastDuck" type="application/atom+xml"><link rel="alternate" type="application/json" title="RoastDuck" href="https://roastduck-zz.github.io/feed.json"/><link rel="preconnect" href="https://s4.zstatic.net"/><link rel="preconnect" href="https://at.alicdn.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CFredericka%20the%20Great:400,400italic,700,700italic%7CNoto%20Serif%20JP:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CInconsolata:400,400italic,700,700italic&display=swap&subset=latin,latin-ext" media="none" onload="this.media&#x3D;&#39;all&#39;"><link rel="modulepreload" href="/js/siteInit.js"></link><link rel="modulepreload" href="/js/nyx-player-WRQM65FC.js"></link><link rel="modulepreload" href="/js/copy-tex-K6DOK4HX.js"></link><link rel="modulepreload" href="/js/post-GGOIJKWP.js"></link><link rel="modulepreload" href="/js/chunk-TUBQMXMQ.js"></link><link rel="modulepreload" href="/js/index.esm-2K3JZNRZ.js"></link><link rel="modulepreload" href="/js/chunk-D4ZSMMI3.js"></link><link rel="modulepreload" href="/js/chunk-TUSW3Q7X.js"></link><link rel="stylesheet" href="/css/siteInit.css" media="none" onload="this.media&#x3D;&#39;all&#39;"></link><link rel="preload" href="//img/covers/work-log-2026-07-06-12.png" as="image" fetchpriority="high"><meta name="keywords" content="跌倒检测,人形机器人,VR控制,"/><meta name="description" content="泰安现场调试第三周：打通跌倒检测、服务器报警与 APP 实时核实链路，把单机成果整理成部署补丁包，并开始接手机器人遥操、VR 与灵巧手故障排查。"/><link rel="canonical" href="https://roastduck-zz.github.io/2026/07/12/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%886%E6%97%A5-7%E6%9C%8812%E6%97%A5%EF%BC%89/"><link rel="stylesheet" href="/css/post.css?v=0.5.4"><link rel="stylesheet" href="/css/mermaid.css?v=0.5.4"><!-- 临时处理--><link rel="stylesheet" media="none" onload="this.media='all'" href="https://s4.zstatic.net/ajax/libs/KaTeX/0.16.9/katex.min.css"><title>从跌倒报警到遥操排障——泰安现场调试第三周</title><meta name="generator" content="Hexo 7.3.0"></head><body itemscope itemtype="http://schema.org/WebPage"><div id="loading"><div class="cat"><div class="body"></div><div class="head"><div class="face"></div></div><div class="foot"><div class="tummy-end"></div><div class="bottom"></div><div class="legs left"></div><div class="legs right"></div></div><div class="paw"><div class="hands left"></div><div class="hands right"></div></div></div></div><div id="pagefind_mount"></div><div id="container"><header id="header" itemscope itemtype="http://schema.org/WPHeader"><div class="inner"><div id="brand"><div class="pjax"><h1 itemprop="name headline">从跌倒报警到遥操排障——泰安现场调试第三周</h1><div class="meta"><span class="item" title="创建时间：2026-07-12 18:00:00"><span class="icon"><i class="ic i-calendar"></i></span><span class="text">发表于</span><time itemprop="dateCreated datePublished" datetime="2026-07-12T18:00:00+08:00">2026-07-12</time></span><span class="item" title="本文字数"><span class="icon"><i class="ic i-pen"></i></span><span class="text">本文字数</span><span>3.4k</span><span class="text">字</span></span><span class="item" title="阅读时长"><span class="icon"><i class="ic i-clock"></i></span><span class="text">阅读时长</span><span>3 分钟</span></span></div></div></div><nav id="nav"><div class="inner"><div class="toggle"><div class="lines" aria-label="切换导航栏"><span class="line"></span><span class="line"></span><span class="line"></span></div></div><ul class="menu"><li class="item title"><a href="/" rel="start">RoastDuck</a></li></ul><ul class="right" id="rightNav"><li class="item theme"><i class="ic i-sun"></i></li><li class="item search"><i class="ic i-search"></i></li></ul></div></nav></div><div class="pjax" id="imgs"><img src="//img/covers/work-log-2026-07-06-12.png" loading="eager" decoding="async" fetchpriority="high" alt="RoastDuck"></div></header><div id="waves"><svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path></defs><g class="parallax"><use xlink:href="#gentle-wave" x="48" y="0"></use><use xlink:href="#gentle-wave" x="48" y="3"></use><use xlink:href="#gentle-wave" x="48" y="5"></use><use xlink:href="#gentle-wave" x="48" y="7"></use></g></svg></div><main><div class="inner"><div class="pjax" id="main"><div class="article wrap"><div class="breadcrumb" itemListElement itemscope itemtype="https://schema.org/BreadcrumbList"><i class="ic i-home"></i><span><a href="/">首页</a></span><i class="ic i-angle-right"></i><span class="current" itemprop="itemListElement" itemscope="itemscope" itemtype="https://schema.org/ListItem"><a href="/categories/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/" itemprop="item" rel="index" title="分类于工作记录"><span itemprop="name">工作记录<meta itemprop="position" content="0"/></span></a></span></div><article class="post block" itemscope="itemscope" itemtype="http://schema.org/Article" data-pagefind-body="data-pagefind-body" lang="zh-CN"><link itemprop="mainEntityOfPage" href="https://roastduck-zz.github.io/2026/07/12/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%886%E6%97%A5-7%E6%9C%8812%E6%97%A5%EF%BC%89/"/><span hidden="hidden" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><meta itemprop="image" content="/assets/img/avatar.jpg"/><meta itemprop="name" content="RoastDuck"/><meta itemprop="description" content="嵌入式软件开发 | 机器人 | ROS, 嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉"/></span><span hidden="hidden" itemprop="publisher" itemscope="itemscope" itemtype="http://schema.org/Organization"><meta itemprop="name" content="RoastDuck"/></span><div class="body md" itemprop="articleBody"><blockquote>
+<p><strong>一句话总结：</strong> 这一周，我把人形机器人的跌倒检测从一个独立算法做成了“检测—上报—核实—处理”的完整链路，又把单机调试结果整理成可重复部署的补丁包，同时开始承担遥操、VR 和灵巧手的现场排障工作。</p>
+</blockquote>
+<hr />
+<h2 id="第三周工作重点变了"><a class="anchor" href="#第三周工作重点变了">#</a> 第三周，工作重点变了</h2>
+<p>这是我留在泰安调试人形机器人的第三周。</p>
+<p>前一周，我完成了头部摄像头采集、服务器转发和 APP 实时画面的基本链路。摄像头能工作，意味着机器人终于可以“看见”；但对于康养场景来说，只看见还不够，它还要理解画面里的异常，并及时把信息送到真正能处理问题的人手里。</p>
+<p>因此，本周的任务集中在两条线上：</p>
+<ol>
+<li>完成跌倒检测与报警闭环，让视觉结果真正进入业务流程；</li>
+<li>把第一台机器人的调试成果工程化，为后续多台设备部署做准备。</li>
+</ol>
+<p>到了周五，现场其他同事陆续返回北京，我还开始接手机器人遥操、VR 训练和灵巧手的运行保障。工作内容也从“完成一个功能”，逐渐变成“保证整套系统能稳定运行”。</p>
+<hr />
+<h2 id="跌倒检测不能只看一帧画面"><a class="anchor" href="#跌倒检测不能只看一帧画面">#</a> 跌倒检测：不能只看一帧画面</h2>
+<p>跌倒检测表面上像是一个二分类问题：画面里的人到底有没有跌倒？真正放到实际环境中，情况却复杂得多。</p>
+<p>用户弯腰捡东西、坐在床边、主动躺下休息，甚至摄像头视角变化或人体被家具遮挡，都可能在单帧画面里呈现出类似“倒地”的姿态。如果只根据某一帧中人体是否横向来判断，误报会非常多。</p>
+<p>本次方案以人体姿态估计为基础，提取关键点后，同时分析身体倾斜程度、关键点相对位置以及连续一段时间内的姿态变化：</p>
+<pre class="shiki shiki-themes vitesse-light vitesse-dark" style="background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee" tabindex="0"><code class="language-text"><span class="line"><span>摄像头采集画面</span></span>
+<span class="line"><span>        ↓</span></span>
+<span class="line"><span>人体关键点检测</span></span>
+<span class="line"><span>        ↓</span></span>
+<span class="line"><span>姿态与时间序列分析</span></span>
+<span class="line"><span>        ↓</span></span>
+<span class="line"><span>判断是否出现疑似跌倒</span></span>
+<span class="line"><span>        ↓</span></span>
+<span class="line"><span>生成报警事件</span></span></code></pre>
+<p>连续帧分析的意义，是把“一个看起来像跌倒的姿势”和“真实发生的跌倒过程”区分开。它不能完全消除误报，但比单帧规则更接近真实使用环境，也为后续报警核实留下了更可靠的基础。</p>
+<hr />
+<h2 id="从算法结果到报警闭环"><a class="anchor" href="#从算法结果到报警闭环">#</a> 从算法结果到报警闭环</h2>
+<p>检测到跌倒只是第一步。对于康养机器人，更重要的问题是：异常能否及时送达监护人，监护人又能否快速确认现场情况。</p>
+<p>本周打通的完整链路是：</p>
+<pre class="shiki shiki-themes vitesse-light vitesse-dark" style="background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee" tabindex="0"><code class="language-text"><span class="line"><span>机器人摄像头</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>跌倒检测程序</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>向服务器发送报警事件</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>服务器记录并转发</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>APP 进入跌倒报警界面</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>监护人查看实时画面并处理</span></span></code></pre>
+<p>APP 收到报警后，不只是弹出一条文字通知，还会提供机器人当前的实时视频。监护人可以据此判断用户是否真的跌倒、是否仍有意识、周围是否存在二次风险，并选择拨打电话、联系 120，或者将事件确认为误报。</p>
+<p>这条链路让我重新认识了实时视频的价值：<strong>报警负责发现异常，视频负责解释现场。</strong></p>
+<p>算法不可能做到绝对零误报。如果没有视频，每次报警都要再通过电话确认，处理效率和用户信任都会下降。把检测、服务器、视频和 APP 串起来以后，跌倒识别才从一个模型能力变成了可以实际使用的安全功能。</p>
+<hr />
+<h2 id="从调通一台到部署多台"><a class="anchor" href="#从调通一台到部署多台">#</a> 从“调通一台”到“部署多台”</h2>
+<p>第一台机器人能跑起来，只能证明方案可行。真正面向交付时，第十台、第一百台设备能否按照同一套流程快速上线，才决定方案有没有工程价值。</p>
+<p>单机调试期间，系统涉及项目文件、Python 环境、第三方依赖、模型与配置、启动脚本、服务权限、摄像头节点、网络参数，以及 APP 的视频地址和报警接口。如果每台机器人都依赖人工逐项配置，很容易产生版本、路径和环境差异。</p>
+<p>为此，我把第一台机器人上新增和修改的内容整理成部署补丁包，并通过脚本自动完成安装和配置：</p>
+<table>
+<thead>
+<tr>
+<th>原来的人工流程</th>
+<th>补丁包流程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>复制文件、创建环境、安装依赖</td>
+<td>上传补丁包并执行脚本</td>
+</tr>
+<tr>
+<td>手动修改配置和权限</td>
+<td>自动检查目录、依赖与权限</td>
+</tr>
+<tr>
+<td>配置服务并逐项启动</td>
+<td>自动配置并启动相关服务</td>
+</tr>
+<tr>
+<td>人工确认遗漏项</td>
+<td>统一检查视频与报警链路</td>
+</tr>
+</tbody>
+</table>
+<p>脚本还必须适配设备标识、网络地址、摄像头节点和原有环境的差异，并保证重复执行时不会破坏现有系统。因此，它不能只是把调试命令拼在一起，还需要具备目录检查、依赖检测、配置替换、幂等处理和异常退出能力。</p>
+<blockquote>
+<p><strong>工程心得：</strong> 能在一台机器人上跑起来是开发，能稳定复制到多台机器人上才是工程化。</p>
+</blockquote>
+<hr />
+<h2 id="开始接手遥操与-vr-训练"><a class="anchor" href="#开始接手遥操与-vr-训练">#</a> 开始接手遥操与 VR 训练</h2>
+<p>本周后半段，我开始学习并维护机器人遥操和 VR 控制系统。当地现场人员会通过遥操设备和 VR 系统控制机器人完成动作，以采集后续训练所需的数据。</p>
+<p>我的工作也随之扩展为：指导现场操作、检查控制模块状态、处理软硬件异常、快速恢复系统，并判断问题究竟位于采集端、通信端、控制端还是机器人执行端。</p>
+<p>现场遇到的典型问题包括：</p>
+<table>
+<thead>
+<tr>
+<th>现象</th>
+<th>重点排查链路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>遥操臂有动作，机器人手臂无响应</td>
+<td>设备数据 → 通信 → 控制程序 → 安全限制 → 电机控制器</td>
+</tr>
+<tr>
+<td>VR 操控无法开启</td>
+<td>头显与定位 → 前端 → 后端服务 → 控制节点 → 机器人模式</td>
+</tr>
+<tr>
+<td>前后端点击后无响应</td>
+<td>请求发送 → 接口与端口 → 控制指令 → 执行结果回传</td>
+</tr>
+<tr>
+<td>灵巧手无法跟随手套</td>
+<td>传感器 → 关节映射 → 归一化 → 限位 → 执行机构</td>
+</tr>
+<tr>
+<td>灵巧手持续抽搐</td>
+<td>输入噪声、标定误差、通信延迟、控制增益与机械限位</td>
+</tr>
+</tbody>
+</table>
+<p>这些现象有一个共同点：用户看到的都是“机器人没有正常动作”，但真正的故障点可能位于整条链路中的任何一层。只盯着最后一个执行机构，往往很难找到原因。</p>
+<hr />
+<h2 id="沿着数据流排查而不是反复重启"><a class="anchor" href="#沿着数据流排查而不是反复重启">#</a> 沿着数据流排查，而不是反复重启</h2>
+<p>经过几次现场问题处理，我逐渐形成了一套更稳定的排查顺序：</p>
+<pre class="shiki shiki-themes vitesse-light vitesse-dark" style="background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee" tabindex="0"><code class="language-text"><span class="line"><span>确认并记录现象</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>画出完整数据链路</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>检查每个模块的输入与输出</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>结合日志定位故障层级</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>单独验证修改过的模块</span></span>
+<span class="line"><span>      ↓</span></span>
+<span class="line"><span>恢复整条链路做回归测试</span></span></code></pre>
+<p>例如遥操臂已经动作，只能证明采集设备读到了人的操作，并不能证明数据已经到达机器人。还要继续确认数据是否发送、后端是否收到、指令是否通过安全限制，以及电机控制器是否处于允许执行的状态。</p>
+<p>同样，灵巧手抽搐也不一定是电机损坏。目标关节值持续跳变、手套数据噪声、零位和量程标定错误、控制频率不稳或关节停在机械限位附近，都可能造成类似现象。</p>
+<p>这种沿数据流逐级确认的方法，前期需要花时间理解架构，但一旦链路清晰，后续排查效率远高于直接重启整套系统。</p>
+<hr />
+<h2 id="重新理解机器人训练"><a class="anchor" href="#重新理解机器人训练">#</a> 重新理解机器人训练</h2>
+<p>真正参与现场遥操以后，我发现机器人训练并不是“让操作员控制机器人做动作，然后把数据保存下来”这么简单。</p>
+<p>一套有效的数据采集流程，至少要同时保证遥操设备准确采集、人体动作正确映射、机器人稳定执行、摄像头与关节数据时间同步，并且异常数据能被及时识别和剔除。</p>
+<p>如果手套没有完成标定，或者机器人执行时持续抖动，即使文件已经保存下来，这些数据也很难直接用于后续训练。训练数据的质量，本质上是机器人本体、控制系统、采集设备与现场维护共同作用的结果。</p>
+<hr />
+<h2 id="下一步计划"><a class="anchor" href="#下一步计划">#</a> 下一步计划</h2>
+<p>接下来，我会继续推进以下工作：</p>
+<ol>
+<li>优化跌倒检测逻辑，进一步降低误报率；</li>
+<li>完善断网、服务异常等情况下的自动恢复机制；</li>
+<li>验证补丁包在不同机器人上的兼容性和幂等性；</li>
+<li>标准化部署、启动、日志检查与回滚流程；</li>
+<li>熟悉遥操、VR 和灵巧手的完整标定方法；</li>
+<li>整理现场常见故障及对应排查路径；</li>
+<li>提高机器人训练数据的稳定性与一致性。</li>
+</ol>
+<hr />
+<h2 id="写在最后"><a class="anchor" href="#写在最后">#</a> 写在最后</h2>
+<p>这一周完成的工作看起来分成了两部分：一边是跌倒检测、服务器和 APP 的软件链路，另一边是遥操、VR 与灵巧手的现场维护。但它们背后其实指向同一件事：<strong>机器人开发从来不是某一个算法或某一个程序的问题，而是整个系统的问题。</strong></p>
+<p>跌倒检测要考虑摄像头、模型、服务器、APP 和人工处理；机器人遥操要考虑采集设备、动作映射、网络通信、控制服务、电机驱动和安全限制。任何一个环节异常，最后呈现出来的都可能只是“机器人没有反应”。</p>
+<blockquote>
+<p>让机器人完成一次动作并不困难，真正困难的是让整套系统稳定、可复制地运行。</p>
+</blockquote>
+<div class="tags"><a href="/tags/%E8%B7%8C%E5%80%92%E6%A3%80%E6%B5%8B/" rel="tag"><i class="ic i-tag"></i>跌倒检测</a><a href="/tags/%E6%9C%BA%E5%99%A8%E8%A7%86%E8%A7%89/" rel="tag"><i class="ic i-tag"></i>机器视觉</a><a href="/tags/%E4%BA%BA%E5%BD%A2%E6%9C%BA%E5%99%A8%E4%BA%BA/" rel="tag"><i class="ic i-tag"></i>人形机器人</a><a href="/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA%E9%81%A5%E6%93%8D/" rel="tag"><i class="ic i-tag"></i>机器人遥操</a><a href="/tags/VR%E6%8E%A7%E5%88%B6/" rel="tag"><i class="ic i-tag"></i>VR控制</a><a href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96%E9%83%A8%E7%BD%B2/" rel="tag"><i class="ic i-tag"></i>工程化部署</a></div></div><footer><div class="meta"><span class="item"><span class="icon"><i class="ic i-calendar-check"></i></span><span class="text">更新于 </span><time title="修改时间：2026-08-05 17:19:07" itemprop="dateModified" datetime="2026-08-05T17:19:07+08:00">2026-08-05</time></span></div><div class="reward"><button><i class="ic i-heartbeat"></i>赞赏</button><p>请我喝[茶]~(￣▽￣)~*</p><div id="qr"><div><img loading="lazy" src="/assets/wechatpay.png" alt="RoastDuck 微信支付"/><p>微信支付</p></div><div><img loading="lazy" src="/assets/alipay.png" alt="RoastDuck 支付宝"/><p>支付宝</p></div></div></div><div id="copyright"><ul><li class="author"><strong>本文作者：</strong>RoastDuck<i class="ic i-at"><em>@</em></i>RoastDuck</li><li class="link"><strong>本文链接：</strong><a href="https://roastduck-zz.github.io/2026/07/12/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%886%E6%97%A5-7%E6%9C%8812%E6%97%A5%EF%BC%89/" title="从跌倒报警到遥操排障——泰安现场调试第三周">https://roastduck-zz.github.io/2026/07/12/工作周志（7月6日-7月12日）/</a></li><li class="license"><strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div></footer></article></div><div class="post-nav"><div class="item left"><a href="/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/" rel="prev" itemprop="url" data-background-image="&#x2F;img&#x2F;index-bg.jpg" title="工作日志（6月29日-7月5日）：康养机器人视觉调试"><span class="type">上一篇</span><span class="category"><i class="ic i-flag"></i>工作记录</span><h3>工作日志（6月29日-7月5日）：康养机器人视觉调试</h3></a></div><div class="item right"><a href="/2026/07/20/work-log-july13-july19/" rel="next" itemprop="url" data-background-image="&#x2F;img&#x2F;index-bg.jpg" title="工作日志（7月13日-7月19日）：机器人项目交接与青岛展会支持"><span class="type">下一篇</span><span class="category"><i class="ic i-flag"></i>工作记录</span><h3>工作日志（7月13日-7月19日）：机器人项目交接与青岛展会支持</h3></a></div></div><div class="wrap" id="comments"></div></div><div id="sidebar"><div class="inner"><div class="panels"><div class="inner"><div class="contents panel pjax" data-title="文章目录"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E5%91%A8%E5%B7%A5%E4%BD%9C%E9%87%8D%E7%82%B9%E5%8F%98%E4%BA%86"><span class="toc-number">1.</span> <span class="toc-text"> 第三周，工作重点变了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%8C%E5%80%92%E6%A3%80%E6%B5%8B%E4%B8%8D%E8%83%BD%E5%8F%AA%E7%9C%8B%E4%B8%80%E5%B8%A7%E7%94%BB%E9%9D%A2"><span class="toc-number">2.</span> <span class="toc-text"> 跌倒检测：不能只看一帧画面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E7%AE%97%E6%B3%95%E7%BB%93%E6%9E%9C%E5%88%B0%E6%8A%A5%E8%AD%A6%E9%97%AD%E7%8E%AF"><span class="toc-number">3.</span> <span class="toc-text"> 从算法结果到报警闭环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E8%B0%83%E9%80%9A%E4%B8%80%E5%8F%B0%E5%88%B0%E9%83%A8%E7%BD%B2%E5%A4%9A%E5%8F%B0"><span class="toc-number">4.</span> <span class="toc-text"> 从“调通一台”到“部署多台”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%8E%A5%E6%89%8B%E9%81%A5%E6%93%8D%E4%B8%8E-vr-%E8%AE%AD%E7%BB%83"><span class="toc-number">5.</span> <span class="toc-text"> 开始接手遥操与 VR 训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B2%BF%E7%9D%80%E6%95%B0%E6%8D%AE%E6%B5%81%E6%8E%92%E6%9F%A5%E8%80%8C%E4%B8%8D%E6%98%AF%E5%8F%8D%E5%A4%8D%E9%87%8D%E5%90%AF"><span class="toc-number">6.</span> <span class="toc-text"> 沿着数据流排查，而不是反复重启</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%AE%AD%E7%BB%83"><span class="toc-number">7.</span> <span class="toc-text"> 重新理解机器人训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E4%B8%80%E6%AD%A5%E8%AE%A1%E5%88%92"><span class="toc-number">8.</span> <span class="toc-text"> 下一步计划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-number">9.</span> <span class="toc-text"> 写在最后</span></a></li></ol></div><div class="related panel pjax" data-title="系列文章"><ul><li ><a href="/2026/06/26/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%5B6%E6%9C%8822%E6%97%A5-6%E6%9C%8826%E6%97%A5%5D/" rel="bookmark" title="第一周工作记录：从了解项目开始">第一周工作记录：从了解项目开始</a></li><li ><a href="/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/" rel="bookmark" title="工作日志（6月29日-7月5日）：康养机器人视觉调试">工作日志（6月29日-7月5日）：康养机器人视觉调试</a></li><li  class="active"><a href="/2026/07/12/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%886%E6%97%A5-7%E6%9C%8812%E6%97%A5%EF%BC%89/" rel="bookmark" title="从跌倒报警到遥操排障——泰安现场调试第三周">从跌倒报警到遥操排障——泰安现场调试第三周</a></li><li ><a href="/2026/07/20/work-log-july13-july19/" rel="bookmark" title="工作日志（7月13日-7月19日）：机器人项目交接与青岛展会支持">工作日志（7月13日-7月19日）：机器人项目交接与青岛展会支持</a></li><li ><a href="/2026/07/24/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8820%E6%97%A5-7%E6%9C%8824%E6%97%A5%EF%BC%89/" rel="bookmark" title="返京后的三天——陪伴机器人验收、Luckfox 烧录与视觉项目重启">返京后的三天——陪伴机器人验收、Luckfox 烧录与视觉项目重启</a></li><li ><a href="/2026/08/02/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8827%E6%97%A5-7%E6%9C%8831%E6%97%A5%EF%BC%89/" rel="bookmark" title="两块屏幕拼出一张脸——低成本陪伴机器人硬件联调">两块屏幕拼出一张脸——低成本陪伴机器人硬件联调</a></li></ul></div><div class="overview panel" data-title="站点概览"><div class="author" itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person"><img class="image" loading="lazy" decoding="async" itemprop="image" alt="RoastDuck" src="/assets/img/avatar.jpg"/><p class="name" itemprop="name">RoastDuck</p><div class="description" itemprop="description">嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉</div></div><nav class="state"><div class="item posts"><a href="/archives/"><span class="count">10</span><span class="name">文章</span></a></div><div class="item categories"><a href="/categories/"><span class="count">2</span><span class="name">分类</span></a></div><div class="item tags"><a href="/tags/"><span class="count">38</span><span class="name">标签</span></a></div></nav><div class="social"><a target="_blank" rel="noopener" href="https://github.com/RoastDuck-Zz" class="item github" title="https:&#x2F;&#x2F;github.com&#x2F;RoastDuck-Zz"><i class="ic i-github"></i></a></div><div class="menu"><li class="item"><a href="/" rel="section"><i class="ic i-home"></i>首页</a></li><li class="item"><a href="/about/" rel="section"><i class="ic i-user"></i>关于</a></li><li class="item"><a href="/archives/" rel="section"><i class="ic i-archive"></i>归档</a></li></div></div></div></div><ul id="quick"><li class="prev pjax"><a href="/2026/07/20/work-log-july13-july19/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a></li><li class="up"><i class="ic i-arrow-up"></i></li><li class="down"><i class="ic i-arrow-down"></i></li><li class="next pjax"><a href="/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a></li><li class="percent"></li></ul></div></div><div class="dimmer"></div></div><div id="player"></div></main><footer id="footer"><div class="inner"><div class="widgets"><div class="rpost pjax"><h2>随机文章</h2><ul><li class="item"><div class="breadcrumb"><a href="/categories/%E9%A1%B9%E7%9B%AE/" title="分类于项目">项目</a></div><span><a href="/2026/07/31/%E8%BF%94%E4%BA%AC%E4%B8%80%E5%91%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/">返京一周：陪伴机器人、视觉检测项目与 Luckfox Pico Ultra 踩坑记录</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/" title="分类于工作记录">工作记录</a></div><span><a href="/2026/08/02/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8827%E6%97%A5-7%E6%9C%8831%E6%97%A5%EF%BC%89/">两块屏幕拼出一张脸——低成本陪伴机器人硬件联调</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E9%A1%B9%E7%9B%AE/" title="分类于项目">项目</a></div><span><a href="/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/">从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/" title="分类于工作记录">工作记录</a></div><span><a href="/2026/07/20/work-log-july13-july19/">工作日志（7月13日-7月19日）：机器人项目交接与青岛展会支持</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/" title="分类于工作记录">工作记录</a></div><span><a href="/2026/07/24/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8820%E6%97%A5-7%E6%9C%8824%E6%97%A5%EF%BC%89/">返京后的三天——陪伴机器人验收、Luckfox 烧录与视觉项目重启</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/" title="分类于工作记录">工作记录</a></div><span><a href="/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/">工作日志（6月29日-7月5日）：康养机器人视觉调试</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/" title="分类于工作记录">工作记录</a></div><span><a href="/2026/07/12/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%886%E6%97%A5-7%E6%9C%8812%E6%97%A5%EF%BC%89/">从跌倒报警到遥操排障——泰安现场调试第三周</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BD%95/" title="分类于工作记录">工作记录</a></div><span><a href="/2026/06/26/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%5B6%E6%9C%8822%E6%97%A5-6%E6%9C%8826%E6%97%A5%5D/">第一周工作记录：从了解项目开始</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E9%A1%B9%E7%9B%AE/" title="分类于项目">项目</a></div><span><a href="/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/">从零造一台会「看」的焊接机器人——五自由度机械臂全栈开发手记</a></span></li><li class="item"><div class="breadcrumb"><a href="/categories/%E9%A1%B9%E7%9B%AE/" title="分类于项目">项目</a></div><span><a href="/2026/03/03/%E6%A1%8C%E5%AE%A0/">桌宠</a></span></li></ul></div><div class="rpost pjax"><h2>最新评论</h2></div></div><div class="status"><div class="copyright">&copy; 2022 -<span itemprop="copyrightYear">2026</span><span class="with-love"><i class="ic i-sakura rotate"></i></span><span class="author" itemprop="copyrightHolder">RoastDuck @ RoastDuck</span></div><div class="count"><span class="post-meta-item-icon"><i class="ic i-chart-area"></i></span><span title="站点总字数">33k 字</span><span class="post-meta-divider"> | </span><span class="post-meta-item-icon"><i class="ic i-coffee"></i></span><span title="站点阅读时长">30 分钟</span></div><div class="powered-by">基于 <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & Theme.<a target="_blank" rel="noopener" href="https://github.com/theme-shoka-x/hexo-theme-shokaX/">ShokaX</a></div></div></div></footer></div><script data-config type="text/javascript">var LOCAL = {
+    ispost: true,
+    path: `2026/07/12/工作周志（7月6日-7月12日）/`,
+    favicon: {
+        show: `（●´3｀●）やれやれだぜ`,
+        hide: `(´Д｀)大変だ！`
+    },
+    search: {
+        placeholder: "文章搜索",
+        empty: "关于 「 ${query} 」，什么也没搜到",
+        stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    nocopy: "false",
+    copyright: `复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。`,
+    copy_tex: false,
+    katex: false,
+    mermaid: true,
+    audio: undefined,
+    nocopy: false,
+    outime: true,
+    template: `<div class="note warning"><p><span class="label warning">文章时效性提示</span><br>这是一篇发布于 {{publish}} 天前，最后一次更新在 {{updated}} 天前的文章，部分信息可能已经发生改变，请注意甄别。</p></div>`,
+    quiz: {
+        choice: `单选题`,
+        multiple: `多选题`,
+        true_false: `判断题`,
+        essay: `问答题`,
+        gap_fill: `填空题`,
+        mistake: `错题备注`
+    }
+};
+</script><script src="/js/siteInit.js?v=0.5.4" type="module" fetchpriority="high" defer></script></body></html>

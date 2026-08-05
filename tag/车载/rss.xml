@@ -7,40 +7,51 @@
         <language>zh-CN</language>
         <pubDate>Fri, 26 Jun 2026 18:00:00 +0800</pubDate>
         <lastBuildDate>Fri, 26 Jun 2026 18:00:00 +0800</lastBuildDate>
-        <category>机器人</category>
-        <category>ESP32-S3</category>
-        <category>嵌入式</category>
-        <category>机器视觉</category>
-        <category>YOLOv8</category>
-        <category>3D打印</category>
-        <category>工作记录</category>
         <category>周记</category>
+        <category>机器人</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>跌倒检测</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
+        <category>工作记录</category>
         <category>车载</category>
         <category>视觉检测</category>
         <category>AD</category>
         <category>RK3566</category>
         <category>PCB</category>
         <category>康养机器人</category>
-        <category>跌倒检测</category>
         <category>视觉</category>
         <category>MoveNet</category>
         <category>奥比中光</category>
-        <category>ROS</category>
-        <category>STM32</category>
-        <category>树莓派</category>
-        <category>机器人工程</category>
-        <category>嵌入式开发</category>
-        <category>项目交接</category>
-        <category>Remote-SSH</category>
-        <category>技术支持</category>
-        <category>APIE2026</category>
+        <category>ESP32-S3</category>
+        <category>嵌入式</category>
+        <category>机器视觉</category>
+        <category>YOLOv8</category>
+        <category>3D打印</category>
+        <category>人形机器人</category>
+        <category>机器人遥操</category>
+        <category>VR控制</category>
+        <category>工程化部署</category>
+        <category>陪伴机器人</category>
+        <category>小智</category>
+        <category>双屏显示</category>
+        <category>数字麦克风</category>
+        <category>硬件调试</category>
+        <category>Luckfox</category>
+        <category>Linux</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/06/26/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97[6%E6%9C%8822%E6%97%A5-6%E6%9C%8826%E6%97%A5]/</guid>
             <title>第一周工作记录：从了解项目开始</title>
             <link>https://roastduck-zz.github.io/2026/06/26/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97[6%E6%9C%8822%E6%97%A5-6%E6%9C%8826%E6%97%A5]/</link>
+            <category>周记</category>
             <category>机器人</category>
             <category>工作记录</category>
-            <category>周记</category>
             <category>车载</category>
             <category>视觉检测</category>
             <category>AD</category>

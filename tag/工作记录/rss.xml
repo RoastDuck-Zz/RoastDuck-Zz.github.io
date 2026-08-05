@@ -5,42 +5,165 @@
         <link>https://roastduck-zz.github.io</link>
         <description>嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉</description>
         <language>zh-CN</language>
-        <pubDate>Fri, 26 Jun 2026 18:00:00 +0800</pubDate>
-        <lastBuildDate>Fri, 26 Jun 2026 18:00:00 +0800</lastBuildDate>
-        <category>机器人</category>
-        <category>ESP32-S3</category>
-        <category>嵌入式</category>
-        <category>机器视觉</category>
-        <category>YOLOv8</category>
-        <category>3D打印</category>
-        <category>工作记录</category>
+        <pubDate>Fri, 24 Jul 2026 18:00:00 +0800</pubDate>
+        <lastBuildDate>Fri, 24 Jul 2026 18:00:00 +0800</lastBuildDate>
         <category>周记</category>
+        <category>机器人</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>跌倒检测</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
+        <category>工作记录</category>
         <category>车载</category>
         <category>视觉检测</category>
         <category>AD</category>
         <category>RK3566</category>
         <category>PCB</category>
         <category>康养机器人</category>
-        <category>跌倒检测</category>
         <category>视觉</category>
         <category>MoveNet</category>
         <category>奥比中光</category>
-        <category>ROS</category>
-        <category>STM32</category>
-        <category>树莓派</category>
-        <category>机器人工程</category>
-        <category>嵌入式开发</category>
-        <category>项目交接</category>
-        <category>Remote-SSH</category>
-        <category>技术支持</category>
-        <category>APIE2026</category>
+        <category>ESP32-S3</category>
+        <category>嵌入式</category>
+        <category>机器视觉</category>
+        <category>YOLOv8</category>
+        <category>3D打印</category>
+        <category>人形机器人</category>
+        <category>机器人遥操</category>
+        <category>VR控制</category>
+        <category>工程化部署</category>
+        <category>陪伴机器人</category>
+        <category>小智</category>
+        <category>双屏显示</category>
+        <category>数字麦克风</category>
+        <category>硬件调试</category>
+        <category>Luckfox</category>
+        <category>Linux</category>
+        <item>
+            <guid isPermalink="true">https://roastduck-zz.github.io/2026/07/24/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8820%E6%97%A5-7%E6%9C%8824%E6%97%A5%EF%BC%89/</guid>
+            <title>返京后的三天——陪伴机器人验收、Luckfox 烧录与视觉项目重启</title>
+            <link>https://roastduck-zz.github.io/2026/07/24/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8820%E6%97%A5-7%E6%9C%8824%E6%97%A5%EF%BC%89/</link>
+            <category>工作记录</category>
+            <category>ESP32-S3</category>
+            <category>机器视觉</category>
+            <category>陪伴机器人</category>
+            <category>小智</category>
+            <category>Luckfox</category>
+            <pubDate>Fri, 24 Jul 2026 18:00:00 +0800</pubDate>
+            <description><![CDATA[ &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 返京后的这一周只有三个工作日，我一边验收陪伴机器人的硬件并在 Luckfox Pico Ultra 与 ESP32-S3 之间摸索方案，一边重新推动停滞了一段时间的高校视觉检测项目。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;连续二十天之后先停下来两天&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#连续二十天之后先停下来两天&#34;&gt;#&lt;/a&gt; 连续二十天之后，先停下来两天&lt;/h2&gt;
+&lt;p&gt;这周我回到了北京公司。周一和周四都申请了调休：周一恰好是我的农历生日，周四则是公历生日。之前连续上了二十天班，正好借这个机会让自己停下来缓一缓。&lt;/p&gt;
+&lt;p&gt;因此，这一周真正工作的时间只有三天。时间虽然不长，但返京后需要重新接上的事情不少，主要集中在两条项目线上：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项目&lt;/th&gt;
+&lt;th&gt;本周目标&lt;/th&gt;
+&lt;th&gt;当前结果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;低成本陪伴机器人&lt;/td&gt;
+&lt;td&gt;验收物料，验证主控与基础软件&lt;/td&gt;
+&lt;td&gt;完成 Luckfox 固件烧录，并在 ESP32-S3 上跑通“小智”基础程序&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;高校视觉检测项目&lt;/td&gt;
+&lt;td&gt;恢复进度，准备真实样件测试&lt;/td&gt;
+&lt;td&gt;整理传送带与桌面方案，协调校方物料，并把样品寄给视觉厂商&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;这几天的核心不是把某个功能做到最终状态，而是先把停下来的工作重新组织起来，明确哪些链路已经具备条件、哪些问题需要外部资源配合。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;陪伴机器人先把到货物料验清楚&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#陪伴机器人先把到货物料验清楚&#34;&gt;#&lt;/a&gt; 陪伴机器人：先把到货物料验清楚&lt;/h2&gt;
+&lt;p&gt;我不在北京的这段时间，陪伴机器人采购的物料已经陆续到货。返京后第一件事，就是对开发板和相关硬件做验收与基础测试。&lt;/p&gt;
+&lt;p&gt;陪伴机器人走的是低成本路线，硬件选型不能只看参数，还要看开发体验、系统完整度和后续维护成本。价格便宜的板卡，如果需要投入大量时间补齐系统和工具链，实际项目成本未必真的低。&lt;/p&gt;
+&lt;p&gt;这次首先测试的是 &lt;strong&gt;Luckfox Pico Ultra&lt;/strong&gt;。它的价格确实有吸引力，但不像常见的成熟开发板那样上电就能直接进入完整环境，需要自己完成系统固件烧录。官方提供的是相对精简的 Linux 固件，基础功能有了，但距离顺手的开发环境还有一段距离。&lt;/p&gt;
+&lt;p&gt;我最终完成了固件烧录，确认板卡可以正常启动。不过受这一周时间限制，还没有继续开展上层应用开发。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;选型心得：&lt;/strong&gt; 开发板的成本不只是购买价格，还包括系统完善度、文档质量、工具链和调试时间。便宜的硬件，可能会把成本转移到开发阶段。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;luckfox-之后先用-esp32-s3-验证交互方案&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#luckfox-之后先用-esp32-s3-验证交互方案&#34;&gt;#&lt;/a&gt; Luckfox 之后，先用 ESP32-S3 验证交互方案&lt;/h2&gt;
+&lt;p&gt;完成 Luckfox 的基础烧录后，我又转向 &lt;strong&gt;ESP32-S3&lt;/strong&gt; 做快速验证，并把“小智”基础程序部署到了开发板上。&lt;/p&gt;
+&lt;p&gt;这一步的目的很明确：在 Linux 侧应用还没展开之前，先用更熟悉、启动更快的 ESP32-S3 验证陪伴机器人的基本语音交互链路。ESP32-S3 的算力和系统能力与 Linux 板卡不同，但它在成本、功耗、外设接入和快速原型方面更有优势。&lt;/p&gt;
+&lt;p&gt;本周暂时完成了“小智”的基础安装和启动验证。后续还要继续接入显示屏、麦克风等外设，才能判断这条方案是否适合最终样机。&lt;/p&gt;
+&lt;p&gt;现在两块板卡对应的是两种思路：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Luckfox Pico Ultra&lt;/strong&gt;：具备 Linux 环境，扩展空间更大，但系统搭建和开发准备更重；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ESP32-S3&lt;/strong&gt;：开发路径更轻，适合快速验证语音与外设交互，但资源边界更明确。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我不会只根据纸面参数立刻做最终决定，而是准备让两套方案都先走到可验证的节点，再根据功能、稳定性和成本做取舍。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;高校项目把停滞的视觉检测重新推起来&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#高校项目把停滞的视觉检测重新推起来&#34;&gt;#&lt;/a&gt; 高校项目：把停滞的视觉检测重新推起来&lt;/h2&gt;
+&lt;p&gt;另一条工作线，是公司为高校推进的视觉检测项目。我离开北京期间，这个项目进展不多；返京后，公司重新开始推动，我也接着梳理当前状态和下一步条件。&lt;/p&gt;
+&lt;p&gt;视觉检测不能只在电脑里跑一段程序，它最终必须放进真实场景。因此，本周首先处理的不是算法细节，而是把测试环境需要的基础条件凑齐：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;确认传送带、桌面等简单工装；&lt;/li&gt;
+&lt;li&gt;与校方沟通并获取对应物料；&lt;/li&gt;
+&lt;li&gt;整理待测样品和检测要求；&lt;/li&gt;
+&lt;li&gt;联系视觉检测厂商验证现有软件能否满足需求；&lt;/li&gt;
+&lt;li&gt;等待对方搭建场景并完成第一轮测试。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;本周已经把物料寄给北京的视觉检测公司。对方还需要按照实际工况布置场景，测试完成后，我会再去现场看一遍效果。&lt;/p&gt;
+&lt;p&gt;如果这套软件无法满足要求，备选方案是使用西安伟景的产品。它的成熟度相对更有保障，但价格也更高。对当前项目来说，最理想的结果还是北京厂商能够完成工作：沟通和现场验证更方便，整体成本也更可控。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;为什么要先看现场效果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#为什么要先看现场效果&#34;&gt;#&lt;/a&gt; 为什么要先看现场效果&lt;/h2&gt;
+&lt;p&gt;视觉检测方案很容易在演示样品上表现良好，却在真实生产条件下暴露问题。光照变化、传送带振动、材料表面纹理、缺陷边界、相机安装角度和节拍要求，都会影响最终效果。&lt;/p&gt;
+&lt;p&gt;因此，我更关心的不是厂商给出的单次识别截图，而是它能否在接近真实场景的布置中稳定完成以下任务：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;样品连续通过时能否保持稳定识别；&lt;/li&gt;
+&lt;li&gt;复杂纹理下会不会出现大量误检；&lt;/li&gt;
+&lt;li&gt;缺陷边界不明显时是否仍有区分度；&lt;/li&gt;
+&lt;li&gt;检测速度能否跟上传送节拍；&lt;/li&gt;
+&lt;li&gt;软件接口是否便于后续接入整套设备。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些问题只有把物料、相机、光源和传送机构放到一起，才能得到有意义的答案。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;三个工作日的边界&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三个工作日的边界&#34;&gt;#&lt;/a&gt; 三个工作日的边界&lt;/h2&gt;
+&lt;p&gt;这周完成的事情都停在“建立下一步条件”的位置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luckfox Pico Ultra 已完成固件烧录，但还没有展开应用开发；&lt;/li&gt;
+&lt;li&gt;ESP32-S3 已跑通“小智”基础程序，但外设联调还未开始；&lt;/li&gt;
+&lt;li&gt;高校项目的样品已寄出，但视觉厂商仍在搭建测试场景。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些不是最终成果，却是项目继续推进必须跨过的节点。硬件开发经常如此：一周的结果不一定是一个完整功能，也可能只是把系统从“没有条件验证”推进到“下一步终于可以开始验证”。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;下一步计划&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#下一步计划&#34;&gt;#&lt;/a&gt; 下一步计划&lt;/h2&gt;
+&lt;p&gt;接下来会继续推进三件事：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 Luckfox Pico Ultra 上补齐开发环境，开始验证上层应用；&lt;/li&gt;
+&lt;li&gt;围绕 ESP32-S3 接入显示屏和麦克风，继续搭建陪伴机器人样机；&lt;/li&gt;
+&lt;li&gt;跟进视觉厂商的场景测试，现场确认效果后决定是否采用当前方案。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果北京厂商的测试结果不理想，再进一步评估西安伟景方案的性能收益是否值得更高的成本。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;写在最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#写在最后&#34;&gt;#&lt;/a&gt; 写在最后&lt;/h2&gt;
+&lt;p&gt;返京后的这一周很短，节奏却很典型：一边是开发板烧录、程序验证这种亲手调试的工作，另一边是物料、工装、校方和供应商之间的协调。&lt;/p&gt;
+&lt;p&gt;工程项目很少只靠写代码往前走。很多时候，真正决定进度的是硬件有没有到、测试环境是否搭好、样品是否真实，以及外部方案能否在现场稳定运行。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;先把条件准备好，再让每一次测试都回答一个明确的问题。&lt;/p&gt;
+&lt;/blockquote&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/06/26/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97[6%E6%9C%8822%E6%97%A5-6%E6%9C%8826%E6%97%A5]/</guid>
             <title>第一周工作记录：从了解项目开始</title>
             <link>https://roastduck-zz.github.io/2026/06/26/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97[6%E6%9C%8822%E6%97%A5-6%E6%9C%8826%E6%97%A5]/</link>
+            <category>周记</category>
             <category>机器人</category>
             <category>工作记录</category>
-            <category>周记</category>
             <category>车载</category>
             <category>视觉检测</category>
             <category>AD</category>

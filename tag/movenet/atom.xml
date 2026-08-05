@@ -4,33 +4,44 @@
     <title>RoastDuck • Posts by &#34;movenet&#34; tag</title>
     <link href="https://roastduck-zz.github.io" />
     <updated>2026-07-06T10:00:00.000Z</updated>
-    <category term="机器人" />
-    <category term="ESP32-S3" />
-    <category term="嵌入式" />
-    <category term="机器视觉" />
-    <category term="YOLOv8" />
-    <category term="3D打印" />
-    <category term="工作记录" />
     <category term="周记" />
+    <category term="机器人" />
+    <category term="项目交接" />
+    <category term="Remote-SSH" />
+    <category term="跌倒检测" />
+    <category term="技术支持" />
+    <category term="APIE2026" />
+    <category term="ROS" />
+    <category term="STM32" />
+    <category term="树莓派" />
+    <category term="机器人工程" />
+    <category term="嵌入式开发" />
+    <category term="工作记录" />
     <category term="车载" />
     <category term="视觉检测" />
     <category term="AD" />
     <category term="RK3566" />
     <category term="PCB" />
     <category term="康养机器人" />
-    <category term="跌倒检测" />
     <category term="视觉" />
     <category term="MoveNet" />
     <category term="奥比中光" />
-    <category term="ROS" />
-    <category term="STM32" />
-    <category term="树莓派" />
-    <category term="机器人工程" />
-    <category term="嵌入式开发" />
-    <category term="项目交接" />
-    <category term="Remote-SSH" />
-    <category term="技术支持" />
-    <category term="APIE2026" />
+    <category term="ESP32-S3" />
+    <category term="嵌入式" />
+    <category term="机器视觉" />
+    <category term="YOLOv8" />
+    <category term="3D打印" />
+    <category term="人形机器人" />
+    <category term="机器人遥操" />
+    <category term="VR控制" />
+    <category term="工程化部署" />
+    <category term="陪伴机器人" />
+    <category term="小智" />
+    <category term="双屏显示" />
+    <category term="数字麦克风" />
+    <category term="硬件调试" />
+    <category term="Luckfox" />
+    <category term="Linux" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/</id>
         <title>工作日志（6月29日-7月5日）：康养机器人视觉调试</title>
@@ -127,10 +138,10 @@
 &lt;p&gt;下一步需要进一步优化跌倒检测的准确率、完善报警逻辑，以及解决音频输出问题。另外，如果能拿到机器人核心板的完整硬件规格，很多之前的&amp;quot;保守选择&amp;quot;就可以重新评估，说不定 MediaPipe Pose 真的能跑得动。&lt;/p&gt;
 &lt;p&gt;更重要的是，这一周让我深刻感受到：&lt;strong&gt;实际项目中的工程决策，往往不是选最优解，而是在当前约束条件下选最不差的那一个。&lt;/strong&gt; 硬件不确定、资料不全、信息不对称——这些不是&amp;quot;异常情况&amp;quot;，它们就是日常开发环境的一部分。在这些约束下仍然能推进工作，可能比在理想条件下写出完美方案更需要耐心和判断力。&lt;/p&gt;
 </content>
-        <category term="机器人" />
         <category term="周记" />
-        <category term="康养机器人" />
+        <category term="机器人" />
         <category term="跌倒检测" />
+        <category term="康养机器人" />
         <category term="视觉" />
         <category term="MoveNet" />
         <category term="奥比中光" />

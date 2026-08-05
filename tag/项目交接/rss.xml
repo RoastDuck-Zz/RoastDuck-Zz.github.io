@@ -7,42 +7,53 @@
         <language>zh-CN</language>
         <pubDate>Mon, 20 Jul 2026 18:00:00 +0800</pubDate>
         <lastBuildDate>Mon, 20 Jul 2026 18:00:00 +0800</lastBuildDate>
-        <category>机器人</category>
-        <category>ESP32-S3</category>
-        <category>嵌入式</category>
-        <category>机器视觉</category>
-        <category>YOLOv8</category>
-        <category>3D打印</category>
-        <category>工作记录</category>
         <category>周记</category>
+        <category>机器人</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>跌倒检测</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
+        <category>工作记录</category>
         <category>车载</category>
         <category>视觉检测</category>
         <category>AD</category>
         <category>RK3566</category>
         <category>PCB</category>
         <category>康养机器人</category>
-        <category>跌倒检测</category>
         <category>视觉</category>
         <category>MoveNet</category>
         <category>奥比中光</category>
-        <category>ROS</category>
-        <category>STM32</category>
-        <category>树莓派</category>
-        <category>机器人工程</category>
-        <category>嵌入式开发</category>
-        <category>项目交接</category>
-        <category>Remote-SSH</category>
-        <category>技术支持</category>
-        <category>APIE2026</category>
+        <category>ESP32-S3</category>
+        <category>嵌入式</category>
+        <category>机器视觉</category>
+        <category>YOLOv8</category>
+        <category>3D打印</category>
+        <category>人形机器人</category>
+        <category>机器人遥操</category>
+        <category>VR控制</category>
+        <category>工程化部署</category>
+        <category>陪伴机器人</category>
+        <category>小智</category>
+        <category>双屏显示</category>
+        <category>数字麦克风</category>
+        <category>硬件调试</category>
+        <category>Luckfox</category>
+        <category>Linux</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/07/20/work-log-july13-july19/</guid>
             <title>工作日志（7月13日-7月19日）：机器人项目交接与青岛展会支持</title>
             <link>https://roastduck-zz.github.io/2026/07/20/work-log-july13-july19/</link>
-            <category>机器人</category>
             <category>周记</category>
-            <category>跌倒检测</category>
+            <category>机器人</category>
             <category>项目交接</category>
             <category>Remote-SSH</category>
+            <category>跌倒检测</category>
             <category>技术支持</category>
             <category>APIE2026</category>
             <pubDate>Mon, 20 Jul 2026 18:00:00 +0800</pubDate>

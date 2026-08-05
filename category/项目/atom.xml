@@ -3,34 +3,250 @@
     <id>https://roastduck-zz.github.io</id>
     <title>RoastDuck • Posts by &#34;项目&#34; category</title>
     <link href="https://roastduck-zz.github.io" />
-    <updated>2026-03-16T06:05:01.000Z</updated>
-    <category term="机器人" />
-    <category term="ESP32-S3" />
-    <category term="嵌入式" />
-    <category term="机器视觉" />
-    <category term="YOLOv8" />
-    <category term="3D打印" />
-    <category term="工作记录" />
+    <updated>2026-07-31T08:00:00.000Z</updated>
     <category term="周记" />
+    <category term="机器人" />
+    <category term="项目交接" />
+    <category term="Remote-SSH" />
+    <category term="跌倒检测" />
+    <category term="技术支持" />
+    <category term="APIE2026" />
+    <category term="ROS" />
+    <category term="STM32" />
+    <category term="树莓派" />
+    <category term="机器人工程" />
+    <category term="嵌入式开发" />
+    <category term="工作记录" />
     <category term="车载" />
     <category term="视觉检测" />
     <category term="AD" />
     <category term="RK3566" />
     <category term="PCB" />
     <category term="康养机器人" />
-    <category term="跌倒检测" />
     <category term="视觉" />
     <category term="MoveNet" />
     <category term="奥比中光" />
-    <category term="ROS" />
-    <category term="STM32" />
-    <category term="树莓派" />
-    <category term="机器人工程" />
-    <category term="嵌入式开发" />
-    <category term="项目交接" />
-    <category term="Remote-SSH" />
-    <category term="技术支持" />
-    <category term="APIE2026" />
+    <category term="ESP32-S3" />
+    <category term="嵌入式" />
+    <category term="机器视觉" />
+    <category term="YOLOv8" />
+    <category term="3D打印" />
+    <category term="人形机器人" />
+    <category term="机器人遥操" />
+    <category term="VR控制" />
+    <category term="工程化部署" />
+    <category term="陪伴机器人" />
+    <category term="小智" />
+    <category term="双屏显示" />
+    <category term="数字麦克风" />
+    <category term="硬件调试" />
+    <category term="Luckfox" />
+    <category term="Linux" />
+    <entry>
+        <id>https://roastduck-zz.github.io/2026/07/31/%E8%BF%94%E4%BA%AC%E4%B8%80%E5%91%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</id>
+        <title>返京一周：陪伴机器人、视觉检测项目与 Luckfox Pico Ultra 踩坑记录</title>
+        <link rel="alternate" href="https://roastduck-zz.github.io/2026/07/31/%E8%BF%94%E4%BA%AC%E4%B8%80%E5%91%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"/>
+        <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 回北京这一周，验收了陪伴机器人的硬件物料，推进了高校产线视觉检测项目的落地，顺便踩了一遍 Luckfox Pico Ultra 的系统烧录坑。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#背景&#34;&gt;#&lt;/a&gt; 背景&lt;/h2&gt;
+&lt;p&gt;连着上了二十天班之后，借着生日的由头调休了两天。说来也巧——周一农历生日、周四公历生日，正好把这一周切成三段，给了自己一点缓冲。&lt;/p&gt;
+&lt;p&gt;但调休归调休，该推进的事情一件不能少。不在北京的这段时间，手里的项目基本处于半冻结状态，回来后第一件事就是盘点进度、重新启动。这篇文章记录这一周经手的几个技术事项。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;事项一陪伴机器人物料验收与硬件测试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项一陪伴机器人物料验收与硬件测试&#34;&gt;#&lt;/a&gt; 事项一：陪伴机器人——物料验收与硬件测试&lt;/h2&gt;
+&lt;h3 id=&#34;项目背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#项目背景&#34;&gt;#&lt;/a&gt; 项目背景&lt;/h3&gt;
+&lt;p&gt;陪伴机器人是一个 side project，目标是做一个能语音交互、有简单表情反馈的桌面小机器人。在我离京之前已经把 BOM 表定了、物料下了单，回来第一件事就是拆箱验收。&lt;/p&gt;
+&lt;h3 id=&#34;验收重点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#验收重点&#34;&gt;#&lt;/a&gt; 验收重点&lt;/h3&gt;
+&lt;p&gt;物料验收不是简单数数数量对不对，有几个关键维度：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;检查项&lt;/th&gt;
+&lt;th&gt;关注点&lt;/th&gt;
+&lt;th&gt;结果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;结构件&lt;/td&gt;
+&lt;td&gt;3D 打印件公差是否在 ±0.2mm 以内，装配面无毛刺&lt;/td&gt;
+&lt;td&gt;通过&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;舵机&lt;/td&gt;
+&lt;td&gt;MG996R 堵转扭矩实测是否达标，齿轮虚位是否在 1° 以内&lt;/td&gt;
+&lt;td&gt;通过&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;主控板&lt;/td&gt;
+&lt;td&gt;ESP32-S3 上电串口有输出，Wi-Fi 扫描正常&lt;/td&gt;
+&lt;td&gt;通过&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;传感器&lt;/td&gt;
+&lt;td&gt;OLED 屏幕点亮、麦克风阵列 I²S 时钟正常&lt;/td&gt;
+&lt;td&gt;通过&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;供电模块&lt;/td&gt;
+&lt;td&gt;XL4015 双路输出纹波 &amp;lt; 50mV&lt;/td&gt;
+&lt;td&gt;待复测&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;大部分物料情况良好，只有供电模块的纹波测试还没来得及做——示波器被另一个项目组借走了，下周补上。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;经验：&lt;/strong&gt; 物料验收最好在收货 48 小时内完成，因为淘宝/嘉立创的售后窗口很短。之前吃过亏——隔了两周才发现一颗步进电机驱动器有问题，商家已经不认了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;事项二高校产线视觉检测项目需求落地与方案选型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项二高校产线视觉检测项目需求落地与方案选型&#34;&gt;#&lt;/a&gt; 事项二：高校产线视觉检测项目——需求落地与方案选型&lt;/h2&gt;
+&lt;h3 id=&#34;项目现状&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#项目现状&#34;&gt;#&lt;/a&gt; 项目现状&lt;/h3&gt;
+&lt;p&gt;这是个给高校实验室做的产线模拟检测项目，核心需求是用机器视觉检测传送带上工件的表面缺陷。我离京期间项目进展缓慢，回来后公司开始正式推进，我负责对接硬件环境和软件供应商。&lt;/p&gt;
+&lt;h3 id=&#34;本周推进的具体工作&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#本周推进的具体工作&#34;&gt;#&lt;/a&gt; 本周推进的具体工作&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;第一，环境搭建物料准备。&lt;/strong&gt; 找传送带、检测台面、工业相机支架这些基础设施。传送带选了一条 600mm 长的桌面型皮带传送线，速度可调（0-5m/min），模拟产线走料速度。桌子用实验室现有的光学平台，稳定性和平整度都有保障。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第二，对接校方。&lt;/strong&gt; 联系校方提供待检测的工件样品——需要包含合格品和典型缺陷品（划痕、凹陷、色差），用于后续算法测试和验收。校方那边回复说要准备一下，预计下周能寄出来。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第三，软件供应商调研。&lt;/strong&gt; 目前的方案有两个：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;方案&lt;/th&gt;
+&lt;th&gt;供应商&lt;/th&gt;
+&lt;th&gt;优势&lt;/th&gt;
+&lt;th&gt;劣势&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;北京本地视觉检测公司&lt;/td&gt;
+&lt;td&gt;现场部署方便、响应快&lt;/td&gt;
+&lt;td&gt;软件能力待验证，本周刚寄物料过去测试&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;B&lt;/td&gt;
+&lt;td&gt;西安伟景&lt;/td&gt;
+&lt;td&gt;技术成熟、在工业场景有落地案例&lt;/td&gt;
+&lt;td&gt;价格高、远程支持不如本地及时&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;这周已经把工件样品寄给了北京的供应商，他们需要在自己的实验环境里搭场景跑一轮测试。等他们出结果后我再去现场看一遍效果。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;如果方案 A 不过关，就切方案 B。&lt;/strong&gt; 虽然伟景价格高，但视觉检测这件事，与其用一个半吊子方案后期反复救火，不如一开始就用成熟方案。这是做 to B 项目的教训——甲方最后只认效果，不会因为你选了便宜的方案而降低验收标准。&lt;/p&gt;
+&lt;h3 id=&#34;技术层面的思考&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#技术层面的思考&#34;&gt;#&lt;/a&gt; 技术层面的思考&lt;/h3&gt;
+&lt;p&gt;视觉检测在产线场景下有几点比较头疼：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;光照一致性&lt;/strong&gt;：传送带环境的光照很难像实验室那样严格控制，不同时间段的自然光、车间顶灯的频闪都会影响成像质量。解决方案通常是加遮光罩 + 环形 LED 补光，把环境光干扰降到最低。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;工件姿态变化&lt;/strong&gt;：传送带上的工件位置和角度是随机的，传统模板匹配扛不住。必须上深度学习——YOLO 做定位 + 分类网络做缺陷判定，或者直接用异常检测模型（PaDiM、PatchCore）做无监督检测。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;实时性要求&lt;/strong&gt;：产线不停机，检测必须在工件经过相机视野的几百毫秒内完成。这对模型推理速度有硬性要求，可能需要 TensorRT 或 ONNX Runtime 做推理加速。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这些坑之前在别的项目里踩过，这次选型时特意做了针对性调研。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;事项三luckfox-pico-ultra便宜但门槛不低&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项三luckfox-pico-ultra便宜但门槛不低&#34;&gt;#&lt;/a&gt; 事项三：Luckfox Pico Ultra——便宜但门槛不低&lt;/h2&gt;
+&lt;h3 id=&#34;为什么买它&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#为什么买它&#34;&gt;#&lt;/a&gt; 为什么买它？&lt;/h3&gt;
+&lt;p&gt;幸狐（Luckfox）的 Pico Ultra 系列，RV1106 芯片，带 NPU，官方号称能跑轻量级 AI 推理。价格确实便宜——几十块钱一块，比 Raspberry Pi 便宜了不止一个量级。买它的初衷是想看看能不能用它做端侧视觉推理，替代目前 ESP32-S3 + 上位机的方案，把 AI 推理也放到端侧。&lt;/p&gt;
+&lt;h3 id=&#34;上手体验系统烧录是第一道坎&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#上手体验系统烧录是第一道坎&#34;&gt;#&lt;/a&gt; 上手体验：系统烧录是第一道坎&lt;/h3&gt;
+&lt;p&gt;拿到手发现一个问题——&lt;strong&gt;出厂不带系统&lt;/strong&gt;。你需要自己用官方的烧录工具刷固件。这对新手来说其实是个不低的门槛，因为：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;需要额外找一根 USB Type-C 数据线（不是充电线，要支持数据传输）&lt;/li&gt;
+&lt;li&gt;官方烧录工具（RKDevTool）只有 Windows 版，Mac/Linux 用户得自己折腾&lt;/li&gt;
+&lt;li&gt;烧录时需要短接特定引脚进入 MaskRom 模式，文档里写得很简略&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我照着官方文档一步步来，烧是烧上了，但过程绝对算不上&amp;quot;开箱即用&amp;quot;。&lt;/p&gt;
+&lt;h3 id=&#34;固件的限制&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#固件的限制&#34;&gt;#&lt;/a&gt; 固件的限制&lt;/h3&gt;
+&lt;p&gt;官方提供的固件是&lt;strong&gt;裁剪版 Buildroot Linux&lt;/strong&gt;，不是完整的 Ubuntu/Debian。这意味着：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;包管理器不是 apt，很多常用库没有预编译包&lt;/li&gt;
+&lt;li&gt;交叉编译工具链需要自己搭&lt;/li&gt;
+&lt;li&gt;Python 版本偏旧，很多 AI 框架（ONNX Runtime、Ultralytics）没法直接跑&lt;/li&gt;
+&lt;li&gt;NPU 的 SDK（RKNN）需要单独下载、单独配置，和 OpenCV 的集成也很折腾&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;说白了，这块板子的定位是&lt;strong&gt;给有嵌入式 Linux 开发经验的人用的&lt;/strong&gt;，不是给入门玩家准备的。性价比确实高，但省下来的钱要用开发时间来换。&lt;/p&gt;
+&lt;h3 id=&#34;当前状态&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#当前状态&#34;&gt;#&lt;/a&gt; 当前状态&lt;/h3&gt;
+&lt;p&gt;系统已经烧录成功，串口能进 shell，网络也通了。但还没开始做实际的应用开发——光是搭好开发环境就够喝一壶的。后续计划在这块板上跑一下 RKNN 的示例模型，看看 NPU 的推理速度到底怎么样。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;踩坑笔记：&lt;/strong&gt; 买小众开发板之前，先去官方论坛 / GitHub Issues 翻一遍。如果社区活跃、FAQ 覆盖常见问题，那上手会顺利很多；如果社区冷清、文档是机翻英文，那每一坑都得自己填。Luckfox 的社区介于两者之间——中文资料有一些，但不够系统。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;事项四esp32-s3-小智快速原型验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项四esp32-s3-小智快速原型验证&#34;&gt;#&lt;/a&gt; 事项四：ESP32-S3 + 小智——快速原型验证&lt;/h2&gt;
+&lt;p&gt;测试完 Luckfox 之后，切回了熟悉的 ESP32-S3。这周给一块闲置的 ESP32-S3 开发板装上了&lt;strong&gt;小智（XiaoZhi）固件&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;小智是一个开源的 AI 语音助手框架，专为 ESP32 系列设计，支持：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Wi-Fi 联网语音识别（ASR）&lt;/li&gt;
+&lt;li&gt;云端 LLM 对话&lt;/li&gt;
+&lt;li&gt;本地 TTS 语音合成&lt;/li&gt;
+&lt;li&gt;OLED 表情显示&lt;/li&gt;
+&lt;li&gt;舵机控制（点头、转头等动作）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;烧录过程很顺利——官方提供了预编译固件，用 &lt;code&gt;esptool&lt;/code&gt; 一条命令搞定。烧完后连上 Wi-Fi，第一次听到它用合成语音回话的时候，还挺有成就感的。&lt;/p&gt;
+&lt;h3 id=&#34;和陪伴机器人的关系&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#和陪伴机器人的关系&#34;&gt;#&lt;/a&gt; 和陪伴机器人的关系&lt;/h3&gt;
+&lt;p&gt;小智其实是为陪伴机器人项目做的技术验证。我想确认几个事情：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;语音交互延迟&lt;/strong&gt;：云端 ASR + LLM + TTS 的端到端延迟能不能做到 2 秒以内？实测在 Wi-Fi 信号好的情况下，从说完话到收到语音回复大约 1.5-2 秒，可以接受。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;表情 + 动作联动&lt;/strong&gt;：说话时能不能同步驱动 OLED 表情和舵机动作？小智的框架已经做好了事件回调机制——TTS 播放时会触发嘴部动画，这个设计可以直接复用。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;稳定性&lt;/strong&gt;：长时间运行会不会内存泄漏或者 Wi-Fi 断连？这个还没测，需要跑几天压力测试。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;小智这一套框架比自己从零写省了大量时间。开源社区的好处就在这里——没必要重复造轮子，把精力集中在差异化功能上就好。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;本周小结&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#本周小结&#34;&gt;#&lt;/a&gt; 本周小结&lt;/h2&gt;
+&lt;p&gt;这一周虽然调休了两天，但几件事都往前推进了一步：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;事项&lt;/th&gt;
+&lt;th&gt;进度&lt;/th&gt;
+&lt;th&gt;下一步&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;陪伴机器人物料&lt;/td&gt;
+&lt;td&gt;验收完成，供电模块待复测&lt;/td&gt;
+&lt;td&gt;组装样机、写驱动&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;高校视觉检测项目&lt;/td&gt;
+&lt;td&gt;物料已寄出，供应商排期中&lt;/td&gt;
+&lt;td&gt;等测试结果，现场验收&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Luckfox Pico Ultra&lt;/td&gt;
+&lt;td&gt;系统烧录成功&lt;/td&gt;
+&lt;td&gt;搭交叉编译环境，跑 NPU 示例&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ESP32-S3 小智&lt;/td&gt;
+&lt;td&gt;固件烧录 + 基础功能验证&lt;/td&gt;
+&lt;td&gt;压力测试 + 定制化开发&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;技术工作就是这样——不是每一天都有重大突破，大部分时候是在推进、在验证、在踩坑。但正是这些日积月累的&amp;quot;小步快跑&amp;quot;，才能让一个项目从想法变成实物。&lt;/p&gt;
+&lt;p&gt;下周重点：陪伴机器人整机组装 + 视觉检测供应商现场验收。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一点感悟：&lt;/strong&gt; 回公司上班和远程办公最大的区别不是效率，而是&lt;strong&gt;反馈速度&lt;/strong&gt;。拿到一块新板子烧不上系统，转头问旁边的同事可能十分钟就解决了；远程的话，自己查文档、翻论坛、试错，可能折腾一下午。做硬件尤其如此——很多东西不是文档能写清楚的，需要有人当面点一下。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="视觉检测" />
+        <category term="ESP32-S3" />
+        <category term="嵌入式" />
+        <category term="陪伴机器人" />
+        <category term="Luckfox" />
+        <category term="Linux" />
+        <updated>2026-07-31T08:00:00.000Z</updated>
+    </entry>
     <entry>
         <id>https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/</id>
         <title>从零搭建基于ROS的主从架构智能机器人 (树莓派4B + STM32)</title>

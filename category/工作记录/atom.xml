@@ -3,34 +3,283 @@
     <id>https://roastduck-zz.github.io</id>
     <title>RoastDuck • Posts by &#34;工作记录&#34; category</title>
     <link href="https://roastduck-zz.github.io" />
-    <updated>2026-07-20T10:00:00.000Z</updated>
-    <category term="机器人" />
-    <category term="ESP32-S3" />
-    <category term="嵌入式" />
-    <category term="机器视觉" />
-    <category term="YOLOv8" />
-    <category term="3D打印" />
-    <category term="工作记录" />
+    <updated>2026-08-02T10:00:00.000Z</updated>
     <category term="周记" />
+    <category term="机器人" />
+    <category term="项目交接" />
+    <category term="Remote-SSH" />
+    <category term="跌倒检测" />
+    <category term="技术支持" />
+    <category term="APIE2026" />
+    <category term="ROS" />
+    <category term="STM32" />
+    <category term="树莓派" />
+    <category term="机器人工程" />
+    <category term="嵌入式开发" />
+    <category term="工作记录" />
     <category term="车载" />
     <category term="视觉检测" />
     <category term="AD" />
     <category term="RK3566" />
     <category term="PCB" />
     <category term="康养机器人" />
-    <category term="跌倒检测" />
     <category term="视觉" />
     <category term="MoveNet" />
     <category term="奥比中光" />
-    <category term="ROS" />
-    <category term="STM32" />
-    <category term="树莓派" />
-    <category term="机器人工程" />
-    <category term="嵌入式开发" />
-    <category term="项目交接" />
-    <category term="Remote-SSH" />
-    <category term="技术支持" />
-    <category term="APIE2026" />
+    <category term="ESP32-S3" />
+    <category term="嵌入式" />
+    <category term="机器视觉" />
+    <category term="YOLOv8" />
+    <category term="3D打印" />
+    <category term="人形机器人" />
+    <category term="机器人遥操" />
+    <category term="VR控制" />
+    <category term="工程化部署" />
+    <category term="陪伴机器人" />
+    <category term="小智" />
+    <category term="双屏显示" />
+    <category term="数字麦克风" />
+    <category term="硬件调试" />
+    <category term="Luckfox" />
+    <category term="Linux" />
+    <entry>
+        <id>https://roastduck-zz.github.io/2026/08/02/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8827%E6%97%A5-7%E6%9C%8831%E6%97%A5%EF%BC%89/</id>
+        <title>两块屏幕拼出一张脸——低成本陪伴机器人硬件联调</title>
+        <link rel="alternate" href="https://roastduck-zz.github.io/2026/08/02/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8827%E6%97%A5-7%E6%9C%8831%E6%97%A5%EF%BC%89/"/>
+        <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 本周完成了低成本陪伴机器人样机的基础组装，在 ESP32-S3 上跑通“小智”并实现左右眼双屏同步显示，同时通过测量 DOUT 信号定位了一块数字麦克风的硬件故障。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;这周的目标先让样机有一张脸&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#这周的目标先让样机有一张脸&#34;&gt;#&lt;/a&gt; 这周的目标：先让样机有一张“脸”&lt;/h2&gt;
+&lt;p&gt;本周的主要工作，是组装低成本陪伴机器人样机，并把基础程序部署到 ESP32-S3 上进行第一轮联调。&lt;/p&gt;
+&lt;p&gt;软件部分沿用“小智”作为语音交互框架，面部则采用两块独立显示屏：左屏显示左眼，右屏显示右眼。这个结构很适合机器人头部造型，但也意味着原本为单屏设计的表情系统不能直接照搬。&lt;/p&gt;
+&lt;p&gt;这一阶段我没有急着同时联调整套机器人，而是把目标拆成四条最基础的链路：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;模块&lt;/th&gt;
+&lt;th&gt;首轮验证目标&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ESP32-S3&lt;/td&gt;
+&lt;td&gt;稳定启动并运行“小智”基础程序&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;双显示屏&lt;/td&gt;
+&lt;td&gt;两块屏幕能够被独立驱动&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;表情系统&lt;/td&gt;
+&lt;td&gt;左右眼资源正确拆分并同步切换&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;数字麦克风&lt;/td&gt;
+&lt;td&gt;能够持续输出有效音频数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;模块拆开验证，可以避免显示、音频和程序同时出问题时互相干扰，也更容易判断故障究竟属于软件还是硬件。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;双屏表情难点不在素材而在渲染结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#双屏表情难点不在素材而在渲染结构&#34;&gt;#&lt;/a&gt; 双屏表情：难点不在素材，而在渲染结构&lt;/h2&gt;
+&lt;p&gt;表情资源使用了乐鑫提供的现成方案。真正需要修改的不是眼睛长什么样，而是它原本默认只有一块画布，左右眼会一起绘制在同一块屏幕上。&lt;/p&gt;
+&lt;p&gt;当前样机使用两块物理独立的屏幕，每块屏幕只负责一只眼睛。因此，显示逻辑需要从“一张画布画完整张脸”改成“两张画布协同更新”：&lt;/p&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span&gt;完整表情状态&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;拆分左右眼绘制区域&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;左眼画布 → 左侧显示屏&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;右眼画布 → 右侧显示屏&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;同一时刻提交刷新&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我对显示逻辑做了几项调整：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;左侧屏幕只输出左眼区域；&lt;/li&gt;
+&lt;li&gt;右侧屏幕只输出右眼区域；&lt;/li&gt;
+&lt;li&gt;两块屏幕分别维护自己的显示内容；&lt;/li&gt;
+&lt;li&gt;表情切换由同一个状态驱动；&lt;/li&gt;
+&lt;li&gt;更新时尽量保持同步，避免左右眼短暂错位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后一条尤其重要。双屏并不只是“能各自亮起来”就算完成，如果两边刷新时序差异过大，机器人会在表情切换时出现一只眼睛先动、另一只后动的割裂感。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;两块屏幕同时接入后的异常&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#两块屏幕同时接入后的异常&#34;&gt;#&lt;/a&gt; 两块屏幕同时接入后的异常&lt;/h2&gt;
+&lt;p&gt;调试初期，两块屏幕同时连接 ESP32-S3 后出现了显示异常。单独测试时能工作的模块，组合到一起却不稳定，这是硬件联调中很典型的情况。&lt;/p&gt;
+&lt;p&gt;我重新检查了屏幕供电、通信线和引脚连接，并调整接线。双屏随后恢复正常，左右眼分屏和多种表情切换也顺利跑通。&lt;/p&gt;
+&lt;p&gt;最终效果达到了预期：两只眼睛可以分别显示在两块屏幕上，并在切换表情时保持一致。相比单屏方案，双屏增加了接线、片选和刷新同步的复杂度，但它给机器人头部结构留下了更自由的设计空间，也让面部表现更接近真正的两只眼睛。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;调试心得：&lt;/strong&gt; 单模块通过不代表组合后一定正常。每增加一个外设，都要重新检查供电、总线资源、引脚冲突和刷新时序。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;麦克风没有数据先测关键引脚&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#麦克风没有数据先测关键引脚&#34;&gt;#&lt;/a&gt; 麦克风没有数据：先测关键引脚&lt;/h2&gt;
+&lt;p&gt;显示部分跑通后，我继续测试语音输入链路，但程序始终收不到有效的麦克风数据。&lt;/p&gt;
+&lt;p&gt;一开始，排查方向主要是供电、接线和引脚定义。数字麦克风不像模拟麦克风那样直接输出连续电压，而是依赖时钟和数字数据线与主控通信。软件侧收不到数据时，原因可能是引脚配置错误、时钟没有输出、数据线连接异常，也可能是模块本身已经损坏。&lt;/p&gt;
+&lt;p&gt;使用万用表测量后，我发现麦克风模块的 &lt;strong&gt;DOUT&lt;/strong&gt; 引脚电平表现异常。重新检查供电和信号线后，现象依旧存在，因此基本排除了简单的接线问题，初步判断为模块硬件故障。&lt;/p&gt;
+&lt;p&gt;由于这块麦克风已经无法继续承担验证任务，我重新申请购买了新的模块。新模块到货后会按下面的顺序测试：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;确认供电电压和地线正常；&lt;/li&gt;
+&lt;li&gt;检查时钟与数据引脚连接；&lt;/li&gt;
+&lt;li&gt;验证 ESP32-S3 能否持续读取原始音频数据；&lt;/li&gt;
+&lt;li&gt;最后再接入“小智”的语音识别链路。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这次问题提醒我，调试数字音频时不能只盯着程序日志。硬件模块损坏时，软件有时不会给出清晰报错，只会一直等不到有效数据。直接测量关键引脚，往往能更快缩小范围。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;顺带完成一次工业视觉可行性验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#顺带完成一次工业视觉可行性验证&#34;&gt;#&lt;/a&gt; 顺带完成一次工业视觉可行性验证&lt;/h2&gt;
+&lt;p&gt;除陪伴机器人外，本周还做了一次工业视觉缺陷检测的初步测试。我使用现有检测程序验证了多组样本，观察软件能否识别目标缺陷，并判断当前方案是否值得继续推进。&lt;/p&gt;
+&lt;p&gt;常规样本已经可以完成基本检测，说明现有方案具备可行性。对于表面纹理复杂、缺陷边界不明显的样本，识别仍会受到干扰，后续需要加入更多真实样本，再决定是调整规则、优化成像条件，还是继续修改检测策略。&lt;/p&gt;
+&lt;p&gt;这一阶段的目标只是确认方向，而不是给出最终指标。先回答“方案能不能继续做”，再投入更多时间追求稳定性和精度，能避免在不合适的路线中过早消耗资源。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;本周完成情况&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#本周完成情况&#34;&gt;#&lt;/a&gt; 本周完成情况&lt;/h2&gt;
+&lt;p&gt;这一周完成了以下节点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;组装低成本陪伴机器人样机的基础硬件；&lt;/li&gt;
+&lt;li&gt;在 ESP32-S3 上部署并启动“小智”基础程序；&lt;/li&gt;
+&lt;li&gt;完成两块显示屏的独立连接与显示测试；&lt;/li&gt;
+&lt;li&gt;将完整表情拆分为左右眼两路画面；&lt;/li&gt;
+&lt;li&gt;实现双屏表情的同步切换；&lt;/li&gt;
+&lt;li&gt;定位数字麦克风 DOUT 引脚异常；&lt;/li&gt;
+&lt;li&gt;重新申请麦克风模块；&lt;/li&gt;
+&lt;li&gt;完成工业视觉缺陷检测的初步可行性测试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;下一步计划&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#下一步计划&#34;&gt;#&lt;/a&gt; 下一步计划&lt;/h2&gt;
+&lt;p&gt;接下来的优先级很明确：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;新麦克风到货后，先完成原始音频数据验证；&lt;/li&gt;
+&lt;li&gt;把麦克风接回“小智”，打通语音输入链路；&lt;/li&gt;
+&lt;li&gt;优化双屏刷新时序和表情切换细节；&lt;/li&gt;
+&lt;li&gt;整理线束与安装结构，减少临时接线带来的不稳定；&lt;/li&gt;
+&lt;li&gt;在基础硬件稳定后，再推进外壳和整体交互效果；&lt;/li&gt;
+&lt;li&gt;为工业视觉测试补充复杂纹理和弱缺陷样本。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;写在最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#写在最后&#34;&gt;#&lt;/a&gt; 写在最后&lt;/h2&gt;
+&lt;p&gt;这周最有成就感的瞬间，是两块屏幕终于同步显示出一双完整的眼睛。它看起来只是一个表情效果，背后却涉及画布拆分、双屏驱动、接线检查和刷新同步。&lt;/p&gt;
+&lt;p&gt;麦克风故障则是另一类提醒：遇到“程序收不到数据”时，不能默认问题一定在代码里。硬件、供电和信号本身同样需要被逐层验证。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;做样机的过程，就是把每一个“应该可以”变成测量过、观察过、能够重复出现的“确实可以”。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="ESP32-S3" />
+        <category term="陪伴机器人" />
+        <category term="小智" />
+        <category term="双屏显示" />
+        <category term="数字麦克风" />
+        <category term="硬件调试" />
+        <updated>2026-08-02T10:00:00.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://roastduck-zz.github.io/2026/07/24/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8820%E6%97%A5-7%E6%9C%8824%E6%97%A5%EF%BC%89/</id>
+        <title>返京后的三天——陪伴机器人验收、Luckfox 烧录与视觉项目重启</title>
+        <link rel="alternate" href="https://roastduck-zz.github.io/2026/07/24/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8820%E6%97%A5-7%E6%9C%8824%E6%97%A5%EF%BC%89/"/>
+        <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 返京后的这一周只有三个工作日，我一边验收陪伴机器人的硬件并在 Luckfox Pico Ultra 与 ESP32-S3 之间摸索方案，一边重新推动停滞了一段时间的高校视觉检测项目。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;连续二十天之后先停下来两天&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#连续二十天之后先停下来两天&#34;&gt;#&lt;/a&gt; 连续二十天之后，先停下来两天&lt;/h2&gt;
+&lt;p&gt;这周我回到了北京公司。周一和周四都申请了调休：周一恰好是我的农历生日，周四则是公历生日。之前连续上了二十天班，正好借这个机会让自己停下来缓一缓。&lt;/p&gt;
+&lt;p&gt;因此，这一周真正工作的时间只有三天。时间虽然不长，但返京后需要重新接上的事情不少，主要集中在两条项目线上：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;项目&lt;/th&gt;
+&lt;th&gt;本周目标&lt;/th&gt;
+&lt;th&gt;当前结果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;低成本陪伴机器人&lt;/td&gt;
+&lt;td&gt;验收物料，验证主控与基础软件&lt;/td&gt;
+&lt;td&gt;完成 Luckfox 固件烧录，并在 ESP32-S3 上跑通“小智”基础程序&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;高校视觉检测项目&lt;/td&gt;
+&lt;td&gt;恢复进度，准备真实样件测试&lt;/td&gt;
+&lt;td&gt;整理传送带与桌面方案，协调校方物料，并把样品寄给视觉厂商&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;这几天的核心不是把某个功能做到最终状态，而是先把停下来的工作重新组织起来，明确哪些链路已经具备条件、哪些问题需要外部资源配合。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;陪伴机器人先把到货物料验清楚&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#陪伴机器人先把到货物料验清楚&#34;&gt;#&lt;/a&gt; 陪伴机器人：先把到货物料验清楚&lt;/h2&gt;
+&lt;p&gt;我不在北京的这段时间，陪伴机器人采购的物料已经陆续到货。返京后第一件事，就是对开发板和相关硬件做验收与基础测试。&lt;/p&gt;
+&lt;p&gt;陪伴机器人走的是低成本路线，硬件选型不能只看参数，还要看开发体验、系统完整度和后续维护成本。价格便宜的板卡，如果需要投入大量时间补齐系统和工具链，实际项目成本未必真的低。&lt;/p&gt;
+&lt;p&gt;这次首先测试的是 &lt;strong&gt;Luckfox Pico Ultra&lt;/strong&gt;。它的价格确实有吸引力，但不像常见的成熟开发板那样上电就能直接进入完整环境，需要自己完成系统固件烧录。官方提供的是相对精简的 Linux 固件，基础功能有了，但距离顺手的开发环境还有一段距离。&lt;/p&gt;
+&lt;p&gt;我最终完成了固件烧录，确认板卡可以正常启动。不过受这一周时间限制，还没有继续开展上层应用开发。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;选型心得：&lt;/strong&gt; 开发板的成本不只是购买价格，还包括系统完善度、文档质量、工具链和调试时间。便宜的硬件，可能会把成本转移到开发阶段。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;luckfox-之后先用-esp32-s3-验证交互方案&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#luckfox-之后先用-esp32-s3-验证交互方案&#34;&gt;#&lt;/a&gt; Luckfox 之后，先用 ESP32-S3 验证交互方案&lt;/h2&gt;
+&lt;p&gt;完成 Luckfox 的基础烧录后，我又转向 &lt;strong&gt;ESP32-S3&lt;/strong&gt; 做快速验证，并把“小智”基础程序部署到了开发板上。&lt;/p&gt;
+&lt;p&gt;这一步的目的很明确：在 Linux 侧应用还没展开之前，先用更熟悉、启动更快的 ESP32-S3 验证陪伴机器人的基本语音交互链路。ESP32-S3 的算力和系统能力与 Linux 板卡不同，但它在成本、功耗、外设接入和快速原型方面更有优势。&lt;/p&gt;
+&lt;p&gt;本周暂时完成了“小智”的基础安装和启动验证。后续还要继续接入显示屏、麦克风等外设，才能判断这条方案是否适合最终样机。&lt;/p&gt;
+&lt;p&gt;现在两块板卡对应的是两种思路：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Luckfox Pico Ultra&lt;/strong&gt;：具备 Linux 环境，扩展空间更大，但系统搭建和开发准备更重；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ESP32-S3&lt;/strong&gt;：开发路径更轻，适合快速验证语音与外设交互，但资源边界更明确。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我不会只根据纸面参数立刻做最终决定，而是准备让两套方案都先走到可验证的节点，再根据功能、稳定性和成本做取舍。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;高校项目把停滞的视觉检测重新推起来&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#高校项目把停滞的视觉检测重新推起来&#34;&gt;#&lt;/a&gt; 高校项目：把停滞的视觉检测重新推起来&lt;/h2&gt;
+&lt;p&gt;另一条工作线，是公司为高校推进的视觉检测项目。我离开北京期间，这个项目进展不多；返京后，公司重新开始推动，我也接着梳理当前状态和下一步条件。&lt;/p&gt;
+&lt;p&gt;视觉检测不能只在电脑里跑一段程序，它最终必须放进真实场景。因此，本周首先处理的不是算法细节，而是把测试环境需要的基础条件凑齐：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;确认传送带、桌面等简单工装；&lt;/li&gt;
+&lt;li&gt;与校方沟通并获取对应物料；&lt;/li&gt;
+&lt;li&gt;整理待测样品和检测要求；&lt;/li&gt;
+&lt;li&gt;联系视觉检测厂商验证现有软件能否满足需求；&lt;/li&gt;
+&lt;li&gt;等待对方搭建场景并完成第一轮测试。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;本周已经把物料寄给北京的视觉检测公司。对方还需要按照实际工况布置场景，测试完成后，我会再去现场看一遍效果。&lt;/p&gt;
+&lt;p&gt;如果这套软件无法满足要求，备选方案是使用西安伟景的产品。它的成熟度相对更有保障，但价格也更高。对当前项目来说，最理想的结果还是北京厂商能够完成工作：沟通和现场验证更方便，整体成本也更可控。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;为什么要先看现场效果&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#为什么要先看现场效果&#34;&gt;#&lt;/a&gt; 为什么要先看现场效果&lt;/h2&gt;
+&lt;p&gt;视觉检测方案很容易在演示样品上表现良好，却在真实生产条件下暴露问题。光照变化、传送带振动、材料表面纹理、缺陷边界、相机安装角度和节拍要求，都会影响最终效果。&lt;/p&gt;
+&lt;p&gt;因此，我更关心的不是厂商给出的单次识别截图，而是它能否在接近真实场景的布置中稳定完成以下任务：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;样品连续通过时能否保持稳定识别；&lt;/li&gt;
+&lt;li&gt;复杂纹理下会不会出现大量误检；&lt;/li&gt;
+&lt;li&gt;缺陷边界不明显时是否仍有区分度；&lt;/li&gt;
+&lt;li&gt;检测速度能否跟上传送节拍；&lt;/li&gt;
+&lt;li&gt;软件接口是否便于后续接入整套设备。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些问题只有把物料、相机、光源和传送机构放到一起，才能得到有意义的答案。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;三个工作日的边界&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#三个工作日的边界&#34;&gt;#&lt;/a&gt; 三个工作日的边界&lt;/h2&gt;
+&lt;p&gt;这周完成的事情都停在“建立下一步条件”的位置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Luckfox Pico Ultra 已完成固件烧录，但还没有展开应用开发；&lt;/li&gt;
+&lt;li&gt;ESP32-S3 已跑通“小智”基础程序，但外设联调还未开始；&lt;/li&gt;
+&lt;li&gt;高校项目的样品已寄出，但视觉厂商仍在搭建测试场景。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些不是最终成果，却是项目继续推进必须跨过的节点。硬件开发经常如此：一周的结果不一定是一个完整功能，也可能只是把系统从“没有条件验证”推进到“下一步终于可以开始验证”。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;下一步计划&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#下一步计划&#34;&gt;#&lt;/a&gt; 下一步计划&lt;/h2&gt;
+&lt;p&gt;接下来会继续推进三件事：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在 Luckfox Pico Ultra 上补齐开发环境，开始验证上层应用；&lt;/li&gt;
+&lt;li&gt;围绕 ESP32-S3 接入显示屏和麦克风，继续搭建陪伴机器人样机；&lt;/li&gt;
+&lt;li&gt;跟进视觉厂商的场景测试，现场确认效果后决定是否采用当前方案。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果北京厂商的测试结果不理想，再进一步评估西安伟景方案的性能收益是否值得更高的成本。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;写在最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#写在最后&#34;&gt;#&lt;/a&gt; 写在最后&lt;/h2&gt;
+&lt;p&gt;返京后的这一周很短，节奏却很典型：一边是开发板烧录、程序验证这种亲手调试的工作，另一边是物料、工装、校方和供应商之间的协调。&lt;/p&gt;
+&lt;p&gt;工程项目很少只靠写代码往前走。很多时候，真正决定进度的是硬件有没有到、测试环境是否搭好、样品是否真实，以及外部方案能否在现场稳定运行。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;先把条件准备好，再让每一次测试都回答一个明确的问题。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="工作记录" />
+        <category term="ESP32-S3" />
+        <category term="机器视觉" />
+        <category term="陪伴机器人" />
+        <category term="小智" />
+        <category term="Luckfox" />
+        <updated>2026-07-24T10:00:00.000Z</updated>
+    </entry>
     <entry>
         <id>https://roastduck-zz.github.io/2026/07/20/work-log-july13-july19/</id>
         <title>工作日志（7月13日-7月19日）：机器人项目交接与青岛展会支持</title>
@@ -151,14 +400,185 @@
 &lt;p&gt;前几周的工作重点是解决“功能能不能做出来”，本周则更多是在解决“功能能不能被其他人接手”和“产品能不能被外部人员理解”。&lt;/p&gt;
 &lt;p&gt;从研发、部署、交接到展示，这几个环节共同构成了技术成果真正走向实际应用的过程。&lt;/p&gt;
 </content>
-        <category term="机器人" />
         <category term="周记" />
-        <category term="跌倒检测" />
+        <category term="机器人" />
         <category term="项目交接" />
         <category term="Remote-SSH" />
+        <category term="跌倒检测" />
         <category term="技术支持" />
         <category term="APIE2026" />
         <updated>2026-07-20T10:00:00.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://roastduck-zz.github.io/2026/07/12/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%886%E6%97%A5-7%E6%9C%8812%E6%97%A5%EF%BC%89/</id>
+        <title>从跌倒报警到遥操排障——泰安现场调试第三周</title>
+        <link rel="alternate" href="https://roastduck-zz.github.io/2026/07/12/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%886%E6%97%A5-7%E6%9C%8812%E6%97%A5%EF%BC%89/"/>
+        <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 这一周，我把人形机器人的跌倒检测从一个独立算法做成了“检测—上报—核实—处理”的完整链路，又把单机调试结果整理成可重复部署的补丁包，同时开始承担遥操、VR 和灵巧手的现场排障工作。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;第三周工作重点变了&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第三周工作重点变了&#34;&gt;#&lt;/a&gt; 第三周，工作重点变了&lt;/h2&gt;
+&lt;p&gt;这是我留在泰安调试人形机器人的第三周。&lt;/p&gt;
+&lt;p&gt;前一周，我完成了头部摄像头采集、服务器转发和 APP 实时画面的基本链路。摄像头能工作，意味着机器人终于可以“看见”；但对于康养场景来说，只看见还不够，它还要理解画面里的异常，并及时把信息送到真正能处理问题的人手里。&lt;/p&gt;
+&lt;p&gt;因此，本周的任务集中在两条线上：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;完成跌倒检测与报警闭环，让视觉结果真正进入业务流程；&lt;/li&gt;
+&lt;li&gt;把第一台机器人的调试成果工程化，为后续多台设备部署做准备。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;到了周五，现场其他同事陆续返回北京，我还开始接手机器人遥操、VR 训练和灵巧手的运行保障。工作内容也从“完成一个功能”，逐渐变成“保证整套系统能稳定运行”。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;跌倒检测不能只看一帧画面&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#跌倒检测不能只看一帧画面&#34;&gt;#&lt;/a&gt; 跌倒检测：不能只看一帧画面&lt;/h2&gt;
+&lt;p&gt;跌倒检测表面上像是一个二分类问题：画面里的人到底有没有跌倒？真正放到实际环境中，情况却复杂得多。&lt;/p&gt;
+&lt;p&gt;用户弯腰捡东西、坐在床边、主动躺下休息，甚至摄像头视角变化或人体被家具遮挡，都可能在单帧画面里呈现出类似“倒地”的姿态。如果只根据某一帧中人体是否横向来判断，误报会非常多。&lt;/p&gt;
+&lt;p&gt;本次方案以人体姿态估计为基础，提取关键点后，同时分析身体倾斜程度、关键点相对位置以及连续一段时间内的姿态变化：&lt;/p&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span&gt;摄像头采集画面&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;        ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;人体关键点检测&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;        ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;姿态与时间序列分析&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;        ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;判断是否出现疑似跌倒&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;        ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;生成报警事件&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;连续帧分析的意义，是把“一个看起来像跌倒的姿势”和“真实发生的跌倒过程”区分开。它不能完全消除误报，但比单帧规则更接近真实使用环境，也为后续报警核实留下了更可靠的基础。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;从算法结果到报警闭环&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#从算法结果到报警闭环&#34;&gt;#&lt;/a&gt; 从算法结果到报警闭环&lt;/h2&gt;
+&lt;p&gt;检测到跌倒只是第一步。对于康养机器人，更重要的问题是：异常能否及时送达监护人，监护人又能否快速确认现场情况。&lt;/p&gt;
+&lt;p&gt;本周打通的完整链路是：&lt;/p&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span&gt;机器人摄像头&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;跌倒检测程序&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;向服务器发送报警事件&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;服务器记录并转发&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;APP 进入跌倒报警界面&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;监护人查看实时画面并处理&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;APP 收到报警后，不只是弹出一条文字通知，还会提供机器人当前的实时视频。监护人可以据此判断用户是否真的跌倒、是否仍有意识、周围是否存在二次风险，并选择拨打电话、联系 120，或者将事件确认为误报。&lt;/p&gt;
+&lt;p&gt;这条链路让我重新认识了实时视频的价值：&lt;strong&gt;报警负责发现异常，视频负责解释现场。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;算法不可能做到绝对零误报。如果没有视频，每次报警都要再通过电话确认，处理效率和用户信任都会下降。把检测、服务器、视频和 APP 串起来以后，跌倒识别才从一个模型能力变成了可以实际使用的安全功能。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;从调通一台到部署多台&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#从调通一台到部署多台&#34;&gt;#&lt;/a&gt; 从“调通一台”到“部署多台”&lt;/h2&gt;
+&lt;p&gt;第一台机器人能跑起来，只能证明方案可行。真正面向交付时，第十台、第一百台设备能否按照同一套流程快速上线，才决定方案有没有工程价值。&lt;/p&gt;
+&lt;p&gt;单机调试期间，系统涉及项目文件、Python 环境、第三方依赖、模型与配置、启动脚本、服务权限、摄像头节点、网络参数，以及 APP 的视频地址和报警接口。如果每台机器人都依赖人工逐项配置，很容易产生版本、路径和环境差异。&lt;/p&gt;
+&lt;p&gt;为此，我把第一台机器人上新增和修改的内容整理成部署补丁包，并通过脚本自动完成安装和配置：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;原来的人工流程&lt;/th&gt;
+&lt;th&gt;补丁包流程&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;复制文件、创建环境、安装依赖&lt;/td&gt;
+&lt;td&gt;上传补丁包并执行脚本&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;手动修改配置和权限&lt;/td&gt;
+&lt;td&gt;自动检查目录、依赖与权限&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;配置服务并逐项启动&lt;/td&gt;
+&lt;td&gt;自动配置并启动相关服务&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;人工确认遗漏项&lt;/td&gt;
+&lt;td&gt;统一检查视频与报警链路&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;脚本还必须适配设备标识、网络地址、摄像头节点和原有环境的差异，并保证重复执行时不会破坏现有系统。因此，它不能只是把调试命令拼在一起，还需要具备目录检查、依赖检测、配置替换、幂等处理和异常退出能力。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;工程心得：&lt;/strong&gt; 能在一台机器人上跑起来是开发，能稳定复制到多台机器人上才是工程化。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;开始接手遥操与-vr-训练&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#开始接手遥操与-vr-训练&#34;&gt;#&lt;/a&gt; 开始接手遥操与 VR 训练&lt;/h2&gt;
+&lt;p&gt;本周后半段，我开始学习并维护机器人遥操和 VR 控制系统。当地现场人员会通过遥操设备和 VR 系统控制机器人完成动作，以采集后续训练所需的数据。&lt;/p&gt;
+&lt;p&gt;我的工作也随之扩展为：指导现场操作、检查控制模块状态、处理软硬件异常、快速恢复系统，并判断问题究竟位于采集端、通信端、控制端还是机器人执行端。&lt;/p&gt;
+&lt;p&gt;现场遇到的典型问题包括：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;现象&lt;/th&gt;
+&lt;th&gt;重点排查链路&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;遥操臂有动作，机器人手臂无响应&lt;/td&gt;
+&lt;td&gt;设备数据 → 通信 → 控制程序 → 安全限制 → 电机控制器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;VR 操控无法开启&lt;/td&gt;
+&lt;td&gt;头显与定位 → 前端 → 后端服务 → 控制节点 → 机器人模式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;前后端点击后无响应&lt;/td&gt;
+&lt;td&gt;请求发送 → 接口与端口 → 控制指令 → 执行结果回传&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;灵巧手无法跟随手套&lt;/td&gt;
+&lt;td&gt;传感器 → 关节映射 → 归一化 → 限位 → 执行机构&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;灵巧手持续抽搐&lt;/td&gt;
+&lt;td&gt;输入噪声、标定误差、通信延迟、控制增益与机械限位&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;这些现象有一个共同点：用户看到的都是“机器人没有正常动作”，但真正的故障点可能位于整条链路中的任何一层。只盯着最后一个执行机构，往往很难找到原因。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;沿着数据流排查而不是反复重启&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#沿着数据流排查而不是反复重启&#34;&gt;#&lt;/a&gt; 沿着数据流排查，而不是反复重启&lt;/h2&gt;
+&lt;p&gt;经过几次现场问题处理，我逐渐形成了一套更稳定的排查顺序：&lt;/p&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span&gt;确认并记录现象&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;画出完整数据链路&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;检查每个模块的输入与输出&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;结合日志定位故障层级&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;单独验证修改过的模块&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;恢复整条链路做回归测试&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;例如遥操臂已经动作，只能证明采集设备读到了人的操作，并不能证明数据已经到达机器人。还要继续确认数据是否发送、后端是否收到、指令是否通过安全限制，以及电机控制器是否处于允许执行的状态。&lt;/p&gt;
+&lt;p&gt;同样，灵巧手抽搐也不一定是电机损坏。目标关节值持续跳变、手套数据噪声、零位和量程标定错误、控制频率不稳或关节停在机械限位附近，都可能造成类似现象。&lt;/p&gt;
+&lt;p&gt;这种沿数据流逐级确认的方法，前期需要花时间理解架构，但一旦链路清晰，后续排查效率远高于直接重启整套系统。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;重新理解机器人训练&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#重新理解机器人训练&#34;&gt;#&lt;/a&gt; 重新理解机器人训练&lt;/h2&gt;
+&lt;p&gt;真正参与现场遥操以后，我发现机器人训练并不是“让操作员控制机器人做动作，然后把数据保存下来”这么简单。&lt;/p&gt;
+&lt;p&gt;一套有效的数据采集流程，至少要同时保证遥操设备准确采集、人体动作正确映射、机器人稳定执行、摄像头与关节数据时间同步，并且异常数据能被及时识别和剔除。&lt;/p&gt;
+&lt;p&gt;如果手套没有完成标定，或者机器人执行时持续抖动，即使文件已经保存下来，这些数据也很难直接用于后续训练。训练数据的质量，本质上是机器人本体、控制系统、采集设备与现场维护共同作用的结果。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;下一步计划&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#下一步计划&#34;&gt;#&lt;/a&gt; 下一步计划&lt;/h2&gt;
+&lt;p&gt;接下来，我会继续推进以下工作：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;优化跌倒检测逻辑，进一步降低误报率；&lt;/li&gt;
+&lt;li&gt;完善断网、服务异常等情况下的自动恢复机制；&lt;/li&gt;
+&lt;li&gt;验证补丁包在不同机器人上的兼容性和幂等性；&lt;/li&gt;
+&lt;li&gt;标准化部署、启动、日志检查与回滚流程；&lt;/li&gt;
+&lt;li&gt;熟悉遥操、VR 和灵巧手的完整标定方法；&lt;/li&gt;
+&lt;li&gt;整理现场常见故障及对应排查路径；&lt;/li&gt;
+&lt;li&gt;提高机器人训练数据的稳定性与一致性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;写在最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#写在最后&#34;&gt;#&lt;/a&gt; 写在最后&lt;/h2&gt;
+&lt;p&gt;这一周完成的工作看起来分成了两部分：一边是跌倒检测、服务器和 APP 的软件链路，另一边是遥操、VR 与灵巧手的现场维护。但它们背后其实指向同一件事：&lt;strong&gt;机器人开发从来不是某一个算法或某一个程序的问题，而是整个系统的问题。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;跌倒检测要考虑摄像头、模型、服务器、APP 和人工处理；机器人遥操要考虑采集设备、动作映射、网络通信、控制服务、电机驱动和安全限制。任何一个环节异常，最后呈现出来的都可能只是“机器人没有反应”。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;让机器人完成一次动作并不困难，真正困难的是让整套系统稳定、可复制地运行。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="跌倒检测" />
+        <category term="机器视觉" />
+        <category term="人形机器人" />
+        <category term="机器人遥操" />
+        <category term="VR控制" />
+        <category term="工程化部署" />
+        <updated>2026-07-12T10:00:00.000Z</updated>
     </entry>
     <entry>
         <id>https://roastduck-zz.github.io/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/</id>
@@ -256,10 +676,10 @@
 &lt;p&gt;下一步需要进一步优化跌倒检测的准确率、完善报警逻辑，以及解决音频输出问题。另外，如果能拿到机器人核心板的完整硬件规格，很多之前的&amp;quot;保守选择&amp;quot;就可以重新评估，说不定 MediaPipe Pose 真的能跑得动。&lt;/p&gt;
 &lt;p&gt;更重要的是，这一周让我深刻感受到：&lt;strong&gt;实际项目中的工程决策，往往不是选最优解，而是在当前约束条件下选最不差的那一个。&lt;/strong&gt; 硬件不确定、资料不全、信息不对称——这些不是&amp;quot;异常情况&amp;quot;，它们就是日常开发环境的一部分。在这些约束下仍然能推进工作，可能比在理想条件下写出完美方案更需要耐心和判断力。&lt;/p&gt;
 </content>
-        <category term="机器人" />
         <category term="周记" />
-        <category term="康养机器人" />
+        <category term="机器人" />
         <category term="跌倒检测" />
+        <category term="康养机器人" />
         <category term="视觉" />
         <category term="MoveNet" />
         <category term="奥比中光" />
@@ -278,9 +698,9 @@
 &lt;p&gt;这一周下来，我对公司的项目形态有了一个初步认识。公司做的机器人项目并不是停留在单一设备上，而是经常需要把机器人本体、视觉检测、语音交互、现场流程和售后支持放在一起考虑。不同项目的技术重点也不同：车载项目更关注驾驶员状态和自然交互，院校合作项目更关注多机器人协同和质量检测，海外交付项目则让我看到交付之后仍然需要持续维护。&lt;/p&gt;
 &lt;p&gt;对我个人来说，第一周最大的收获不是掌握了某一个具体工具，而是开始理解项目背后的工程思维。一个方案能不能落地，往往不只取决于技术是否先进，还取决于它是否适合当前场景、是否能稳定运行、是否便于维护，以及团队之间的信息是否能顺畅流动。后面如果继续深入这些项目，我希望能从“知道项目在做什么”慢慢过渡到“知道自己能在其中解决什么问题”。&lt;/p&gt;
 </content>
+        <category term="周记" />
         <category term="机器人" />
         <category term="工作记录" />
-        <category term="周记" />
         <category term="车载" />
         <category term="视觉检测" />
         <category term="AD" />

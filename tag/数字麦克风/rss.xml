@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>RoastDuck • Posts by &#34;数字麦克风&#34; tag</title>
+        <link>https://roastduck-zz.github.io</link>
+        <description>嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉</description>
+        <language>zh-CN</language>
+        <pubDate>Sun, 02 Aug 2026 18:00:00 +0800</pubDate>
+        <lastBuildDate>Sun, 02 Aug 2026 18:00:00 +0800</lastBuildDate>
+        <category>周记</category>
+        <category>机器人</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>跌倒检测</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
+        <category>工作记录</category>
+        <category>车载</category>
+        <category>视觉检测</category>
+        <category>AD</category>
+        <category>RK3566</category>
+        <category>PCB</category>
+        <category>康养机器人</category>
+        <category>视觉</category>
+        <category>MoveNet</category>
+        <category>奥比中光</category>
+        <category>ESP32-S3</category>
+        <category>嵌入式</category>
+        <category>机器视觉</category>
+        <category>YOLOv8</category>
+        <category>3D打印</category>
+        <category>人形机器人</category>
+        <category>机器人遥操</category>
+        <category>VR控制</category>
+        <category>工程化部署</category>
+        <category>陪伴机器人</category>
+        <category>小智</category>
+        <category>双屏显示</category>
+        <category>数字麦克风</category>
+        <category>硬件调试</category>
+        <category>Luckfox</category>
+        <category>Linux</category>
+        <item>
+            <guid isPermalink="true">https://roastduck-zz.github.io/2026/08/02/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8827%E6%97%A5-7%E6%9C%8831%E6%97%A5%EF%BC%89/</guid>
+            <title>两块屏幕拼出一张脸——低成本陪伴机器人硬件联调</title>
+            <link>https://roastduck-zz.github.io/2026/08/02/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8827%E6%97%A5-7%E6%9C%8831%E6%97%A5%EF%BC%89/</link>
+            <category>ESP32-S3</category>
+            <category>陪伴机器人</category>
+            <category>小智</category>
+            <category>双屏显示</category>
+            <category>数字麦克风</category>
+            <category>硬件调试</category>
+            <pubDate>Sun, 02 Aug 2026 18:00:00 +0800</pubDate>
+            <description><![CDATA[ &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 本周完成了低成本陪伴机器人样机的基础组装，在 ESP32-S3 上跑通“小智”并实现左右眼双屏同步显示，同时通过测量 DOUT 信号定位了一块数字麦克风的硬件故障。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;这周的目标先让样机有一张脸&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#这周的目标先让样机有一张脸&#34;&gt;#&lt;/a&gt; 这周的目标：先让样机有一张“脸”&lt;/h2&gt;
+&lt;p&gt;本周的主要工作，是组装低成本陪伴机器人样机，并把基础程序部署到 ESP32-S3 上进行第一轮联调。&lt;/p&gt;
+&lt;p&gt;软件部分沿用“小智”作为语音交互框架，面部则采用两块独立显示屏：左屏显示左眼，右屏显示右眼。这个结构很适合机器人头部造型，但也意味着原本为单屏设计的表情系统不能直接照搬。&lt;/p&gt;
+&lt;p&gt;这一阶段我没有急着同时联调整套机器人，而是把目标拆成四条最基础的链路：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;模块&lt;/th&gt;
+&lt;th&gt;首轮验证目标&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ESP32-S3&lt;/td&gt;
+&lt;td&gt;稳定启动并运行“小智”基础程序&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;双显示屏&lt;/td&gt;
+&lt;td&gt;两块屏幕能够被独立驱动&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;表情系统&lt;/td&gt;
+&lt;td&gt;左右眼资源正确拆分并同步切换&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;数字麦克风&lt;/td&gt;
+&lt;td&gt;能够持续输出有效音频数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;模块拆开验证，可以避免显示、音频和程序同时出问题时互相干扰，也更容易判断故障究竟属于软件还是硬件。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;双屏表情难点不在素材而在渲染结构&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#双屏表情难点不在素材而在渲染结构&#34;&gt;#&lt;/a&gt; 双屏表情：难点不在素材，而在渲染结构&lt;/h2&gt;
+&lt;p&gt;表情资源使用了乐鑫提供的现成方案。真正需要修改的不是眼睛长什么样，而是它原本默认只有一块画布，左右眼会一起绘制在同一块屏幕上。&lt;/p&gt;
+&lt;p&gt;当前样机使用两块物理独立的屏幕，每块屏幕只负责一只眼睛。因此，显示逻辑需要从“一张画布画完整张脸”改成“两张画布协同更新”：&lt;/p&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span&gt;完整表情状态&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;拆分左右眼绘制区域&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;左眼画布 → 左侧显示屏&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;右眼画布 → 右侧显示屏&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;同一时刻提交刷新&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我对显示逻辑做了几项调整：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;左侧屏幕只输出左眼区域；&lt;/li&gt;
+&lt;li&gt;右侧屏幕只输出右眼区域；&lt;/li&gt;
+&lt;li&gt;两块屏幕分别维护自己的显示内容；&lt;/li&gt;
+&lt;li&gt;表情切换由同一个状态驱动；&lt;/li&gt;
+&lt;li&gt;更新时尽量保持同步，避免左右眼短暂错位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最后一条尤其重要。双屏并不只是“能各自亮起来”就算完成，如果两边刷新时序差异过大，机器人会在表情切换时出现一只眼睛先动、另一只后动的割裂感。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;两块屏幕同时接入后的异常&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#两块屏幕同时接入后的异常&#34;&gt;#&lt;/a&gt; 两块屏幕同时接入后的异常&lt;/h2&gt;
+&lt;p&gt;调试初期，两块屏幕同时连接 ESP32-S3 后出现了显示异常。单独测试时能工作的模块，组合到一起却不稳定，这是硬件联调中很典型的情况。&lt;/p&gt;
+&lt;p&gt;我重新检查了屏幕供电、通信线和引脚连接，并调整接线。双屏随后恢复正常，左右眼分屏和多种表情切换也顺利跑通。&lt;/p&gt;
+&lt;p&gt;最终效果达到了预期：两只眼睛可以分别显示在两块屏幕上，并在切换表情时保持一致。相比单屏方案，双屏增加了接线、片选和刷新同步的复杂度，但它给机器人头部结构留下了更自由的设计空间，也让面部表现更接近真正的两只眼睛。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;调试心得：&lt;/strong&gt; 单模块通过不代表组合后一定正常。每增加一个外设，都要重新检查供电、总线资源、引脚冲突和刷新时序。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;麦克风没有数据先测关键引脚&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#麦克风没有数据先测关键引脚&#34;&gt;#&lt;/a&gt; 麦克风没有数据：先测关键引脚&lt;/h2&gt;
+&lt;p&gt;显示部分跑通后，我继续测试语音输入链路，但程序始终收不到有效的麦克风数据。&lt;/p&gt;
+&lt;p&gt;一开始，排查方向主要是供电、接线和引脚定义。数字麦克风不像模拟麦克风那样直接输出连续电压，而是依赖时钟和数字数据线与主控通信。软件侧收不到数据时，原因可能是引脚配置错误、时钟没有输出、数据线连接异常，也可能是模块本身已经损坏。&lt;/p&gt;
+&lt;p&gt;使用万用表测量后，我发现麦克风模块的 &lt;strong&gt;DOUT&lt;/strong&gt; 引脚电平表现异常。重新检查供电和信号线后，现象依旧存在，因此基本排除了简单的接线问题，初步判断为模块硬件故障。&lt;/p&gt;
+&lt;p&gt;由于这块麦克风已经无法继续承担验证任务，我重新申请购买了新的模块。新模块到货后会按下面的顺序测试：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;确认供电电压和地线正常；&lt;/li&gt;
+&lt;li&gt;检查时钟与数据引脚连接；&lt;/li&gt;
+&lt;li&gt;验证 ESP32-S3 能否持续读取原始音频数据；&lt;/li&gt;
+&lt;li&gt;最后再接入“小智”的语音识别链路。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这次问题提醒我，调试数字音频时不能只盯着程序日志。硬件模块损坏时，软件有时不会给出清晰报错，只会一直等不到有效数据。直接测量关键引脚，往往能更快缩小范围。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;顺带完成一次工业视觉可行性验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#顺带完成一次工业视觉可行性验证&#34;&gt;#&lt;/a&gt; 顺带完成一次工业视觉可行性验证&lt;/h2&gt;
+&lt;p&gt;除陪伴机器人外，本周还做了一次工业视觉缺陷检测的初步测试。我使用现有检测程序验证了多组样本，观察软件能否识别目标缺陷，并判断当前方案是否值得继续推进。&lt;/p&gt;
+&lt;p&gt;常规样本已经可以完成基本检测，说明现有方案具备可行性。对于表面纹理复杂、缺陷边界不明显的样本，识别仍会受到干扰，后续需要加入更多真实样本，再决定是调整规则、优化成像条件，还是继续修改检测策略。&lt;/p&gt;
+&lt;p&gt;这一阶段的目标只是确认方向，而不是给出最终指标。先回答“方案能不能继续做”，再投入更多时间追求稳定性和精度，能避免在不合适的路线中过早消耗资源。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;本周完成情况&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#本周完成情况&#34;&gt;#&lt;/a&gt; 本周完成情况&lt;/h2&gt;
+&lt;p&gt;这一周完成了以下节点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;组装低成本陪伴机器人样机的基础硬件；&lt;/li&gt;
+&lt;li&gt;在 ESP32-S3 上部署并启动“小智”基础程序；&lt;/li&gt;
+&lt;li&gt;完成两块显示屏的独立连接与显示测试；&lt;/li&gt;
+&lt;li&gt;将完整表情拆分为左右眼两路画面；&lt;/li&gt;
+&lt;li&gt;实现双屏表情的同步切换；&lt;/li&gt;
+&lt;li&gt;定位数字麦克风 DOUT 引脚异常；&lt;/li&gt;
+&lt;li&gt;重新申请麦克风模块；&lt;/li&gt;
+&lt;li&gt;完成工业视觉缺陷检测的初步可行性测试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;下一步计划&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#下一步计划&#34;&gt;#&lt;/a&gt; 下一步计划&lt;/h2&gt;
+&lt;p&gt;接下来的优先级很明确：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;新麦克风到货后，先完成原始音频数据验证；&lt;/li&gt;
+&lt;li&gt;把麦克风接回“小智”，打通语音输入链路；&lt;/li&gt;
+&lt;li&gt;优化双屏刷新时序和表情切换细节；&lt;/li&gt;
+&lt;li&gt;整理线束与安装结构，减少临时接线带来的不稳定；&lt;/li&gt;
+&lt;li&gt;在基础硬件稳定后，再推进外壳和整体交互效果；&lt;/li&gt;
+&lt;li&gt;为工业视觉测试补充复杂纹理和弱缺陷样本。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;写在最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#写在最后&#34;&gt;#&lt;/a&gt; 写在最后&lt;/h2&gt;
+&lt;p&gt;这周最有成就感的瞬间，是两块屏幕终于同步显示出一双完整的眼睛。它看起来只是一个表情效果，背后却涉及画布拆分、双屏驱动、接线检查和刷新同步。&lt;/p&gt;
+&lt;p&gt;麦克风故障则是另一类提醒：遇到“程序收不到数据”时，不能默认问题一定在代码里。硬件、供电和信号本身同样需要被逐层验证。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;做样机的过程，就是把每一个“应该可以”变成测量过、观察过、能够重复出现的“确实可以”。&lt;/p&gt;
+&lt;/blockquote&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
