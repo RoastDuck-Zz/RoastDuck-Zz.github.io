@@ -4,51 +4,54 @@
     <title>RoastDuck • Posts by &#34;跌倒检测&#34; tag</title>
     <link href="https://roastduck-zz.github.io" />
     <updated>2026-07-20T10:00:00.000Z</updated>
-    <category term="周记" />
-    <category term="机器人" />
-    <category term="项目交接" />
-    <category term="Remote-SSH" />
-    <category term="跌倒检测" />
-    <category term="技术支持" />
-    <category term="APIE2026" />
     <category term="ROS" />
     <category term="STM32" />
     <category term="树莓派" />
     <category term="机器人工程" />
     <category term="嵌入式开发" />
     <category term="工作记录" />
+    <category term="周记" />
+    <category term="机器人" />
     <category term="车载" />
     <category term="视觉检测" />
     <category term="AD" />
     <category term="RK3566" />
     <category term="PCB" />
-    <category term="康养机器人" />
-    <category term="视觉" />
-    <category term="MoveNet" />
-    <category term="奥比中光" />
     <category term="ESP32-S3" />
     <category term="嵌入式" />
     <category term="机器视觉" />
     <category term="YOLOv8" />
     <category term="3D打印" />
+    <category term="陪伴机器人" />
+    <category term="Luckfox" />
+    <category term="小智" />
+    <category term="项目交接" />
+    <category term="Remote-SSH" />
+    <category term="跌倒检测" />
+    <category term="技术支持" />
+    <category term="APIE2026" />
+    <category term="康养机器人" />
+    <category term="视觉" />
+    <category term="MoveNet" />
+    <category term="奥比中光" />
+    <category term="双屏显示" />
+    <category term="数字麦克风" />
+    <category term="硬件调试" />
     <category term="人形机器人" />
     <category term="机器人遥操" />
     <category term="VR控制" />
     <category term="工程化部署" />
-    <category term="陪伴机器人" />
-    <category term="小智" />
-    <category term="双屏显示" />
-    <category term="数字麦克风" />
-    <category term="硬件调试" />
-    <category term="Luckfox" />
     <category term="Linux" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/07/20/work-log-july13-july19/</id>
-        <title>工作日志（7月13日-7月19日）：机器人项目交接与青岛展会支持</title>
+        <title>从项目交接到展会支持——泰安收尾与 APIE2026 现场记录</title>
         <link rel="alternate" href="https://roastduck-zz.github.io/2026/07/20/work-log-july13-july19/"/>
-        <content type="html">&lt;p&gt;本周是泰安机器人调试工作的收尾阶段。前两天的主要任务，是向新到泰安的同事交接机器人连接、远程开发、跌倒检测服务以及 App 配套功能的使用方法，确保我离开现场后，相关工作仍然能够继续推进。&lt;/p&gt;
+        <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 这一周从泰安项目交接转入青岛展会支持，工作重点也从代码与调试切换到文档、演示和现场讲解。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;p&gt;本周是泰安机器人调试工作的收尾阶段。前两天的主要任务，是向新到泰安的同事交接机器人连接、远程开发、跌倒检测服务以及 App 配套功能的使用方法，确保我离开现场后，相关工作仍然能够继续推进。&lt;/p&gt;
 &lt;p&gt;完成交接后，我从泰安前往青岛，参加 &lt;strong&gt;APIE2026 第七届亚太国际智能装备博览会&lt;/strong&gt;。工作内容也由前期的软件开发和机器人调试，转向了产品展示、现场操作与业务讲解。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;h2 id=&#34;泰安阶段收尾机器人开发流程交接&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#泰安阶段收尾机器人开发流程交接&#34;&gt;#&lt;/a&gt; 泰安阶段收尾：机器人开发流程交接&lt;/h2&gt;
 &lt;p&gt;由于我即将离开泰安，前两天的重点不再是继续增加新功能，而是将已经完成的工作交接给新到现场的同事。&lt;/p&gt;
 &lt;p&gt;交接内容主要包括：&lt;/p&gt;
@@ -334,8 +337,8 @@
 &lt;p&gt;让机器人完成一次动作并不困难，真正困难的是让整套系统稳定、可复制地运行。&lt;/p&gt;
 &lt;/blockquote&gt;
 </content>
-        <category term="跌倒检测" />
         <category term="机器视觉" />
+        <category term="跌倒检测" />
         <category term="人形机器人" />
         <category term="机器人遥操" />
         <category term="VR控制" />
@@ -344,10 +347,13 @@
     </entry>
     <entry>
         <id>https://roastduck-zz.github.io/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/</id>
-        <title>工作日志（6月29日-7月5日）：康养机器人视觉调试</title>
+        <title>从摄像头选型到 RGB-D 跌倒检测——泰安现场调试第二周</title>
         <link rel="alternate" href="https://roastduck-zz.github.io/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/"/>
-        <content type="html">&lt;p&gt;本周我从北京前往泰安出差。公司在泰安设有一个机器人生产基地，目前派我过去协助调试并学习相关技术。公司当前主要有三个产品场景，本周我的精力全部集中在其中一个上——康养机器人。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
+        <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 泰安现场调试第二周，我完成了深度摄像头选型、轻量跌倒检测模型训练，并搭起“RGB 怀疑 + 深度确认”的双模判断链路。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;p&gt;本周我从北京前往泰安出差。公司在泰安设有一个机器人生产基地，目前派我过去协助调试并学习相关技术。公司当前主要有三个产品场景，本周的精力全部集中在其中一个上——康养机器人。&lt;/p&gt;
 &lt;h2 id=&#34;摄像头选型从-dcw2-到-gemini2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#摄像头选型从-dcw2-到-gemini2&#34;&gt;#&lt;/a&gt; 摄像头选型：从 DCW2 到 Gemini2&lt;/h2&gt;
 &lt;p&gt;视觉是康养机器人的核心感知能力，摄像头选型自然成了第一件事。我们使用的都是奥比中光（Orbbec）的深度摄像头，手头先后经手了两款型号：&lt;/p&gt;
 &lt;table&gt;

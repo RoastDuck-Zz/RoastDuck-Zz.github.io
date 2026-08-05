@@ -7,47 +7,47 @@
         <language>zh-CN</language>
         <pubDate>Mon, 20 Jul 2026 18:00:00 +0800</pubDate>
         <lastBuildDate>Mon, 20 Jul 2026 18:00:00 +0800</lastBuildDate>
-        <category>周记</category>
-        <category>机器人</category>
-        <category>项目交接</category>
-        <category>Remote-SSH</category>
-        <category>跌倒检测</category>
-        <category>技术支持</category>
-        <category>APIE2026</category>
         <category>ROS</category>
         <category>STM32</category>
         <category>树莓派</category>
         <category>机器人工程</category>
         <category>嵌入式开发</category>
         <category>工作记录</category>
+        <category>周记</category>
+        <category>机器人</category>
         <category>车载</category>
         <category>视觉检测</category>
         <category>AD</category>
         <category>RK3566</category>
         <category>PCB</category>
-        <category>康养机器人</category>
-        <category>视觉</category>
-        <category>MoveNet</category>
-        <category>奥比中光</category>
         <category>ESP32-S3</category>
         <category>嵌入式</category>
         <category>机器视觉</category>
         <category>YOLOv8</category>
         <category>3D打印</category>
+        <category>陪伴机器人</category>
+        <category>Luckfox</category>
+        <category>小智</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>跌倒检测</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <category>康养机器人</category>
+        <category>视觉</category>
+        <category>MoveNet</category>
+        <category>奥比中光</category>
+        <category>双屏显示</category>
+        <category>数字麦克风</category>
+        <category>硬件调试</category>
         <category>人形机器人</category>
         <category>机器人遥操</category>
         <category>VR控制</category>
         <category>工程化部署</category>
-        <category>陪伴机器人</category>
-        <category>小智</category>
-        <category>双屏显示</category>
-        <category>数字麦克风</category>
-        <category>硬件调试</category>
-        <category>Luckfox</category>
         <category>Linux</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/07/20/work-log-july13-july19/</guid>
-            <title>工作日志（7月13日-7月19日）：机器人项目交接与青岛展会支持</title>
+            <title>从项目交接到展会支持——泰安收尾与 APIE2026 现场记录</title>
             <link>https://roastduck-zz.github.io/2026/07/20/work-log-july13-july19/</link>
             <category>周记</category>
             <category>机器人</category>
@@ -57,9 +57,12 @@
             <category>技术支持</category>
             <category>APIE2026</category>
             <pubDate>Mon, 20 Jul 2026 18:00:00 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;本周是泰安机器人调试工作的收尾阶段。前两天的主要任务，是向新到泰安的同事交接机器人连接、远程开发、跌倒检测服务以及 App 配套功能的使用方法，确保我离开现场后，相关工作仍然能够继续推进。&lt;/p&gt;
+            <description><![CDATA[ &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 这一周从泰安项目交接转入青岛展会支持，工作重点也从代码与调试切换到文档、演示和现场讲解。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;p&gt;本周是泰安机器人调试工作的收尾阶段。前两天的主要任务，是向新到泰安的同事交接机器人连接、远程开发、跌倒检测服务以及 App 配套功能的使用方法，确保我离开现场后，相关工作仍然能够继续推进。&lt;/p&gt;
 &lt;p&gt;完成交接后，我从泰安前往青岛，参加 &lt;strong&gt;APIE2026 第七届亚太国际智能装备博览会&lt;/strong&gt;。工作内容也由前期的软件开发和机器人调试，转向了产品展示、现场操作与业务讲解。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;h2 id=&#34;泰安阶段收尾机器人开发流程交接&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#泰安阶段收尾机器人开发流程交接&#34;&gt;#&lt;/a&gt; 泰安阶段收尾：机器人开发流程交接&lt;/h2&gt;
 &lt;p&gt;由于我即将离开泰安，前两天的重点不再是继续增加新功能，而是将已经完成的工作交接给新到现场的同事。&lt;/p&gt;
 &lt;p&gt;交接内容主要包括：&lt;/p&gt;

@@ -7,43 +7,43 @@
         <language>zh-CN</language>
         <pubDate>Sun, 02 Aug 2026 18:00:00 +0800</pubDate>
         <lastBuildDate>Sun, 02 Aug 2026 18:00:00 +0800</lastBuildDate>
-        <category>周记</category>
-        <category>机器人</category>
-        <category>项目交接</category>
-        <category>Remote-SSH</category>
-        <category>跌倒检测</category>
-        <category>技术支持</category>
-        <category>APIE2026</category>
         <category>ROS</category>
         <category>STM32</category>
         <category>树莓派</category>
         <category>机器人工程</category>
         <category>嵌入式开发</category>
         <category>工作记录</category>
+        <category>周记</category>
+        <category>机器人</category>
         <category>车载</category>
         <category>视觉检测</category>
         <category>AD</category>
         <category>RK3566</category>
         <category>PCB</category>
-        <category>康养机器人</category>
-        <category>视觉</category>
-        <category>MoveNet</category>
-        <category>奥比中光</category>
         <category>ESP32-S3</category>
         <category>嵌入式</category>
         <category>机器视觉</category>
         <category>YOLOv8</category>
         <category>3D打印</category>
+        <category>陪伴机器人</category>
+        <category>Luckfox</category>
+        <category>小智</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>跌倒检测</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <category>康养机器人</category>
+        <category>视觉</category>
+        <category>MoveNet</category>
+        <category>奥比中光</category>
+        <category>双屏显示</category>
+        <category>数字麦克风</category>
+        <category>硬件调试</category>
         <category>人形机器人</category>
         <category>机器人遥操</category>
         <category>VR控制</category>
         <category>工程化部署</category>
-        <category>陪伴机器人</category>
-        <category>小智</category>
-        <category>双屏显示</category>
-        <category>数字麦克风</category>
-        <category>硬件调试</category>
-        <category>Luckfox</category>
         <category>Linux</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/08/02/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8827%E6%97%A5-7%E6%9C%8831%E6%97%A5%EF%BC%89/</guid>
@@ -173,7 +173,7 @@
         </item>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/07/31/%E8%BF%94%E4%BA%AC%E4%B8%80%E5%91%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</guid>
-            <title>返京一周：陪伴机器人、视觉检测项目与 Luckfox Pico Ultra 踩坑记录</title>
+            <title>从开发板烧录到产线视觉——返京一周嵌入式开发记录</title>
             <link>https://roastduck-zz.github.io/2026/07/31/%E8%BF%94%E4%BA%AC%E4%B8%80%E5%91%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</link>
             <category>视觉检测</category>
             <category>ESP32-S3</category>
@@ -186,11 +186,11 @@
 &lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 回北京这一周，验收了陪伴机器人的硬件物料，推进了高校产线视觉检测项目的落地，顺便踩了一遍 Luckfox Pico Ultra 的系统烧录坑。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
-&lt;h2 id=&#34;背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#背景&#34;&gt;#&lt;/a&gt; 背景&lt;/h2&gt;
+&lt;h2 id=&#34;返京之后先把项目重新启动&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#返京之后先把项目重新启动&#34;&gt;#&lt;/a&gt; 返京之后，先把项目重新启动&lt;/h2&gt;
 &lt;p&gt;连着上了二十天班之后，借着生日的由头调休了两天。说来也巧——周一农历生日、周四公历生日，正好把这一周切成三段，给了自己一点缓冲。&lt;/p&gt;
 &lt;p&gt;但调休归调休，该推进的事情一件不能少。不在北京的这段时间，手里的项目基本处于半冻结状态，回来后第一件事就是盘点进度、重新启动。这篇文章记录这一周经手的几个技术事项。&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h2 id=&#34;事项一陪伴机器人物料验收与硬件测试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项一陪伴机器人物料验收与硬件测试&#34;&gt;#&lt;/a&gt; 事项一：陪伴机器人——物料验收与硬件测试&lt;/h2&gt;
+&lt;h2 id=&#34;陪伴机器人物料验收与硬件测试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#陪伴机器人物料验收与硬件测试&#34;&gt;#&lt;/a&gt; 陪伴机器人：物料验收与硬件测试&lt;/h2&gt;
 &lt;h3 id=&#34;项目背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#项目背景&#34;&gt;#&lt;/a&gt; 项目背景&lt;/h3&gt;
 &lt;p&gt;陪伴机器人是一个 side project，目标是做一个能语音交互、有简单表情反馈的桌面小机器人。在我离京之前已经把 BOM 表定了、物料下了单，回来第一件事就是拆箱验收。&lt;/p&gt;
 &lt;h3 id=&#34;验收重点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#验收重点&#34;&gt;#&lt;/a&gt; 验收重点&lt;/h3&gt;
@@ -236,7 +236,7 @@
 &lt;p&gt;&lt;strong&gt;经验：&lt;/strong&gt; 物料验收最好在收货 48 小时内完成，因为淘宝/嘉立创的售后窗口很短。之前吃过亏——隔了两周才发现一颗步进电机驱动器有问题，商家已经不认了。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
-&lt;h2 id=&#34;事项二高校产线视觉检测项目需求落地与方案选型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项二高校产线视觉检测项目需求落地与方案选型&#34;&gt;#&lt;/a&gt; 事项二：高校产线视觉检测项目——需求落地与方案选型&lt;/h2&gt;
+&lt;h2 id=&#34;高校产线视觉需求落地与方案选型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#高校产线视觉需求落地与方案选型&#34;&gt;#&lt;/a&gt; 高校产线视觉：需求落地与方案选型&lt;/h2&gt;
 &lt;h3 id=&#34;项目现状&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#项目现状&#34;&gt;#&lt;/a&gt; 项目现状&lt;/h3&gt;
 &lt;p&gt;这是个给高校实验室做的产线模拟检测项目，核心需求是用机器视觉检测传送带上工件的表面缺陷。我离京期间项目进展缓慢，回来后公司开始正式推进，我负责对接硬件环境和软件供应商。&lt;/p&gt;
 &lt;h3 id=&#34;本周推进的具体工作&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#本周推进的具体工作&#34;&gt;#&lt;/a&gt; 本周推进的具体工作&lt;/h3&gt;
@@ -284,7 +284,7 @@
 &lt;/ol&gt;
 &lt;p&gt;这些坑之前在别的项目里踩过，这次选型时特意做了针对性调研。&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h2 id=&#34;事项三luckfox-pico-ultra便宜但门槛不低&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项三luckfox-pico-ultra便宜但门槛不低&#34;&gt;#&lt;/a&gt; 事项三：Luckfox Pico Ultra——便宜但门槛不低&lt;/h2&gt;
+&lt;h2 id=&#34;luckfox-pico-ultra便宜但门槛不低&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#luckfox-pico-ultra便宜但门槛不低&#34;&gt;#&lt;/a&gt; Luckfox Pico Ultra：便宜，但门槛不低&lt;/h2&gt;
 &lt;h3 id=&#34;为什么买它&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#为什么买它&#34;&gt;#&lt;/a&gt; 为什么买它？&lt;/h3&gt;
 &lt;p&gt;幸狐（Luckfox）的 Pico Ultra 系列，RV1106 芯片，带 NPU，官方号称能跑轻量级 AI 推理。价格确实便宜——几十块钱一块，比 Raspberry Pi 便宜了不止一个量级。买它的初衷是想看看能不能用它做端侧视觉推理，替代目前 ESP32-S3 + 上位机的方案，把 AI 推理也放到端侧。&lt;/p&gt;
 &lt;h3 id=&#34;上手体验系统烧录是第一道坎&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#上手体验系统烧录是第一道坎&#34;&gt;#&lt;/a&gt; 上手体验：系统烧录是第一道坎&lt;/h3&gt;
@@ -310,7 +310,7 @@
 &lt;p&gt;&lt;strong&gt;踩坑笔记：&lt;/strong&gt; 买小众开发板之前，先去官方论坛 / GitHub Issues 翻一遍。如果社区活跃、FAQ 覆盖常见问题，那上手会顺利很多；如果社区冷清、文档是机翻英文，那每一坑都得自己填。Luckfox 的社区介于两者之间——中文资料有一些，但不够系统。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
-&lt;h2 id=&#34;事项四esp32-s3-小智快速原型验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项四esp32-s3-小智快速原型验证&#34;&gt;#&lt;/a&gt; 事项四：ESP32-S3 + 小智——快速原型验证&lt;/h2&gt;
+&lt;h2 id=&#34;esp32-s3-小智快速原型验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#esp32-s3-小智快速原型验证&#34;&gt;#&lt;/a&gt; ESP32-S3 + 小智：快速原型验证&lt;/h2&gt;
 &lt;p&gt;测试完 Luckfox 之后，切回了熟悉的 ESP32-S3。这周给一块闲置的 ESP32-S3 开发板装上了&lt;strong&gt;小智（XiaoZhi）固件&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;小智是一个开源的 AI 语音助手框架，专为 ESP32 系列设计，支持：&lt;/p&gt;
 &lt;ul&gt;
@@ -384,8 +384,8 @@
             <category>ESP32-S3</category>
             <category>机器视觉</category>
             <category>陪伴机器人</category>
-            <category>小智</category>
             <category>Luckfox</category>
+            <category>小智</category>
             <pubDate>Fri, 24 Jul 2026 18:00:00 +0800</pubDate>
             <description><![CDATA[ &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 返京后的这一周只有三个工作日，我一边验收陪伴机器人的硬件并在 Luckfox Pico Ultra 与 ESP32-S3 之间摸索方案，一边重新推动停滞了一段时间的高校视觉检测项目。&lt;/p&gt;

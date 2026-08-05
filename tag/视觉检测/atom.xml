@@ -4,57 +4,57 @@
     <title>RoastDuck • Posts by &#34;视觉检测&#34; tag</title>
     <link href="https://roastduck-zz.github.io" />
     <updated>2026-07-31T08:00:00.000Z</updated>
-    <category term="周记" />
-    <category term="机器人" />
-    <category term="项目交接" />
-    <category term="Remote-SSH" />
-    <category term="跌倒检测" />
-    <category term="技术支持" />
-    <category term="APIE2026" />
     <category term="ROS" />
     <category term="STM32" />
     <category term="树莓派" />
     <category term="机器人工程" />
     <category term="嵌入式开发" />
     <category term="工作记录" />
+    <category term="周记" />
+    <category term="机器人" />
     <category term="车载" />
     <category term="视觉检测" />
     <category term="AD" />
     <category term="RK3566" />
     <category term="PCB" />
-    <category term="康养机器人" />
-    <category term="视觉" />
-    <category term="MoveNet" />
-    <category term="奥比中光" />
     <category term="ESP32-S3" />
     <category term="嵌入式" />
     <category term="机器视觉" />
     <category term="YOLOv8" />
     <category term="3D打印" />
+    <category term="陪伴机器人" />
+    <category term="Luckfox" />
+    <category term="小智" />
+    <category term="项目交接" />
+    <category term="Remote-SSH" />
+    <category term="跌倒检测" />
+    <category term="技术支持" />
+    <category term="APIE2026" />
+    <category term="康养机器人" />
+    <category term="视觉" />
+    <category term="MoveNet" />
+    <category term="奥比中光" />
+    <category term="双屏显示" />
+    <category term="数字麦克风" />
+    <category term="硬件调试" />
     <category term="人形机器人" />
     <category term="机器人遥操" />
     <category term="VR控制" />
     <category term="工程化部署" />
-    <category term="陪伴机器人" />
-    <category term="小智" />
-    <category term="双屏显示" />
-    <category term="数字麦克风" />
-    <category term="硬件调试" />
-    <category term="Luckfox" />
     <category term="Linux" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/07/31/%E8%BF%94%E4%BA%AC%E4%B8%80%E5%91%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</id>
-        <title>返京一周：陪伴机器人、视觉检测项目与 Luckfox Pico Ultra 踩坑记录</title>
+        <title>从开发板烧录到产线视觉——返京一周嵌入式开发记录</title>
         <link rel="alternate" href="https://roastduck-zz.github.io/2026/07/31/%E8%BF%94%E4%BA%AC%E4%B8%80%E5%91%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/"/>
         <content type="html">&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 回北京这一周，验收了陪伴机器人的硬件物料，推进了高校产线视觉检测项目的落地，顺便踩了一遍 Luckfox Pico Ultra 的系统烧录坑。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
-&lt;h2 id=&#34;背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#背景&#34;&gt;#&lt;/a&gt; 背景&lt;/h2&gt;
+&lt;h2 id=&#34;返京之后先把项目重新启动&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#返京之后先把项目重新启动&#34;&gt;#&lt;/a&gt; 返京之后，先把项目重新启动&lt;/h2&gt;
 &lt;p&gt;连着上了二十天班之后，借着生日的由头调休了两天。说来也巧——周一农历生日、周四公历生日，正好把这一周切成三段，给了自己一点缓冲。&lt;/p&gt;
 &lt;p&gt;但调休归调休，该推进的事情一件不能少。不在北京的这段时间，手里的项目基本处于半冻结状态，回来后第一件事就是盘点进度、重新启动。这篇文章记录这一周经手的几个技术事项。&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h2 id=&#34;事项一陪伴机器人物料验收与硬件测试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项一陪伴机器人物料验收与硬件测试&#34;&gt;#&lt;/a&gt; 事项一：陪伴机器人——物料验收与硬件测试&lt;/h2&gt;
+&lt;h2 id=&#34;陪伴机器人物料验收与硬件测试&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#陪伴机器人物料验收与硬件测试&#34;&gt;#&lt;/a&gt; 陪伴机器人：物料验收与硬件测试&lt;/h2&gt;
 &lt;h3 id=&#34;项目背景&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#项目背景&#34;&gt;#&lt;/a&gt; 项目背景&lt;/h3&gt;
 &lt;p&gt;陪伴机器人是一个 side project，目标是做一个能语音交互、有简单表情反馈的桌面小机器人。在我离京之前已经把 BOM 表定了、物料下了单，回来第一件事就是拆箱验收。&lt;/p&gt;
 &lt;h3 id=&#34;验收重点&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#验收重点&#34;&gt;#&lt;/a&gt; 验收重点&lt;/h3&gt;
@@ -100,7 +100,7 @@
 &lt;p&gt;&lt;strong&gt;经验：&lt;/strong&gt; 物料验收最好在收货 48 小时内完成，因为淘宝/嘉立创的售后窗口很短。之前吃过亏——隔了两周才发现一颗步进电机驱动器有问题，商家已经不认了。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
-&lt;h2 id=&#34;事项二高校产线视觉检测项目需求落地与方案选型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项二高校产线视觉检测项目需求落地与方案选型&#34;&gt;#&lt;/a&gt; 事项二：高校产线视觉检测项目——需求落地与方案选型&lt;/h2&gt;
+&lt;h2 id=&#34;高校产线视觉需求落地与方案选型&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#高校产线视觉需求落地与方案选型&#34;&gt;#&lt;/a&gt; 高校产线视觉：需求落地与方案选型&lt;/h2&gt;
 &lt;h3 id=&#34;项目现状&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#项目现状&#34;&gt;#&lt;/a&gt; 项目现状&lt;/h3&gt;
 &lt;p&gt;这是个给高校实验室做的产线模拟检测项目，核心需求是用机器视觉检测传送带上工件的表面缺陷。我离京期间项目进展缓慢，回来后公司开始正式推进，我负责对接硬件环境和软件供应商。&lt;/p&gt;
 &lt;h3 id=&#34;本周推进的具体工作&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#本周推进的具体工作&#34;&gt;#&lt;/a&gt; 本周推进的具体工作&lt;/h3&gt;
@@ -148,7 +148,7 @@
 &lt;/ol&gt;
 &lt;p&gt;这些坑之前在别的项目里踩过，这次选型时特意做了针对性调研。&lt;/p&gt;
 &lt;hr /&gt;
-&lt;h2 id=&#34;事项三luckfox-pico-ultra便宜但门槛不低&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项三luckfox-pico-ultra便宜但门槛不低&#34;&gt;#&lt;/a&gt; 事项三：Luckfox Pico Ultra——便宜但门槛不低&lt;/h2&gt;
+&lt;h2 id=&#34;luckfox-pico-ultra便宜但门槛不低&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#luckfox-pico-ultra便宜但门槛不低&#34;&gt;#&lt;/a&gt; Luckfox Pico Ultra：便宜，但门槛不低&lt;/h2&gt;
 &lt;h3 id=&#34;为什么买它&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#为什么买它&#34;&gt;#&lt;/a&gt; 为什么买它？&lt;/h3&gt;
 &lt;p&gt;幸狐（Luckfox）的 Pico Ultra 系列，RV1106 芯片，带 NPU，官方号称能跑轻量级 AI 推理。价格确实便宜——几十块钱一块，比 Raspberry Pi 便宜了不止一个量级。买它的初衷是想看看能不能用它做端侧视觉推理，替代目前 ESP32-S3 + 上位机的方案，把 AI 推理也放到端侧。&lt;/p&gt;
 &lt;h3 id=&#34;上手体验系统烧录是第一道坎&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#上手体验系统烧录是第一道坎&#34;&gt;#&lt;/a&gt; 上手体验：系统烧录是第一道坎&lt;/h3&gt;
@@ -174,7 +174,7 @@
 &lt;p&gt;&lt;strong&gt;踩坑笔记：&lt;/strong&gt; 买小众开发板之前，先去官方论坛 / GitHub Issues 翻一遍。如果社区活跃、FAQ 覆盖常见问题，那上手会顺利很多；如果社区冷清、文档是机翻英文，那每一坑都得自己填。Luckfox 的社区介于两者之间——中文资料有一些，但不够系统。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr /&gt;
-&lt;h2 id=&#34;事项四esp32-s3-小智快速原型验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#事项四esp32-s3-小智快速原型验证&#34;&gt;#&lt;/a&gt; 事项四：ESP32-S3 + 小智——快速原型验证&lt;/h2&gt;
+&lt;h2 id=&#34;esp32-s3-小智快速原型验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#esp32-s3-小智快速原型验证&#34;&gt;#&lt;/a&gt; ESP32-S3 + 小智：快速原型验证&lt;/h2&gt;
 &lt;p&gt;测试完 Luckfox 之后，切回了熟悉的 ESP32-S3。这周给一块闲置的 ESP32-S3 开发板装上了&lt;strong&gt;小智（XiaoZhi）固件&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;小智是一个开源的 AI 语音助手框架，专为 ESP32 系列设计，支持：&lt;/p&gt;
 &lt;ul&gt;
@@ -249,20 +249,36 @@
     </entry>
     <entry>
         <id>https://roastduck-zz.github.io/2026/06/26/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97[6%E6%9C%8822%E6%97%A5-6%E6%9C%8826%E6%97%A5]/</id>
-        <title>第一周工作记录：从了解项目开始</title>
+        <title>从项目地图到 PCB 入门——机器人公司第一周工作记录</title>
         <link rel="alternate" href="https://roastduck-zz.github.io/2026/06/26/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97[6%E6%9C%8822%E6%97%A5-6%E6%9C%8826%E6%97%A5]/"/>
-        <content type="html">&lt;p&gt;这一周是我正式开始工作的第一周，时间是 2026 年 6 月 22 日到 6 月 26 日。相比一上来就进入具体开发任务，这一周更像是一个逐步建立项目地图的过程：先把公司正在做、已经交付、以及后续可能继续推进的项目大致过了一遍，再从每个项目里理解业务场景、机器人形态和系统分工。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;第一个接触的是一个车载陪伴机器人相关项目。这个项目的核心场景是在车内对驾驶员状态进行检测，判断驾驶员是否存在疲劳驾驶等风险，同时还具备语音对话能力。它不是单纯的聊天机器人，也不是单纯的驾驶员监测系统，而是把陪伴、交互和安全提醒放在同一个车载环境里考虑。对我来说，这个项目让我第一次把“机器人”这个词和真实的车载场景连接起来：它需要关注硬件位置、视觉输入、语音交互、状态判断，也需要考虑驾驶这个场景本身对稳定性和及时性的要求。在这个项目中，我还学会了使用 Altium Designer（AD）绘制 RK3566 开发板，这是我第一次接触 PCB 设计，从原理图到 Layout 再到出 Gerber 文件，整个过程让我对嵌入式硬件开发有了更直观的认识。&lt;/p&gt;
-&lt;p&gt;第二个重点了解的是一个院校合作项目。这个项目里同时使用了人形机器人和轮臂机器人，两类机器人承担的职责不同：人形机器人主要负责装配动作，轮臂机器人主要负责质量检测。轮臂机器人会拿起待检测物体并进行旋转，从多个面观察表面质量，重点判断是否存在划痕等问题。&lt;/p&gt;
-&lt;p&gt;这个项目里我印象比较深的是视觉检测方案的选择。原本我会自然地联想到 3D 相机，但实际评估后，当前检测任务使用 2D 相机已经可以满足需求，不需要上 3D 相机。这里体现出一个很重要的工程判断：不是设备越复杂越好，而是要看任务本身到底需要什么信息。对于表面划痕这类质量检测，如果目标、光照、拍摄角度和算法流程设计得当，2D 视觉方案反而更直接，也更利于控制成本和系统复杂度。硬件选型和检测软件方案由外部视觉方案团队协助完成，我主要是先从整体链路上理解它们如何和机器人动作配合。&lt;/p&gt;
-&lt;p&gt;第三个了解的是一个已经交付的海外项目。这个项目主体工作已经完成，目前更多集中在售后支持和问题跟进上。我参与了一次与项目相关人员的对接，主要是了解现场反馈、售后问题的背景，以及后续如何把问题描述清楚、把信息传递准确。虽然这部分不是直接写代码或调机器人，但我能明显感觉到它同样重要：项目交付之后，系统是否稳定、用户反馈如何、问题能否快速定位，都会影响项目最终的质量。&lt;/p&gt;
-&lt;p&gt;这一周下来，我对公司的项目形态有了一个初步认识。公司做的机器人项目并不是停留在单一设备上，而是经常需要把机器人本体、视觉检测、语音交互、现场流程和售后支持放在一起考虑。不同项目的技术重点也不同：车载项目更关注驾驶员状态和自然交互，院校合作项目更关注多机器人协同和质量检测，海外交付项目则让我看到交付之后仍然需要持续维护。&lt;/p&gt;
-&lt;p&gt;对我个人来说，第一周最大的收获不是掌握了某一个具体工具，而是开始理解项目背后的工程思维。一个方案能不能落地，往往不只取决于技术是否先进，还取决于它是否适合当前场景、是否能稳定运行、是否便于维护，以及团队之间的信息是否能顺畅流动。后面如果继续深入这些项目，我希望能从“知道项目在做什么”慢慢过渡到“知道自己能在其中解决什么问题”。&lt;/p&gt;
+        <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 入职第一周，我从车载机器人、院校视觉检测和海外售后三条线建立项目地图，也第一次完整接触了 RK3566 开发板的 PCB 设计流程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;第一周先建立项目地图&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第一周先建立项目地图&#34;&gt;#&lt;/a&gt; 第一周，先建立项目地图&lt;/h2&gt;
+&lt;p&gt;2026 年 6 月 22 日到 6 月 26 日，是我正式开始工作的第一周。相比一上来就进入具体开发任务，这几天更像是在逐步建立一张项目地图：先了解公司正在做、已经交付以及后续可能继续推进的项目，再从每个项目里理解业务场景、机器人形态和系统分工。&lt;/p&gt;
+&lt;p&gt;这一周接触到的内容跨度很大，从车载陪伴机器人，到院校多机器人协同项目，再到已经交付的海外项目。它们看起来互不相同，但背后都绕不开同一个问题：如何把机器人本体、视觉感知、语音交互、现场流程和后续维护组织成一套真正能落地的系统。&lt;/p&gt;
+&lt;h2 id=&#34;车载陪伴机器人交互与驾驶安全&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#车载陪伴机器人交互与驾驶安全&#34;&gt;#&lt;/a&gt; 车载陪伴机器人：交互与驾驶安全&lt;/h2&gt;
+&lt;p&gt;第一个接触的是车载陪伴机器人项目。它需要在车内检测驾驶员状态，判断是否存在疲劳驾驶等风险，同时还要提供语音对话能力。它既不是单纯的聊天机器人，也不是单一的驾驶员监测系统，而是把陪伴、交互和安全提醒放在同一个车载环境里考虑。&lt;/p&gt;
+&lt;p&gt;这个项目让我第一次把“机器人”与真实车载场景连接起来。硬件安装位置、视觉输入、语音交互和状态判断都要协同工作，还要满足驾驶场景对稳定性和及时性的要求。&lt;/p&gt;
+&lt;h2 id=&#34;第一次接触-pcb-设计&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第一次接触-pcb-设计&#34;&gt;#&lt;/a&gt; 第一次接触 PCB 设计&lt;/h2&gt;
+&lt;p&gt;在这个项目中，我开始使用 Altium Designer（AD）绘制 RK3566 开发板。这是我第一次完整接触 PCB 设计：从原理图到 Layout，再到输出 Gerber 文件。整个流程让我对嵌入式硬件开发有了更直观的认识，也意识到一块开发板真正落地之前，需要在接口、布局、供电和生产文件之间反复校验。&lt;/p&gt;
+&lt;h2 id=&#34;院校项目多机器人协同与质量检测&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#院校项目多机器人协同与质量检测&#34;&gt;#&lt;/a&gt; 院校项目：多机器人协同与质量检测&lt;/h2&gt;
+&lt;p&gt;第二个重点了解的是院校合作项目。项目同时使用人形机器人和轮臂机器人，两类机器人承担不同职责：人形机器人主要负责装配，轮臂机器人负责质量检测。轮臂机器人会拿起待检测物体并旋转，从多个角度观察表面质量，重点判断是否存在划痕等问题。&lt;/p&gt;
+&lt;p&gt;这里真正有意思的不只是某一台机器人，而是多台设备如何围绕同一个工艺流程分工协作。视觉系统既要看清楚缺陷，也要与机器人的动作节拍配合。&lt;/p&gt;
+&lt;h2 id=&#34;为什么-2d-相机已经够用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#为什么-2d-相机已经够用&#34;&gt;#&lt;/a&gt; 为什么 2D 相机已经够用&lt;/h2&gt;
+&lt;p&gt;视觉检测方案的选择给我留下了很深的印象。最开始我会自然地想到 3D 相机，但实际评估后发现，当前任务使用 2D 相机已经可以满足需求。&lt;/p&gt;
+&lt;p&gt;这背后是一个很重要的工程判断：设备不是越复杂越好，而是要看任务到底需要什么信息。对于表面划痕检测，如果目标、光照、拍摄角度和算法流程设计得当，2D 视觉方案更直接，也更有利于控制成本和系统复杂度。硬件选型与检测软件由外部视觉方案团队协助完成，我则先从整体链路上理解它们如何与机器人动作配合。&lt;/p&gt;
+&lt;h2 id=&#34;海外项目交付之后还有售后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#海外项目交付之后还有售后&#34;&gt;#&lt;/a&gt; 海外项目：交付之后还有售后&lt;/h2&gt;
+&lt;p&gt;第三个接触的是一个已经交付的海外项目。目前项目主体已经完成，工作重心转向售后支持和问题跟进。我参与了一次项目对接，主要了解现场反馈、售后问题的背景，以及后续如何清楚描述问题、准确传递信息。&lt;/p&gt;
+&lt;p&gt;这部分工作虽然不是直接写代码或调机器人，却同样重要。项目交付之后，系统是否稳定、用户反馈如何、问题能否快速定位，都会影响最终质量。真正的交付并不是把设备发出去就结束，而是系统进入长期运行后的另一个开始。&lt;/p&gt;
+&lt;h2 id=&#34;第一周最大的收获&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第一周最大的收获&#34;&gt;#&lt;/a&gt; 第一周最大的收获&lt;/h2&gt;
+&lt;p&gt;这一周最大的收获，不是掌握了某一个具体工具，而是开始理解项目背后的工程思维。一个方案能不能落地，不只取决于技术是否先进，还取决于它是否适合当前场景、能否稳定运行、是否便于维护，以及团队之间的信息能否顺畅流动。&lt;/p&gt;
+&lt;p&gt;接下来，我希望自己能从“知道项目在做什么”，逐渐过渡到“知道自己能在其中解决什么问题”。&lt;/p&gt;
 </content>
+        <category term="工作记录" />
         <category term="周记" />
         <category term="机器人" />
-        <category term="工作记录" />
         <category term="车载" />
         <category term="视觉检测" />
         <category term="AD" />

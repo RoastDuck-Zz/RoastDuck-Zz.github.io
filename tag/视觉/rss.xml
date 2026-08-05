@@ -7,47 +7,47 @@
         <language>zh-CN</language>
         <pubDate>Mon, 06 Jul 2026 18:00:00 +0800</pubDate>
         <lastBuildDate>Mon, 06 Jul 2026 18:00:00 +0800</lastBuildDate>
-        <category>周记</category>
-        <category>机器人</category>
-        <category>项目交接</category>
-        <category>Remote-SSH</category>
-        <category>跌倒检测</category>
-        <category>技术支持</category>
-        <category>APIE2026</category>
         <category>ROS</category>
         <category>STM32</category>
         <category>树莓派</category>
         <category>机器人工程</category>
         <category>嵌入式开发</category>
         <category>工作记录</category>
+        <category>周记</category>
+        <category>机器人</category>
         <category>车载</category>
         <category>视觉检测</category>
         <category>AD</category>
         <category>RK3566</category>
         <category>PCB</category>
-        <category>康养机器人</category>
-        <category>视觉</category>
-        <category>MoveNet</category>
-        <category>奥比中光</category>
         <category>ESP32-S3</category>
         <category>嵌入式</category>
         <category>机器视觉</category>
         <category>YOLOv8</category>
         <category>3D打印</category>
+        <category>陪伴机器人</category>
+        <category>Luckfox</category>
+        <category>小智</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>跌倒检测</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <category>康养机器人</category>
+        <category>视觉</category>
+        <category>MoveNet</category>
+        <category>奥比中光</category>
+        <category>双屏显示</category>
+        <category>数字麦克风</category>
+        <category>硬件调试</category>
         <category>人形机器人</category>
         <category>机器人遥操</category>
         <category>VR控制</category>
         <category>工程化部署</category>
-        <category>陪伴机器人</category>
-        <category>小智</category>
-        <category>双屏显示</category>
-        <category>数字麦克风</category>
-        <category>硬件调试</category>
-        <category>Luckfox</category>
         <category>Linux</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/</guid>
-            <title>工作日志（6月29日-7月5日）：康养机器人视觉调试</title>
+            <title>从摄像头选型到 RGB-D 跌倒检测——泰安现场调试第二周</title>
             <link>https://roastduck-zz.github.io/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/</link>
             <category>周记</category>
             <category>机器人</category>
@@ -57,8 +57,11 @@
             <category>MoveNet</category>
             <category>奥比中光</category>
             <pubDate>Mon, 06 Jul 2026 18:00:00 +0800</pubDate>
-            <description><![CDATA[ &lt;p&gt;本周我从北京前往泰安出差。公司在泰安设有一个机器人生产基地，目前派我过去协助调试并学习相关技术。公司当前主要有三个产品场景，本周我的精力全部集中在其中一个上——康养机器人。&lt;/p&gt;
-&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
+            <description><![CDATA[ &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 泰安现场调试第二周，我完成了深度摄像头选型、轻量跌倒检测模型训练，并搭起“RGB 怀疑 + 深度确认”的双模判断链路。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;p&gt;本周我从北京前往泰安出差。公司在泰安设有一个机器人生产基地，目前派我过去协助调试并学习相关技术。公司当前主要有三个产品场景，本周的精力全部集中在其中一个上——康养机器人。&lt;/p&gt;
 &lt;h2 id=&#34;摄像头选型从-dcw2-到-gemini2&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#摄像头选型从-dcw2-到-gemini2&#34;&gt;#&lt;/a&gt; 摄像头选型：从 DCW2 到 Gemini2&lt;/h2&gt;
 &lt;p&gt;视觉是康养机器人的核心感知能力，摄像头选型自然成了第一件事。我们使用的都是奥比中光（Orbbec）的深度摄像头，手头先后经手了两款型号：&lt;/p&gt;
 &lt;table&gt;
