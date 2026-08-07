@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>RoastDuck • Posts by &#34;rviz&#34; tag</title>
+        <link>https://roastduck-zz.github.io</link>
+        <description>嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉</description>
+        <language>zh-CN</language>
+        <pubDate>Fri, 07 Aug 2026 18:00:00 +0800</pubDate>
+        <lastBuildDate>Fri, 07 Aug 2026 18:00:00 +0800</lastBuildDate>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
+        <category>工作记录</category>
+        <category>周记</category>
+        <category>机器人</category>
+        <category>车载</category>
+        <category>视觉检测</category>
+        <category>AD</category>
+        <category>RK3566</category>
+        <category>PCB</category>
+        <category>ESP32-S3</category>
+        <category>嵌入式</category>
+        <category>机器视觉</category>
+        <category>YOLOv8</category>
+        <category>3D打印</category>
+        <category>陪伴机器人</category>
+        <category>Luckfox</category>
+        <category>小智</category>
+        <category>康养机器人</category>
+        <category>跌倒检测</category>
+        <category>视觉</category>
+        <category>MoveNet</category>
+        <category>奥比中光</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <category>Luckfox Pico Ultra</category>
+        <category>RV1126B</category>
+        <category>Jetson</category>
+        <category>双臂机器人</category>
+        <category>VR遥操</category>
+        <category>MoveIt</category>
+        <category>RViz</category>
+        <category>双屏显示</category>
+        <category>数字麦克风</category>
+        <category>硬件调试</category>
+        <category>人形机器人</category>
+        <category>机器人遥操</category>
+        <category>VR控制</category>
+        <category>工程化部署</category>
+        <category>Linux</category>
+        <item>
+            <guid isPermalink="true">https://roastduck-zz.github.io/2026/08/07/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%888%E6%9C%883%E6%97%A5-8%E6%9C%887%E6%97%A5%EF%BC%89/</guid>
+            <title>从 Luckfox 视觉检测到 VR 双臂遥操——机器人开发周记</title>
+            <link>https://roastduck-zz.github.io/2026/08/07/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%888%E6%9C%883%E6%97%A5-8%E6%9C%887%E6%97%A5%EF%BC%89/</link>
+            <category>工作记录</category>
+            <category>周记</category>
+            <category>Luckfox Pico Ultra</category>
+            <category>RV1126B</category>
+            <category>Jetson</category>
+            <category>双臂机器人</category>
+            <category>VR遥操</category>
+            <category>MoveIt</category>
+            <category>RViz</category>
+            <pubDate>Fri, 07 Aug 2026 18:00:00 +0800</pubDate>
+            <description><![CDATA[ &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 这一周先在 Luckfox Pico Ultra 上完成陪伴机器人的视觉检测与视频链路验证，随后转向 Jetson 七自由度双臂机器人，打通 RViz 中的 VR 遥操并解决方向、位移比例和跟手性问题。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;本周主线从陪伴机器人转向双臂遥操&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#本周主线从陪伴机器人转向双臂遥操&#34;&gt;#&lt;/a&gt; 本周主线：从陪伴机器人转向双臂遥操&lt;/h2&gt;
+&lt;p&gt;本周的工作可以分成前后两条线。&lt;/p&gt;
+&lt;p&gt;周一和周二继续完成陪伴机器人的高配版本，核心是 Luckfox Pico Ultra 上的视觉检测与视频链路；周三开始，工作重心切换到七自由度双臂机器人，围绕 Jetson、OpenArmX、URDF、RViz 和 VR 遥操逐步展开。&lt;/p&gt;
+&lt;p&gt;两条线看起来跨度很大，但本质上都在处理同一个问题：如何把传感器输入、算法处理和机器人执行真正串成一条可调试、可维护的工程链路。&lt;/p&gt;
+&lt;h2 id=&#34;周一在-luckfox-上验证人脸疲劳检测&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#周一在-luckfox-上验证人脸疲劳检测&#34;&gt;#&lt;/a&gt; 周一：在 Luckfox 上验证人脸疲劳检测&lt;/h2&gt;
+&lt;p&gt;陪伴机器人的高配版本使用 &lt;strong&gt;Luckfox Pico Ultra&lt;/strong&gt;，核心 SoC 为瑞芯微 &lt;strong&gt;RV1126B&lt;/strong&gt;。周一的任务，是在本地部署 Google 的人脸关键点检测方案。&lt;/p&gt;
+&lt;p&gt;检测结果可以给出：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;人脸所在区域；&lt;/li&gt;
+&lt;li&gt;眼睛和嘴巴的位置；&lt;/li&gt;
+&lt;li&gt;眼睛是否闭合；&lt;/li&gt;
+&lt;li&gt;嘴巴是否持续张开。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;基于这些信息，可以进一步组合出疲劳状态的判断逻辑。例如，持续闭眼可能对应注意力下降，较长时间张嘴则可能是打哈欠。这里的重点不是单独识别某一个动作，而是让视觉结果能够为陪伴机器人提供稳定、可继续扩展的状态输入。&lt;/p&gt;
+&lt;p&gt;当天，人脸关键点与疲劳状态检测已经成功运行，为后续接入真实摄像头画面打下了基础。&lt;/p&gt;
+&lt;h2 id=&#34;周二打通-sc3336-h265-与-tcp-视频链路&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#周二打通-sc3336-h265-与-tcp-视频链路&#34;&gt;#&lt;/a&gt; 周二：打通 SC3336、H.265 与 TCP 视频链路&lt;/h2&gt;
+&lt;p&gt;周二开始处理 Luckfox 的摄像头。使用的传感器是 &lt;strong&gt;SC3336&lt;/strong&gt;，最终成功启动并采集到图像。&lt;/p&gt;
+&lt;p&gt;完整的视频链路如下：&lt;/p&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span&gt;SC3336 采集图像&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;        ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;Luckfox 编码为 H.265&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;        ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;通过 TCP 发送视频流&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;        ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;笔记本接收并解码&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;        ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;执行人脸关键点与疲劳检测&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这一步真正把前一天的算法验证变成了可以持续接收真实视频的完整流程。相比只对单张图片或本地视频做测试，摄像头采集、硬件编码、网络传输和接收端解码之间的任何一个环节出现问题，都会让整条链路中断。&lt;/p&gt;
+&lt;p&gt;在视频成功传到笔记本并完成疲劳检测后，陪伴机器人高配版本的视觉部分已经具备了进一步联调的基础。&lt;/p&gt;
+&lt;h2 id=&#34;周三在-jetson-上适配七自由度双臂机器人&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#周三在-jetson-上适配七自由度双臂机器人&#34;&gt;#&lt;/a&gt; 周三：在 Jetson 上适配七自由度双臂机器人&lt;/h2&gt;
+&lt;p&gt;周三开始转向七自由度双臂机器人。计算平台使用 &lt;strong&gt;Jetson Orin Super&lt;/strong&gt;，软件侧以开源项目 &lt;strong&gt;OpenArmX&lt;/strong&gt; 为基础。&lt;/p&gt;
+&lt;p&gt;第一步不是直接在 Jetson 上大改，而是先把 OpenArmX 仓库下载到笔记本，在本地完成模型与配置调整，再同步到 Jetson。这样做的好处是开发环境更顺手，代码版本也更容易管理；后续交付给我的仍然是 Jetson 侧工程，维护起来不会形成两套相互脱节的代码。&lt;/p&gt;
+&lt;p&gt;适配工作的重点包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将原项目中的 URDF 替换为当前七自由度双臂机器人的模型；&lt;/li&gt;
+&lt;li&gt;按照实际机器人调整连杆和关节尺寸；&lt;/li&gt;
+&lt;li&gt;检查关节层级、坐标轴方向和左右臂结构；&lt;/li&gt;
+&lt;li&gt;确认模型能够在 RViz 与 MoveIt 环境中正常加载。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;/img/covers/ubuntu_screen.png&#34; alt=&#34;Jetson 上的 RViz 与 MoveIt 双臂规划界面&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;模型能够显示只是第一步。对于双臂机器人来说，URDF 中一个关节轴方向或尺寸的错误，后面都会放大成末端姿态、运动范围和遥操映射的问题，因此这一阶段更重要的是把模型基础校准好。&lt;/p&gt;
+&lt;h2 id=&#34;周四vr-遥操先动起来&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#周四vr-遥操先动起来&#34;&gt;#&lt;/a&gt; 周四：VR 遥操先动起来&lt;/h2&gt;
+&lt;p&gt;周四开始开发 VR 遥操。我把 OpenArmX 的 VR 仓库下载下来并完成安装，很快实现了“手柄移动，RViz 中机械臂跟随运动”的第一版效果。&lt;/p&gt;
+&lt;p&gt;不过，能动并不等于好用。初始版本主要有三个问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;坐标轴方向不一致&lt;/strong&gt;：手柄的运动方向与机器人末端的运动方向对不上；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;位移比例不匹配&lt;/strong&gt;：手柄移动距离与机械臂末端位移并不对应；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;响应速度过慢&lt;/strong&gt;：RViz 中的机械臂动作明显滞后，缺少遥操所需的跟手感。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我先对坐标轴映射进行了逐项校对，确认 VR 坐标系与机器人基坐标系之间的方向关系，最终把运动方向调整正确。方向问题解决后，剩下的重点就是位移比例和响应速度。&lt;/p&gt;
+&lt;h2 id=&#34;周五解决跟手性实机测试被装配卡住&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#周五解决跟手性实机测试被装配卡住&#34;&gt;#&lt;/a&gt; 周五：解决跟手性，实机测试被装配卡住&lt;/h2&gt;
+&lt;p&gt;周五继续调试 VR 遥操。由于机械臂仍然不够跟手，我花了一上午集中调整控制效果，其间也参考了蓝思的 VR 遥操代码。&lt;/p&gt;
+&lt;p&gt;两套代码的整体思路差异比较大，不能直接照搬，但对比它们的输入处理与控制方式，仍然有助于定位当前链路中影响响应速度的部分。经过持续调整，上午基本解决了跟手性问题，RViz 中的运动效果已经能够进入下一阶段。&lt;/p&gt;
+&lt;p&gt;下午原计划开始实机测试，但硬件进度没有完全跟上：第二台机器人尚未完成装配，部分关节模组还需要刷写固件，而且刷写过程中又出现了一系列问题。最终，第二台机器人当天没能装起来，实机联调只能顺延到下一周。&lt;/p&gt;
+&lt;h2 id=&#34;这周最关键的三个工程问题&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#这周最关键的三个工程问题&#34;&gt;#&lt;/a&gt; 这周最关键的三个工程问题&lt;/h2&gt;
+&lt;h3 id=&#34;算法能运行不代表链路已经打通&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#算法能运行不代表链路已经打通&#34;&gt;#&lt;/a&gt; 算法能运行，不代表链路已经打通&lt;/h3&gt;
+&lt;p&gt;人脸检测成功只是起点。真实系统还需要摄像头稳定采集、H.265 编码、TCP 传输、接收端解码和检测程序共同工作。只有整条链路连续运行，算法才真正进入工程环境。&lt;/p&gt;
+&lt;h3 id=&#34;vr-遥操的核心是坐标与尺度映射&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#vr-遥操的核心是坐标与尺度映射&#34;&gt;#&lt;/a&gt; VR 遥操的核心是坐标与尺度映射&lt;/h3&gt;
+&lt;p&gt;手柄数据能够进入 RViz，并不代表机械臂会按照人的直觉运动。坐标轴方向、原点关系、位移缩放和响应速度都需要逐项校准。任何一个环节不一致，最终表现出来就是反向、漂移、动作过小或明显滞后。&lt;/p&gt;
+&lt;h3 id=&#34;软件准备好了实机仍可能被硬件进度卡住&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#软件准备好了实机仍可能被硬件进度卡住&#34;&gt;#&lt;/a&gt; 软件准备好了，实机仍可能被硬件进度卡住&lt;/h3&gt;
+&lt;p&gt;本周已经完成模型适配和 RViz 遥操调试，但实机测试仍依赖机械装配、关节模组固件和通信状态。机器人开发很少是纯软件问题，必须把机械、电气、固件和上层控制放在同一个进度表里看。&lt;/p&gt;
+&lt;h2 id=&#34;下一周计划&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#下一周计划&#34;&gt;#&lt;/a&gt; 下一周计划&lt;/h2&gt;
+&lt;p&gt;下一步将继续围绕实机联调推进：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;完成第二台七自由度机械臂的装配；&lt;/li&gt;
+&lt;li&gt;处理关节模组固件刷写问题；&lt;/li&gt;
+&lt;li&gt;检查关节零位、方向与运动限位；&lt;/li&gt;
+&lt;li&gt;先进行单关节和单臂测试，再逐步进入双臂联动；&lt;/li&gt;
+&lt;li&gt;将 RViz 中验证过的 VR 遥操链路迁移到实机，并重点观察稳定性与安全性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;写在最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#写在最后&#34;&gt;#&lt;/a&gt; 写在最后&lt;/h2&gt;
+&lt;p&gt;这一周从视觉检测切换到双臂遥操，技术栈横跨了嵌入式 Linux、摄像头、视频编码、网络传输、URDF、MoveIt、RViz 和 VR 控制。真正花时间的地方，往往不是让某个模块第一次运行起来，而是让不同模块之间的方向、尺度、速度和接口彼此一致。&lt;/p&gt;
+&lt;p&gt;目前软件侧已经走到实机测试前一步。下一周的关键，就是把仿真环境中已经跑通的双臂遥操安全地落到真实机器人上。&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

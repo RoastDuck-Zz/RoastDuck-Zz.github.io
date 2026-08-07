@@ -28,15 +28,22 @@
         <category>陪伴机器人</category>
         <category>Luckfox</category>
         <category>小智</category>
-        <category>项目交接</category>
-        <category>Remote-SSH</category>
-        <category>跌倒检测</category>
-        <category>技术支持</category>
-        <category>APIE2026</category>
         <category>康养机器人</category>
+        <category>跌倒检测</category>
         <category>视觉</category>
         <category>MoveNet</category>
         <category>奥比中光</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <category>Luckfox Pico Ultra</category>
+        <category>RV1126B</category>
+        <category>Jetson</category>
+        <category>双臂机器人</category>
+        <category>VR遥操</category>
+        <category>MoveIt</category>
+        <category>RViz</category>
         <category>双屏显示</category>
         <category>数字麦克风</category>
         <category>硬件调试</category>
@@ -51,8 +58,8 @@
             <link>https://roastduck-zz.github.io/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/</link>
             <category>周记</category>
             <category>机器人</category>
-            <category>跌倒检测</category>
             <category>康养机器人</category>
+            <category>跌倒检测</category>
             <category>视觉</category>
             <category>MoveNet</category>
             <category>奥比中光</category>

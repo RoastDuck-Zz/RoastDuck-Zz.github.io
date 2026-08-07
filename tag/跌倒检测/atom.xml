@@ -25,15 +25,22 @@
     <category term="陪伴机器人" />
     <category term="Luckfox" />
     <category term="小智" />
-    <category term="项目交接" />
-    <category term="Remote-SSH" />
-    <category term="跌倒检测" />
-    <category term="技术支持" />
-    <category term="APIE2026" />
     <category term="康养机器人" />
+    <category term="跌倒检测" />
     <category term="视觉" />
     <category term="MoveNet" />
     <category term="奥比中光" />
+    <category term="项目交接" />
+    <category term="Remote-SSH" />
+    <category term="技术支持" />
+    <category term="APIE2026" />
+    <category term="Luckfox Pico Ultra" />
+    <category term="RV1126B" />
+    <category term="Jetson" />
+    <category term="双臂机器人" />
+    <category term="VR遥操" />
+    <category term="MoveIt" />
+    <category term="RViz" />
     <category term="双屏显示" />
     <category term="数字麦克风" />
     <category term="硬件调试" />
@@ -167,9 +174,9 @@
 </content>
         <category term="周记" />
         <category term="机器人" />
+        <category term="跌倒检测" />
         <category term="项目交接" />
         <category term="Remote-SSH" />
-        <category term="跌倒检测" />
         <category term="技术支持" />
         <category term="APIE2026" />
         <updated>2026-07-20T10:00:00.000Z</updated>
@@ -446,8 +453,8 @@
 </content>
         <category term="周记" />
         <category term="机器人" />
-        <category term="跌倒检测" />
         <category term="康养机器人" />
+        <category term="跌倒检测" />
         <category term="视觉" />
         <category term="MoveNet" />
         <category term="奥比中光" />
