@@ -7,39 +7,38 @@
         <language>zh-CN</language>
         <pubDate>Mon, 16 Mar 2026 14:05:01 +0800</pubDate>
         <lastBuildDate>Mon, 16 Mar 2026 14:05:01 +0800</lastBuildDate>
-        <category>ROS</category>
-        <category>STM32</category>
-        <category>树莓派</category>
-        <category>机器人工程</category>
-        <category>嵌入式开发</category>
+        <category>周记</category>
         <category>机器人</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>跌倒检测</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
         <category>ESP32-S3</category>
         <category>嵌入式</category>
         <category>机器视觉</category>
         <category>YOLOv8</category>
         <category>3D打印</category>
         <category>工作记录</category>
-        <category>周记</category>
         <category>车载</category>
         <category>视觉检测</category>
         <category>AD</category>
         <category>RK3566</category>
         <category>PCB</category>
+        <category>陪伴机器人</category>
+        <category>Luckfox</category>
+        <category>小智</category>
         <category>康养机器人</category>
-        <category>跌倒检测</category>
         <category>视觉</category>
         <category>MoveNet</category>
         <category>奥比中光</category>
+        <category>双屏显示</category>
+        <category>数字麦克风</category>
+        <category>硬件调试</category>
         <category>人形机器人</category>
         <category>机器人遥操</category>
         <category>VR控制</category>
         <category>工程化部署</category>
-        <category>陪伴机器人</category>
-        <category>小智</category>
-        <category>双屏显示</category>
-        <category>数字麦克风</category>
-        <category>硬件调试</category>
-        <category>Luckfox</category>
         <category>Luckfox Pico Ultra</category>
         <category>RV1126B</category>
         <category>Jetson</category>
@@ -47,11 +46,15 @@
         <category>VR遥操</category>
         <category>MoveIt</category>
         <category>RViz</category>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
+        <category>CAN</category>
         <category>Linux</category>
-        <category>项目交接</category>
-        <category>Remote-SSH</category>
-        <category>技术支持</category>
-        <category>APIE2026</category>
+        <category>关节模组</category>
+        <category>Motorevo</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/</guid>
             <title>从零打通 ROS 小车全链路——树莓派 4B + STM32 主从架构实战</title>

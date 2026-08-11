@@ -4,39 +4,38 @@
     <title>RoastDuck • Posts by &#34;项目&#34; category</title>
     <link href="https://roastduck-zz.github.io" />
     <updated>2026-03-16T06:05:01.000Z</updated>
-    <category term="ROS" />
-    <category term="STM32" />
-    <category term="树莓派" />
-    <category term="机器人工程" />
-    <category term="嵌入式开发" />
+    <category term="周记" />
     <category term="机器人" />
+    <category term="项目交接" />
+    <category term="Remote-SSH" />
+    <category term="跌倒检测" />
+    <category term="技术支持" />
+    <category term="APIE2026" />
     <category term="ESP32-S3" />
     <category term="嵌入式" />
     <category term="机器视觉" />
     <category term="YOLOv8" />
     <category term="3D打印" />
     <category term="工作记录" />
-    <category term="周记" />
     <category term="车载" />
     <category term="视觉检测" />
     <category term="AD" />
     <category term="RK3566" />
     <category term="PCB" />
+    <category term="陪伴机器人" />
+    <category term="Luckfox" />
+    <category term="小智" />
     <category term="康养机器人" />
-    <category term="跌倒检测" />
     <category term="视觉" />
     <category term="MoveNet" />
     <category term="奥比中光" />
+    <category term="双屏显示" />
+    <category term="数字麦克风" />
+    <category term="硬件调试" />
     <category term="人形机器人" />
     <category term="机器人遥操" />
     <category term="VR控制" />
     <category term="工程化部署" />
-    <category term="陪伴机器人" />
-    <category term="小智" />
-    <category term="双屏显示" />
-    <category term="数字麦克风" />
-    <category term="硬件调试" />
-    <category term="Luckfox" />
     <category term="Luckfox Pico Ultra" />
     <category term="RV1126B" />
     <category term="Jetson" />
@@ -44,11 +43,15 @@
     <category term="VR遥操" />
     <category term="MoveIt" />
     <category term="RViz" />
+    <category term="ROS" />
+    <category term="STM32" />
+    <category term="树莓派" />
+    <category term="机器人工程" />
+    <category term="嵌入式开发" />
+    <category term="CAN" />
     <category term="Linux" />
-    <category term="项目交接" />
-    <category term="Remote-SSH" />
-    <category term="技术支持" />
-    <category term="APIE2026" />
+    <category term="关节模组" />
+    <category term="Motorevo" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/03/16/ROS%20%E5%B0%8F%E8%BD%A6/</id>
         <title>从零打通 ROS 小车全链路——树莓派 4B + STM32 主从架构实战</title>

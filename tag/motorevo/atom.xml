@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://roastduck-zz.github.io</id>
+    <title>RoastDuck • Posts by &#34;motorevo&#34; tag</title>
+    <link href="https://roastduck-zz.github.io" />
+    <updated>2026-08-11T02:49:13.000Z</updated>
+    <category term="周记" />
+    <category term="机器人" />
+    <category term="项目交接" />
+    <category term="Remote-SSH" />
+    <category term="跌倒检测" />
+    <category term="技术支持" />
+    <category term="APIE2026" />
+    <category term="ESP32-S3" />
+    <category term="嵌入式" />
+    <category term="机器视觉" />
+    <category term="YOLOv8" />
+    <category term="3D打印" />
+    <category term="工作记录" />
+    <category term="车载" />
+    <category term="视觉检测" />
+    <category term="AD" />
+    <category term="RK3566" />
+    <category term="PCB" />
+    <category term="陪伴机器人" />
+    <category term="Luckfox" />
+    <category term="小智" />
+    <category term="康养机器人" />
+    <category term="视觉" />
+    <category term="MoveNet" />
+    <category term="奥比中光" />
+    <category term="双屏显示" />
+    <category term="数字麦克风" />
+    <category term="硬件调试" />
+    <category term="人形机器人" />
+    <category term="机器人遥操" />
+    <category term="VR控制" />
+    <category term="工程化部署" />
+    <category term="Luckfox Pico Ultra" />
+    <category term="RV1126B" />
+    <category term="Jetson" />
+    <category term="双臂机器人" />
+    <category term="VR遥操" />
+    <category term="MoveIt" />
+    <category term="RViz" />
+    <category term="ROS" />
+    <category term="STM32" />
+    <category term="树莓派" />
+    <category term="机器人工程" />
+    <category term="嵌入式开发" />
+    <category term="CAN" />
+    <category term="Linux" />
+    <category term="关节模组" />
+    <category term="Motorevo" />
+    <entry>
+        <id>https://roastduck-zz.github.io/2026/08/11/%E6%8A%80%E6%9C%AF%E6%89%8B%E5%86%8C/</id>
+        <title>技术手册：常用 CAN 命令与关节模组 ID 修改</title>
+        <link rel="alternate" href="https://roastduck-zz.github.io/2026/08/11/%E6%8A%80%E6%9C%AF%E6%89%8B%E5%86%8C/"/>
+        <content type="html">&lt;p&gt;这篇文章用于集中记录工作中经常使用的命令和标准操作流程。内容按功能分节整理，后续遇到新的命令、参数或注意事项时，可直接在对应章节中补充。&lt;/p&gt;
+&lt;p&gt;&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&#34;使用说明&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#使用说明&#34;&gt;#&lt;/a&gt; 使用说明&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;命令中的 &lt;code&gt;can1&lt;/code&gt; 是当前使用的 CAN 接口；实际环境不同时需替换。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;OLD_CAN_ID&amp;gt;&lt;/code&gt;、&lt;code&gt;&amp;lt;NEW_CAN_ID&amp;gt;&lt;/code&gt; 和 &lt;code&gt;&amp;lt;NEW_ID_INT32_LE&amp;gt;&lt;/code&gt; 是占位符，执行前必须替换为实际值。&lt;/li&gt;
+&lt;li&gt;涉及参数写入时，建议依次完成“查询、修改、复查、保存、再次确认”，避免只写入但未持久化。&lt;/li&gt;
+&lt;li&gt;每次修改本文后，同步更新文末的维护记录和 front matter 中的 &lt;code&gt;updated&lt;/code&gt; 时间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;实时查看-can-信号日志&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#实时查看-can-信号日志&#34;&gt;#&lt;/a&gt; 实时查看 CAN 信号日志&lt;/h2&gt;
+&lt;p&gt;使用 &lt;code&gt;candump&lt;/code&gt; 实时查看 &lt;code&gt;can1&lt;/code&gt; 接口上的 CAN 信号：&lt;/p&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#59873A;--shiki-dark:#80A665&#34;&gt;candump&lt;/span&gt;&lt;span style=&#34;color:#A65E2B;--shiki-dark:#C99076&#34;&gt; -e&lt;/span&gt;&lt;span style=&#34;color:#A65E2B;--shiki-dark:#C99076&#34;&gt; -x&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt; can1&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;修改-motorevo-关节模组-id泉智博&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#修改-motorevo-关节模组-id泉智博&#34;&gt;#&lt;/a&gt; 修改 Motorevo 关节模组 ID（泉智博）&lt;/h2&gt;
+&lt;h3 id=&#34;参数与计算规则&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#参数与计算规则&#34;&gt;#&lt;/a&gt; 参数与计算规则&lt;/h3&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;参数&lt;/th&gt;
+&lt;th&gt;含义&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;OLD_ID&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;当前 Motor ID&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;NEW_ID&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;目标 Motor ID&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;OLD_CAN_ID&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;0x600 + OLD_ID&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;NEW_CAN_ID&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;0x600 + NEW_ID&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Motor ID Index&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;0x24&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Read&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;0x04&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Write&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;0x15&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;NEW_ID_INT32_LE&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;将新的 Motor ID 转换为 32 位小端整数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;操作前检查&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作前检查&#34;&gt;#&lt;/a&gt; 操作前检查&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;确认当前使用的 CAN 接口名称。&lt;/li&gt;
+&lt;li&gt;记录当前 Motor ID，并计算 &lt;code&gt;OLD_CAN_ID&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;确定目标 Motor ID，并计算 &lt;code&gt;NEW_CAN_ID&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;将目标 Motor ID 转换为 &lt;code&gt;NEW_ID_INT32_LE&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;检查目标 ID 是否会与总线上的其他模组冲突。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;标准操作流程&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#标准操作流程&#34;&gt;#&lt;/a&gt; 标准操作流程&lt;/h3&gt;
+&lt;h4 id=&#34;1-查询旧-id&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1-查询旧-id&#34;&gt;#&lt;/a&gt; 1. 查询旧 ID&lt;/h4&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#59873A;--shiki-dark:#80A665&#34;&gt;cansend&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt; can1&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&amp;#x3C;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;OLD_CAN_I&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt;D&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&gt;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;#6724000000000476&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;2-修改-motor-id&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2-修改-motor-id&#34;&gt;#&lt;/a&gt; 2. 修改 Motor ID&lt;/h4&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#59873A;--shiki-dark:#80A665&#34;&gt;cansend&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt; can1&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&amp;#x3C;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;OLD_CAN_I&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt;D&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&gt;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;#6724&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&amp;#x3C;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;NEW_ID_INT32_L&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt;E&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&gt;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;1576&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;3-查询新-id&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3-查询新-id&#34;&gt;#&lt;/a&gt; 3. 查询新 ID&lt;/h4&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#59873A;--shiki-dark:#80A665&#34;&gt;cansend&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt; can1&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&amp;#x3C;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;NEW_CAN_I&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt;D&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&gt;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;#6724000000000476&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;4-保存到-flash&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4-保存到-flash&#34;&gt;#&lt;/a&gt; 4. 保存到 Flash&lt;/h4&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#59873A;--shiki-dark:#80A665&#34;&gt;cansend&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt; can1&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&amp;#x3C;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;NEW_CAN_I&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt;D&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&gt;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;#6700000000000076&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#59873A;--shiki-dark:#80A665&#34;&gt;sleep&lt;/span&gt;&lt;span style=&#34;color:#2F798A;--shiki-dark:#4C9A91&#34;&gt; 2&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;5-再次确认&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5-再次确认&#34;&gt;#&lt;/a&gt; 5. 再次确认&lt;/h4&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#59873A;--shiki-dark:#80A665&#34;&gt;cansend&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt; can1&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&amp;#x3C;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;NEW_CAN_I&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt;D&lt;/span&gt;&lt;span style=&#34;color:#AB5959;--shiki-dark:#CB7676&#34;&gt;&gt;&lt;/span&gt;&lt;span style=&#34;color:#B56959;--shiki-dark:#C98A7D&#34;&gt;#6724000000000476&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;操作后检查&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#操作后检查&#34;&gt;#&lt;/a&gt; 操作后检查&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;新 CAN ID 能够正常响应查询。&lt;/li&gt;
+&lt;li&gt;旧 CAN ID 不再作为该模组的有效地址。&lt;/li&gt;
+&lt;li&gt;保存到 Flash 后等待至少 2 秒，再执行确认查询。&lt;/li&gt;
+&lt;li&gt;模组重新上电后，ID 仍保持为新值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;后续内容维护模板&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#后续内容维护模板&#34;&gt;#&lt;/a&gt; 后续内容维护模板&lt;/h2&gt;
+&lt;p&gt;新增命令时，建议复制下面的结构，以便长期保持文章清晰：&lt;/p&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#999999;--shiki-light-font-weight:bold;--shiki-dark:#666666;--shiki-dark-font-weight:bold&#34;&gt;##&lt;/span&gt;&lt;span style=&#34;color:#1C6B48;--shiki-light-font-weight:bold;--shiki-dark:#4D9375;--shiki-dark-font-weight:bold&#34;&gt; 功能名称&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt;简要说明使用场景、适用设备和前置条件。&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#999999;--shiki-light-font-weight:bold;--shiki-dark:#666666;--shiki-dark-font-weight:bold&#34;&gt;###&lt;/span&gt;&lt;span style=&#34;color:#1C6B48;--shiki-light-font-weight:bold;--shiki-dark:#4D9375;--shiki-dark-font-weight:bold&#34;&gt; 命令&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#A65E2B;--shiki-dark:#C99076&#34;&gt;\`&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt;``bash&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#999999;--shiki-light-font-weight:bold;--shiki-dark:#666666;--shiki-dark-font-weight:bold&#34;&gt;#&lt;/span&gt;&lt;span style=&#34;color:#1C6B48;--shiki-light-font-weight:bold;--shiki-dark:#4D9375;--shiki-dark-font-weight:bold&#34;&gt; 在这里填写命令&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#A65E2B;--shiki-dark:#C99076&#34;&gt;\`&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt;``&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#999999;--shiki-light-font-weight:bold;--shiki-dark:#666666;--shiki-dark-font-weight:bold&#34;&gt;###&lt;/span&gt;&lt;span style=&#34;color:#1C6B48;--shiki-light-font-weight:bold;--shiki-dark:#4D9375;--shiki-dark-font-weight:bold&#34;&gt; 参数说明&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#A65E2B;--shiki-dark:#D4976C&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#999999;--shiki-dark:#666666&#34;&gt; `&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt;参数名&lt;/span&gt;&lt;span style=&#34;color:#999999;--shiki-dark:#666666&#34;&gt;`&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt;：参数含义。&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#999999;--shiki-light-font-weight:bold;--shiki-dark:#666666;--shiki-dark-font-weight:bold&#34;&gt;###&lt;/span&gt;&lt;span style=&#34;color:#1C6B48;--shiki-light-font-weight:bold;--shiki-dark:#4D9375;--shiki-dark-font-weight:bold&#34;&gt; 检查事项&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#A65E2B;--shiki-dark:#D4976C&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt; 执行前需要确认的事项。&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span style=&#34;color:#A65E2B;--shiki-dark:#D4976C&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#393A34;--shiki-dark:#DBD7CAEE&#34;&gt; 执行后用于判断成功的现象。&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;维护记录&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#维护记录&#34;&gt;#&lt;/a&gt; 维护记录&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;日期&lt;/th&gt;
+&lt;th&gt;变更内容&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2026-08-11&lt;/td&gt;
+&lt;td&gt;从《常用代码》整理 CAN 日志命令及 Motorevo Motor ID 修改流程。&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content>
+        <category term="机器人" />
+        <category term="CAN" />
+        <category term="Linux" />
+        <category term="关节模组" />
+        <category term="Motorevo" />
+        <updated>2026-08-11T02:49:13.000Z</updated>
+    </entry>
+</feed>

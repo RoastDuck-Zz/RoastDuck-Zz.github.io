@@ -4,39 +4,38 @@
     <title>RoastDuck • Posts by &#34;工作记录&#34; category</title>
     <link href="https://roastduck-zz.github.io" />
     <updated>2026-08-07T10:00:00.000Z</updated>
-    <category term="ROS" />
-    <category term="STM32" />
-    <category term="树莓派" />
-    <category term="机器人工程" />
-    <category term="嵌入式开发" />
+    <category term="周记" />
     <category term="机器人" />
+    <category term="项目交接" />
+    <category term="Remote-SSH" />
+    <category term="跌倒检测" />
+    <category term="技术支持" />
+    <category term="APIE2026" />
     <category term="ESP32-S3" />
     <category term="嵌入式" />
     <category term="机器视觉" />
     <category term="YOLOv8" />
     <category term="3D打印" />
     <category term="工作记录" />
-    <category term="周记" />
     <category term="车载" />
     <category term="视觉检测" />
     <category term="AD" />
     <category term="RK3566" />
     <category term="PCB" />
+    <category term="陪伴机器人" />
+    <category term="Luckfox" />
+    <category term="小智" />
     <category term="康养机器人" />
-    <category term="跌倒检测" />
     <category term="视觉" />
     <category term="MoveNet" />
     <category term="奥比中光" />
+    <category term="双屏显示" />
+    <category term="数字麦克风" />
+    <category term="硬件调试" />
     <category term="人形机器人" />
     <category term="机器人遥操" />
     <category term="VR控制" />
     <category term="工程化部署" />
-    <category term="陪伴机器人" />
-    <category term="小智" />
-    <category term="双屏显示" />
-    <category term="数字麦克风" />
-    <category term="硬件调试" />
-    <category term="Luckfox" />
     <category term="Luckfox Pico Ultra" />
     <category term="RV1126B" />
     <category term="Jetson" />
@@ -44,11 +43,15 @@
     <category term="VR遥操" />
     <category term="MoveIt" />
     <category term="RViz" />
+    <category term="ROS" />
+    <category term="STM32" />
+    <category term="树莓派" />
+    <category term="机器人工程" />
+    <category term="嵌入式开发" />
+    <category term="CAN" />
     <category term="Linux" />
-    <category term="项目交接" />
-    <category term="Remote-SSH" />
-    <category term="技术支持" />
-    <category term="APIE2026" />
+    <category term="关节模组" />
+    <category term="Motorevo" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/08/07/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%888%E6%9C%883%E6%97%A5-8%E6%9C%887%E6%97%A5%EF%BC%89/</id>
         <title>从 Luckfox 视觉检测到 VR 双臂遥操——机器人开发周记</title>
@@ -131,8 +134,8 @@
 &lt;p&gt;这一周从视觉检测切换到双臂遥操，技术栈横跨了嵌入式 Linux、摄像头、视频编码、网络传输、URDF、MoveIt、RViz 和 VR 控制。真正花时间的地方，往往不是让某个模块第一次运行起来，而是让不同模块之间的方向、尺度、速度和接口彼此一致。&lt;/p&gt;
 &lt;p&gt;目前软件侧已经走到实机测试前一步。下一周的关键，就是把仿真环境中已经跑通的双臂遥操安全地落到真实机器人上。&lt;/p&gt;
 </content>
-        <category term="工作记录" />
         <category term="周记" />
+        <category term="工作记录" />
         <category term="Luckfox Pico Ultra" />
         <category term="RV1126B" />
         <category term="Jetson" />
@@ -581,8 +584,8 @@
         <category term="机器视觉" />
         <category term="工作记录" />
         <category term="陪伴机器人" />
-        <category term="小智" />
         <category term="Luckfox" />
+        <category term="小智" />
         <updated>2026-07-24T10:00:00.000Z</updated>
     </entry>
     <entry>
@@ -708,11 +711,11 @@
 &lt;p&gt;前几周的工作重点是解决“功能能不能做出来”，本周则更多是在解决“功能能不能被其他人接手”和“产品能不能被外部人员理解”。&lt;/p&gt;
 &lt;p&gt;从研发、部署、交接到展示，这几个环节共同构成了技术成果真正走向实际应用的过程。&lt;/p&gt;
 </content>
-        <category term="机器人" />
         <category term="周记" />
-        <category term="跌倒检测" />
+        <category term="机器人" />
         <category term="项目交接" />
         <category term="Remote-SSH" />
+        <category term="跌倒检测" />
         <category term="技术支持" />
         <category term="APIE2026" />
         <updated>2026-07-20T10:00:00.000Z</updated>
@@ -880,8 +883,8 @@
 &lt;p&gt;让机器人完成一次动作并不困难，真正困难的是让整套系统稳定、可复制地运行。&lt;/p&gt;
 &lt;/blockquote&gt;
 </content>
-        <category term="机器视觉" />
         <category term="跌倒检测" />
+        <category term="机器视觉" />
         <category term="人形机器人" />
         <category term="机器人遥操" />
         <category term="VR控制" />
@@ -987,10 +990,10 @@
 &lt;p&gt;下一步需要进一步优化跌倒检测的准确率、完善报警逻辑，以及解决音频输出问题。另外，如果能拿到机器人核心板的完整硬件规格，很多之前的&amp;quot;保守选择&amp;quot;就可以重新评估，说不定 MediaPipe Pose 真的能跑得动。&lt;/p&gt;
 &lt;p&gt;更重要的是，这一周让我深刻感受到：&lt;strong&gt;实际项目中的工程决策，往往不是选最优解，而是在当前约束条件下选最不差的那一个。&lt;/strong&gt; 硬件不确定、资料不全、信息不对称——这些不是&amp;quot;异常情况&amp;quot;，它们就是日常开发环境的一部分。在这些约束下仍然能推进工作，可能比在理想条件下写出完美方案更需要耐心和判断力。&lt;/p&gt;
 </content>
-        <category term="机器人" />
         <category term="周记" />
-        <category term="康养机器人" />
+        <category term="机器人" />
         <category term="跌倒检测" />
+        <category term="康养机器人" />
         <category term="视觉" />
         <category term="MoveNet" />
         <category term="奥比中光" />
@@ -1025,9 +1028,9 @@
 &lt;p&gt;这一周最大的收获，不是掌握了某一个具体工具，而是开始理解项目背后的工程思维。一个方案能不能落地，不只取决于技术是否先进，还取决于它是否适合当前场景、能否稳定运行、是否便于维护，以及团队之间的信息能否顺畅流动。&lt;/p&gt;
 &lt;p&gt;接下来，我希望自己能从“知道项目在做什么”，逐渐过渡到“知道自己能在其中解决什么问题”。&lt;/p&gt;
 </content>
+        <category term="周记" />
         <category term="机器人" />
         <category term="工作记录" />
-        <category term="周记" />
         <category term="车载" />
         <category term="视觉检测" />
         <category term="AD" />
