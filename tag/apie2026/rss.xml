@@ -7,6 +7,11 @@
         <language>zh-CN</language>
         <pubDate>Mon, 20 Jul 2026 18:00:00 +0800</pubDate>
         <lastBuildDate>Mon, 20 Jul 2026 18:00:00 +0800</lastBuildDate>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
         <category>周记</category>
         <category>机器人</category>
         <category>项目交接</category>
@@ -25,16 +30,13 @@
         <category>AD</category>
         <category>RK3566</category>
         <category>PCB</category>
-        <category>陪伴机器人</category>
-        <category>Luckfox</category>
-        <category>小智</category>
         <category>康养机器人</category>
         <category>视觉</category>
         <category>MoveNet</category>
         <category>奥比中光</category>
-        <category>双屏显示</category>
-        <category>数字麦克风</category>
-        <category>硬件调试</category>
+        <category>陪伴机器人</category>
+        <category>Luckfox</category>
+        <category>小智</category>
         <category>人形机器人</category>
         <category>机器人遥操</category>
         <category>VR控制</category>
@@ -46,15 +48,14 @@
         <category>VR遥操</category>
         <category>MoveIt</category>
         <category>RViz</category>
-        <category>ROS</category>
-        <category>STM32</category>
-        <category>树莓派</category>
-        <category>机器人工程</category>
-        <category>嵌入式开发</category>
         <category>CAN</category>
+        <category>SocketCAN</category>
         <category>Linux</category>
         <category>关节模组</category>
         <category>Motorevo</category>
+        <category>双屏显示</category>
+        <category>数字麦克风</category>
+        <category>硬件调试</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/07/20/work-log-july13-july19/</guid>
             <title>从项目交接到展会支持——泰安收尾与 APIE2026 现场记录</title>

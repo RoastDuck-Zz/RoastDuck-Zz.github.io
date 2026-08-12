@@ -4,6 +4,11 @@
     <title>RoastDuck • Posts by &#34;luckfox&#34; tag</title>
     <link href="https://roastduck-zz.github.io" />
     <updated>2026-07-31T08:00:00.000Z</updated>
+    <category term="ROS" />
+    <category term="STM32" />
+    <category term="树莓派" />
+    <category term="机器人工程" />
+    <category term="嵌入式开发" />
     <category term="周记" />
     <category term="机器人" />
     <category term="项目交接" />
@@ -22,16 +27,13 @@
     <category term="AD" />
     <category term="RK3566" />
     <category term="PCB" />
-    <category term="陪伴机器人" />
-    <category term="Luckfox" />
-    <category term="小智" />
     <category term="康养机器人" />
     <category term="视觉" />
     <category term="MoveNet" />
     <category term="奥比中光" />
-    <category term="双屏显示" />
-    <category term="数字麦克风" />
-    <category term="硬件调试" />
+    <category term="陪伴机器人" />
+    <category term="Luckfox" />
+    <category term="小智" />
     <category term="人形机器人" />
     <category term="机器人遥操" />
     <category term="VR控制" />
@@ -43,15 +45,14 @@
     <category term="VR遥操" />
     <category term="MoveIt" />
     <category term="RViz" />
-    <category term="ROS" />
-    <category term="STM32" />
-    <category term="树莓派" />
-    <category term="机器人工程" />
-    <category term="嵌入式开发" />
     <category term="CAN" />
+    <category term="SocketCAN" />
     <category term="Linux" />
     <category term="关节模组" />
     <category term="Motorevo" />
+    <category term="双屏显示" />
+    <category term="数字麦克风" />
+    <category term="硬件调试" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/07/31/%E8%BF%94%E4%BA%AC%E4%B8%80%E5%91%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</id>
         <title>从开发板烧录到产线视觉——返京一周嵌入式开发记录</title>
