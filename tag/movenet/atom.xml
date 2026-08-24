@@ -53,6 +53,11 @@
     <category term="双屏显示" />
     <category term="数字麦克风" />
     <category term="硬件调试" />
+    <category term="ESP32" />
+    <category term="具身智能" />
+    <category term="工业相机" />
+    <category term="系统集成" />
+    <category term="世界机器人大会" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/07/06/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%886%E6%9C%8827%E6%97%A5-7%E6%9C%885%E6%97%A5%EF%BC%89/</id>
         <title>从摄像头选型到 RGB-D 跌倒检测——泰安现场调试第二周</title>

@@ -56,6 +56,11 @@
         <category>双屏显示</category>
         <category>数字麦克风</category>
         <category>硬件调试</category>
+        <category>ESP32</category>
+        <category>具身智能</category>
+        <category>工业相机</category>
+        <category>系统集成</category>
+        <category>世界机器人大会</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/08/11/%E6%8A%80%E6%9C%AF%E6%89%8B%E5%86%8C/</guid>
             <title>技术手册：常用 CAN 命令与关节模组 ID 修改</title>

@@ -56,6 +56,11 @@
         <category>双屏显示</category>
         <category>数字麦克风</category>
         <category>硬件调试</category>
+        <category>ESP32</category>
+        <category>具身智能</category>
+        <category>工业相机</category>
+        <category>系统集成</category>
+        <category>世界机器人大会</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/</guid>
             <title>从零造一台会「看」的焊接机器人——五自由度机械臂全栈开发手记</title>

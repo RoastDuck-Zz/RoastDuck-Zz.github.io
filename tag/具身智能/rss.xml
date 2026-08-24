@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>RoastDuck • Posts by &#34;具身智能&#34; tag</title>
+        <link>https://roastduck-zz.github.io</link>
+        <description>嵌入式软件开发技术博客 — C/C++ · Python · ROS · STM32 · ESP32 · 机器视觉</description>
+        <language>zh-CN</language>
+        <pubDate>Fri, 21 Aug 2026 18:00:00 +0800</pubDate>
+        <lastBuildDate>Fri, 21 Aug 2026 18:00:00 +0800</lastBuildDate>
+        <category>ROS</category>
+        <category>STM32</category>
+        <category>树莓派</category>
+        <category>机器人工程</category>
+        <category>嵌入式开发</category>
+        <category>周记</category>
+        <category>机器人</category>
+        <category>项目交接</category>
+        <category>Remote-SSH</category>
+        <category>跌倒检测</category>
+        <category>技术支持</category>
+        <category>APIE2026</category>
+        <category>ESP32-S3</category>
+        <category>嵌入式</category>
+        <category>机器视觉</category>
+        <category>YOLOv8</category>
+        <category>3D打印</category>
+        <category>工作记录</category>
+        <category>车载</category>
+        <category>视觉检测</category>
+        <category>AD</category>
+        <category>RK3566</category>
+        <category>PCB</category>
+        <category>康养机器人</category>
+        <category>视觉</category>
+        <category>MoveNet</category>
+        <category>奥比中光</category>
+        <category>陪伴机器人</category>
+        <category>Luckfox</category>
+        <category>小智</category>
+        <category>人形机器人</category>
+        <category>机器人遥操</category>
+        <category>VR控制</category>
+        <category>工程化部署</category>
+        <category>Luckfox Pico Ultra</category>
+        <category>RV1126B</category>
+        <category>Jetson</category>
+        <category>双臂机器人</category>
+        <category>VR遥操</category>
+        <category>MoveIt</category>
+        <category>RViz</category>
+        <category>CAN</category>
+        <category>SocketCAN</category>
+        <category>Linux</category>
+        <category>关节模组</category>
+        <category>Motorevo</category>
+        <category>双屏显示</category>
+        <category>数字麦克风</category>
+        <category>硬件调试</category>
+        <category>ESP32</category>
+        <category>具身智能</category>
+        <category>工业相机</category>
+        <category>系统集成</category>
+        <category>世界机器人大会</category>
+        <item>
+            <guid isPermalink="true">https://roastduck-zz.github.io/2026/08/21/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%888%E6%9C%8817%E6%97%A5-8%E6%9C%8821%E6%97%A5%EF%BC%89/</guid>
+            <title>从实验台到展台——双臂机器人参展前的最后一次系统联调</title>
+            <link>https://roastduck-zz.github.io/2026/08/21/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%888%E6%9C%8817%E6%97%A5-8%E6%9C%8821%E6%97%A5%EF%BC%89/</link>
+            <category>机器人</category>
+            <category>PCB</category>
+            <category>双臂机器人</category>
+            <category>CAN</category>
+            <category>具身智能</category>
+            <category>系统集成</category>
+            <category>世界机器人大会</category>
+            <pubDate>Fri, 21 Aug 2026 18:00:00 +0800</pubDate>
+            <description><![CDATA[ &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 一台机器人能够在实验室里动起来，只代表开发走完了前半程；当它需要被搬到展台、连续运行并让陌生观众看懂时，稳定性、装配、恢复能力和现场协作才真正成为主角。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;双臂机器人终于要离开实验台了&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#双臂机器人终于要离开实验台了&#34;&gt;#&lt;/a&gt; 双臂机器人终于要离开实验台了&lt;/h2&gt;
+&lt;p&gt;这一阶段的重点仍然是七自由度双臂机器人，但目标已经发生了变化。&lt;/p&gt;
+&lt;p&gt;前面做模型适配、VR 遥操作和第二台样机装配时，我更关心的是功能能不能实现：关节是否能通信、机械臂能不能按照指令运动、仿真中的控制链路能否迁移到实机。临近世界机器人大会，问题变成了另一种形式：&lt;strong&gt;这套系统能不能以一个完整、稳定、可展示的状态出现在现场。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;因为要参加展出，前两天基本都在继续组装和调试双臂机器人。到了这个阶段，没有继续增加复杂功能，而是把已有部分调好、装好，尽量减少演示现场的不确定性。&lt;/p&gt;
+&lt;p&gt;这让我第一次明显感受到，实验样机和展台样机虽然是同一台机器，对工程状态的要求却并不一样。&lt;/p&gt;
+&lt;h2 id=&#34;能运行和能展示中间还差什么&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#能运行和能展示中间还差什么&#34;&gt;#&lt;/a&gt; 能运行和能展示，中间还差什么？&lt;/h2&gt;
+&lt;p&gt;在实验室里调试时，偶尔重启一次程序、重新连接一次通信，或者临时调整一根线都很正常。开发人员知道每个模块在哪里，也知道出现问题后应该从哪一层开始排查。&lt;/p&gt;
+&lt;p&gt;但展台上的机器人不能依赖这些隐含知识。它需要在有限时间内完成上电、连接和演示；出现异常后，也要尽可能快速地恢复，而不是现场重新分析整套系统。&lt;/p&gt;
+&lt;p&gt;对于这套双臂平台，参展前真正重要的工作主要集中在几个方面：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;两条机械臂及外壳是否完成可靠装配；&lt;/li&gt;
+&lt;li&gt;关节模组的 CAN 通信和 ID 对应关系是否正确；&lt;/li&gt;
+&lt;li&gt;关节零点、方向和活动范围是否符合控制程序预期；&lt;/li&gt;
+&lt;li&gt;控制板、通信板和线束是否连接牢靠；&lt;/li&gt;
+&lt;li&gt;整套系统能否在重新上电后恢复到可运行状态。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些检查没有新增一个“看得见的新功能”，却决定了机器人在现场是一个可以重复演示的系统，还是只能在特定环境下偶尔跑通的原型。&lt;/p&gt;
+&lt;h3 id=&#34;最后阶段不再追求功能数量&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#最后阶段不再追求功能数量&#34;&gt;#&lt;/a&gt; 最后阶段不再追求功能数量&lt;/h3&gt;
+&lt;p&gt;项目开发时，人很容易不断往系统里加东西：新的动作、更复杂的控制逻辑、更漂亮的交互界面。但临近展示，继续增加功能往往意味着引入新的变量。&lt;/p&gt;
+&lt;p&gt;这一阶段更合理的做法，是先冻结演示范围，把注意力放到一条最稳定的链路上：&lt;/p&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span&gt;完成机械装配&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;确认关节通信与零点&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;验证基础动作&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;重复执行演示流程&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;记录异常后的恢复方法&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;对展台演示来说，一套简单但能够重复运行的动作，通常比一套复杂却容易中断的功能更有价值。&lt;/p&gt;
+&lt;h2 id=&#34;pcb-layout另一条没有停下来的硬件线&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#pcb-layout另一条没有停下来的硬件线&#34;&gt;#&lt;/a&gt; PCB Layout：另一条没有停下来的硬件线&lt;/h2&gt;
+&lt;p&gt;在双臂机器人进入最后装配的同时，我也继续尝试推进陪伴机器人低成本版本的 PCB Layout。&lt;/p&gt;
+&lt;p&gt;上一阶段已经基本完成原理图，也验证了麦克风接入和语音输入链路。现在需要把这些在逻辑上已经连接好的器件，真正放进一块尺寸有限的板子里。&lt;/p&gt;
+&lt;p&gt;做到 Layout 后，我越来越能理解为什么原理图完成并不意味着 PCB 已经完成了一半。原理图关心的是网络关系，而 Layout 还要同时面对：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;器件应该如何分区；&lt;/li&gt;
+&lt;li&gt;电源和地应该怎样组织；&lt;/li&gt;
+&lt;li&gt;音频信号如何避开高噪声区域；&lt;/li&gt;
+&lt;li&gt;接口朝向能否适应实际装配；&lt;/li&gt;
+&lt;li&gt;走线能否在有限层数和面积内完成。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些问题没有唯一答案，而且会互相影响。为了缩短某条走线而移动一个器件，可能会让接口位置变差；为了把板子做小，又可能压缩电源和敏感信号之间的距离。&lt;/p&gt;
+&lt;p&gt;目前这部分还在继续摸索。相比直接用开发板搭原型，PCB Layout 更像是在做一组连续的取舍：尺寸、成本、布线难度和可维护性之间，很难同时取到最优。&lt;/p&gt;
+&lt;h2 id=&#34;到大会现场演示也是系统的一部分&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#到大会现场演示也是系统的一部分&#34;&gt;#&lt;/a&gt; 到大会现场：演示也是系统的一部分&lt;/h2&gt;
+&lt;p&gt;完成主要装配后，我们提前到大会现场进行了彩排和场地准备。除了机器人本身，还需要确认展台位置、设备摆放、人员引导和现场流程。&lt;/p&gt;
+&lt;p&gt;以前做项目时，我通常把系统边界画在机器人周围：传感器、控制器、执行机构和软件组成了完整系统。真正进入展会后才发现，演示流程其实也是系统的一部分。&lt;/p&gt;
+&lt;p&gt;观众不会先阅读项目文档，也不会等待开发人员慢慢进入调试环境。他们往往只通过很短的一段动作来理解这台机器人在做什么。因此，现场展示不仅要求设备能运行，还要求演示目标足够明确、启动步骤足够短、异常恢复足够直接。&lt;/p&gt;
+&lt;p&gt;在大会交流中，一场题为“机器人关节模组量产突破与未来趋势”的高峰对话给我留下了较深印象。北京航空航天大学蔡茂林教授与多家关节模组、机器人企业代表围绕核心部件的量产与产业化展开讨论。相比单独看产品参数，这类交流更能让人看到机器人从样机走向产品时真正需要解决的问题：性能只是起点，一致性、可靠性、成本控制和批量交付能力同样关键。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;/img/work-log-2026-08-17-21/joint-module-mass-production-roundtable.jpg&#34; alt=&#34;机器人关节模组量产突破与未来趋势高峰对话&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;另一场技术分享来自中国信息通信研究院人工智能研究所具身智能与机器人部副主任、高级工程师张蔚敏，内容涉及具身智能领域的行业标准 YD/T 6770-2026《人工智能 关键基础技术 具身智能基准测试方法》。从现场展示的内容来看，该标准面向仿真与真实环境下的具身智能系统，覆盖模型及部署后的完整系统，并对“感知—决策—执行”全流程能力进行测试。这让我意识到，机器人能力不仅要被实现，还需要通过统一、可复现的方法进行评价，才能让不同技术路线具备可比较的工程尺度。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;/img/work-log-2026-08-17-21/embodied-intelligence-standards-talk.jpg&#34; alt=&#34;中国信通院张蔚敏分享具身智能基准测试行业标准&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;综合现场的产品展示与技术讨论，可以更清楚地看到行业关注点已经不只停留在运动效果，还延伸到了稳定性、部署成本、场景适配、测试标准和长期维护。&lt;/p&gt;
+&lt;p&gt;这也是为什么“演示成功”不能只理解为机器人完成了一次动作。真正有价值的演示，应该让人看到技术能力，同时也能看出它与实际场景之间的联系。&lt;/p&gt;
+&lt;h2 id=&#34;项目交接技术工作不只存在于代码里&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#项目交接技术工作不只存在于代码里&#34;&gt;#&lt;/a&gt; 项目交接：技术工作不只存在于代码里&lt;/h2&gt;
+&lt;p&gt;活动结束后，我还完成了一部分工作交接，接手了物料出入记录和其他项目资料。&lt;/p&gt;
+&lt;p&gt;这件事看起来与机器人开发关系不大，但从工程角度看，物料和资料其实决定了项目是否可追溯。一个模块为什么选这个型号、某块板子现在处于什么状态、设备借给了谁、哪份代码对应哪台样机，如果这些信息只存在于某个人的记忆里，人员变化后就很容易断层。&lt;/p&gt;
+&lt;p&gt;尤其是硬件项目，代码仓库只能保存软件，无法自动记录手里那块控制板是否损坏、某个关节模组是否返修、线束是否已经改版。要让项目能够继续推进，还需要把实物状态和文档对应起来。&lt;/p&gt;
+&lt;p&gt;我更希望后续资料至少能够回答三个问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;现在有什么&lt;/strong&gt;：硬件、配件、代码和文档是否齐全；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;目前是什么状态&lt;/strong&gt;：可用、待测、损坏还是正在维修；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;下一步怎么继续&lt;/strong&gt;：环境如何启动、设备如何连接、问题排查到哪里。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这类记录平时不显眼，但在项目交接和故障排查时，往往比一份只写结果的总结更有用。&lt;/p&gt;
+&lt;h2 id=&#34;从开发完成到工程完成&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#从开发完成到工程完成&#34;&gt;#&lt;/a&gt; 从开发完成到工程完成&lt;/h2&gt;
+&lt;p&gt;这一阶段让我重新理解了“完成”这个词。&lt;/p&gt;
+&lt;p&gt;程序写完，不代表机器人已经完成；机械臂装起来，也不代表系统已经完成；甚至现场成功演示一次，也不能证明它已经具备长期运行能力。&lt;/p&gt;
+&lt;p&gt;真正的工程完成，还包括稳定启动、重复运行、异常恢复、资料留存和后续维护。很多时候，最后这段工作没有新的算法，也没有明显的性能提升，却决定了前面的开发成果能不能被真正使用。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;这次最大的体会：&lt;/strong&gt; 从实验台走向展台，并不是给机器人换一个摆放位置，而是把只对开发者友好的原型，整理成一套别人也能理解、运行和接手的系统。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;写在最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#写在最后&#34;&gt;#&lt;/a&gt; 写在最后&lt;/h2&gt;
+&lt;p&gt;双臂机器人完成装配并进入大会现场，意味着前一阶段的软件和硬件工作终于在真实设备上汇合。与此同时，陪伴机器人的 PCB 仍在 Layout 阶段继续推进，另一条硬件产品化路线才刚刚开始。&lt;/p&gt;
+&lt;p&gt;一边是已经走到展示环节的整机，另一边是刚从原理图走向电路板的硬件。它们所处阶段不同，但考验的是同一种能力：不只让技术成立，还要让它成为一个可以稳定存在、持续迭代的工程系统。&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://roastduck-zz.github.io/2026/08/16/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%888%E6%9C%8810%E6%97%A5-8%E6%9C%8816%E6%97%A5%EF%BC%89/</guid>
+            <title>从一块 PCB 到一台双臂机器人——硬件开发与整机装配手记</title>
+            <link>https://roastduck-zz.github.io/2026/08/16/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%888%E6%9C%8810%E6%97%A5-8%E6%9C%8816%E6%97%A5%EF%BC%89/</link>
+            <category>机器人</category>
+            <category>PCB</category>
+            <category>双臂机器人</category>
+            <category>CAN</category>
+            <category>ESP32</category>
+            <category>具身智能</category>
+            <category>工业相机</category>
+            <pubDate>Sun, 16 Aug 2026 18:00:00 +0800</pubDate>
+            <description><![CDATA[ &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;一句话总结：&lt;/strong&gt; 这一阶段，我一边尝试把陪伴机器人的散件原型收拢到一块 PCB 上，一边完成七自由度双臂机器人第二台样机的初步装配，也重新认识了“设备参数看起来很强”和“真正适合项目”之间的差别。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr /&gt;
+&lt;h2 id=&#34;这次同时推进了三件事&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#这次同时推进了三件事&#34;&gt;#&lt;/a&gt; 这次同时推进了三件事&lt;/h2&gt;
+&lt;p&gt;这段时间的工作看起来有些分散：画 ESP32 开发板、调麦克风、做 PCB Layout、修改关节模组 ID、组装双臂机器人，还要验证一台工业相机能不能用于缺陷检测。&lt;/p&gt;
+&lt;p&gt;但真正做下来，我发现它们都在解决同一个问题：&lt;strong&gt;怎么把已经验证过的模块，变成一套能够实际装起来、接起来并稳定运行的系统。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;程序能运行只是第一步。硬件接口是否完整、元器件能否集成、关节模组是否正常、传感器提供的数据是否符合算法要求，这些问题都会决定项目最后能不能落地。&lt;/p&gt;
+&lt;h2 id=&#34;陪伴机器人低成本版本不再靠开发板堆起来&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#陪伴机器人低成本版本不再靠开发板堆起来&#34;&gt;#&lt;/a&gt; 陪伴机器人低成本版本：不再靠开发板堆起来&lt;/h2&gt;
+&lt;p&gt;陪伴机器人的低成本版本已经完成了一部分功能验证，但硬件仍然以多个开发板和模块拼接为主。这样的方案适合快速试验，却不适合作为最终产品：线束多、接口散，出现问题时也很难快速判断是哪一段链路出了故障。&lt;/p&gt;
+&lt;p&gt;因此，这一阶段我开始尝试把原本分散的元器件整合到同一块 PCB 上。&lt;/p&gt;
+&lt;h3 id=&#34;先把麦克风链路跑通&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#先把麦克风链路跑通&#34;&gt;#&lt;/a&gt; 先把麦克风链路跑通&lt;/h3&gt;
+&lt;p&gt;在正式整合之前，我先完成了麦克风接入测试。麦克风连接到 ESP32 相关电路后，系统能够正常获取音频并识别到语音输入。&lt;/p&gt;
+&lt;p&gt;这一步很重要，因为原理图不是凭空设计出来的。只有先在开发板环境中确认麦克风、电源和数据链路能够工作，后续画进 PCB 时才有可靠依据。否则，如果板子做出来以后没有声音，很难判断是器件选型、原理图连接、PCB 布线还是软件配置的问题。&lt;/p&gt;
+&lt;h3 id=&#34;第一次完整推进-pcb-设计&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#第一次完整推进-pcb-设计&#34;&gt;#&lt;/a&gt; 第一次完整推进 PCB 设计&lt;/h3&gt;
+&lt;p&gt;麦克风链路验证通过后，我开始继续完善 PCB 原理图。到原理图基本完成时，原先散落的主控、音频输入和相关接口已经能够在一张图里看清楚整体关系。&lt;/p&gt;
+&lt;p&gt;真正困难的部分从 Layout 开始。&lt;/p&gt;
+&lt;p&gt;原理图更像是在回答“这些器件应该怎样连接”，而 Layout 需要回答“它们在真实板子上应该放在哪里”。元器件位置、接口朝向、电源走线、地平面、音频信号受到的干扰，以及 PCB 能不能顺利装进外壳，都要在这一阶段一起考虑。&lt;/p&gt;
+&lt;p&gt;我之前没有完整画过多少 PCB，所以推进到 Layout 后速度明显慢了下来。很多在原理图里看起来很简单的连接，真正放到板子上时才会发现走线会交叉、接口位置不合理，或者器件之间需要留下更多空间。&lt;/p&gt;
+&lt;p&gt;不过，这也是从“会接模块”走向“会做硬件”的必经过程。开发板验证的是功能，PCB 设计考验的则是系统性。&lt;/p&gt;
+&lt;h2 id=&#34;七自由度双臂机器人软件写好了实机终于装起来了&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#七自由度双臂机器人软件写好了实机终于装起来了&#34;&gt;#&lt;/a&gt; 七自由度双臂机器人：软件写好了，实机终于装起来了&lt;/h2&gt;
+&lt;p&gt;另一条主线是七自由度双臂机器人。这是一套用于具身智能实验的双臂平台，两条机械臂都由多个关节模组组成，顶部还安装了视觉传感器，可以进一步开展抓取、检测和遥操作实验。&lt;/p&gt;
+&lt;p&gt;前一阶段，我已经完成了 VR 遥操作程序的主要开发，并在仿真环境中验证了基本控制效果。但第二台样机一直没有完整装起来，关节模组、控制板和 CAN-USB 通信板等硬件也没有完全到位，所以程序始终缺少实机验证条件。&lt;/p&gt;
+&lt;p&gt;这种状态很典型：软件侧已经走到了下一步，硬件侧却还没有形成一个可测试的系统。没有实机，坐标映射、关节方向、零点和实际跟手效果都只能停留在推测阶段。&lt;/p&gt;
+&lt;h3 id=&#34;修改关节模组-id&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#修改关节模组-id&#34;&gt;#&lt;/a&gt; 修改关节模组 ID&lt;/h3&gt;
+&lt;p&gt;开始装配前，需要先逐个检查关节模组，并为它们配置正确的 ID。&lt;/p&gt;
+&lt;p&gt;双臂机器人挂在同一条 CAN 总线上时，每个关节都必须拥有唯一地址。如果 ID 重复，控制端发送的一条命令可能被多个关节同时接收；如果编号与机械臂关节顺序不一致，软件中的 J1、J2、J3 也会和真实电机对应不上。&lt;/p&gt;
+&lt;p&gt;调试过程中，我先修改并核对了各个关节的 ID。进行单臂测试时，又发现其中一个关节模组无法正常工作，只能先单独拆出并交由供应方处理。&lt;/p&gt;
+&lt;p&gt;这个问题反而提醒了我：&lt;strong&gt;关节模组最好在装进机械臂之前逐个通电、通信和运动测试。&lt;/strong&gt; 如果等整机安装完成后才发现某个模组损坏，拆装和排查都会麻烦得多。&lt;/p&gt;
+&lt;h3 id=&#34;从一堆零件到第二台样机&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#从一堆零件到第二台样机&#34;&gt;#&lt;/a&gt; 从一堆零件到第二台样机&lt;/h3&gt;
+&lt;p&gt;随后两天的主要工作就是装配。外壳、机械臂和实验台需要逐步组合起来，同时还要处理关节编号、线束连接和零点设置。&lt;/p&gt;
+&lt;p&gt;装配机器人并不是简单地把螺丝拧上。每增加一个关节，都要确认它的机械方向、通信状态和 ID 是否正确；左右两条手臂还要保持一致的编号逻辑，否则后续接入控制程序时很容易出现左右臂或关节顺序错位。&lt;/p&gt;
+&lt;p&gt;经过连续装配和逐关节测试，第二台样机终于完成了初步组装，并安装到实验台上。各关节重新设置了 ID，也完成了基础零点设置。&lt;/p&gt;
+&lt;p&gt;到这一步，之前写好的 VR 遥操作程序终于有了继续向实机迁移的条件。接下来需要先验证单关节和单臂，再逐步进入双臂协同，不能一上来就把仿真中的完整动作直接下发给真实机器人。&lt;/p&gt;
+&lt;pre class=&#34;shiki shiki-themes vitesse-light vitesse-dark&#34; style=&#34;background-color:#ffffff;--shiki-dark-bg:#121212;color:#393a34;--shiki-dark:#dbd7caee&#34; tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span&gt;检查 CAN 通信&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;单关节低速运动&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;确认关节方向与零点&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;单臂动作测试&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;双臂协同&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;      ↓&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;line&#34;&gt;&lt;span&gt;接入 VR 遥操作&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;相机选型踩坑有深度信息不代表能做缺陷检测&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#相机选型踩坑有深度信息不代表能做缺陷检测&#34;&gt;#&lt;/a&gt; 相机选型踩坑：有深度信息，不代表能做缺陷检测&lt;/h2&gt;
+&lt;p&gt;这一阶段还测试了一台准备用于工业视觉项目的相机。它具备激光和深度相关功能，从参数上看并不简单，但实际配置后发现，手里的型号没有 RGB 输出模式。&lt;/p&gt;
+&lt;p&gt;这直接卡住了后续验证。&lt;/p&gt;
+&lt;p&gt;当前缺陷检测方案需要从彩色图像中提取表面纹理、颜色变化和缺陷轮廓。如果没有 RGB 图像，即使相机能够输出深度或轮廓信息，也无法直接替代彩色相机完成现有算法的输入需求。&lt;/p&gt;
+&lt;p&gt;这次问题并不是设备性能不够，而是&lt;strong&gt;设备能力与任务需求没有对应上&lt;/strong&gt;。深度相机适合测距和获取空间轮廓，RGB 相机更适合观察颜色与纹理。两者都属于视觉传感器，但解决的并不是同一类问题。&lt;/p&gt;
+&lt;p&gt;以后再做相机选型，我会先把算法真正需要的输入列出来，再去核对具体配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;是否包含 RGB、深度或红外等所需图像模态；&lt;/li&gt;
+&lt;li&gt;分辨率能否看清目标缺陷；&lt;/li&gt;
+&lt;li&gt;帧率是否满足实时检测；&lt;/li&gt;
+&lt;li&gt;SDK 能否在现有系统和开发语言中使用；&lt;/li&gt;
+&lt;li&gt;当前采购配置是否真的开放了对应功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;尤其要注意，“这个型号理论上支持”和“手里的这台设备已经包含”并不是一回事。如果在采购和项目交接阶段没有确认清楚，问题最终就会推迟到软件联调时才暴露。&lt;/p&gt;
+&lt;h2 id=&#34;从模块可用到系统可用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#从模块可用到系统可用&#34;&gt;#&lt;/a&gt; 从模块可用到系统可用&lt;/h2&gt;
+&lt;p&gt;这几项工作让我对“系统可用”有了更具体的认识。&lt;/p&gt;
+&lt;p&gt;麦克风能够识别语音，不代表陪伴机器人的硬件已经适合装进产品；VR 遥操作在仿真里能够运行，不代表真实双臂机器人已经具备测试条件；相机具有深度和激光功能，也不代表它能为 RGB 缺陷检测提供正确输入。&lt;/p&gt;
+&lt;p&gt;单个模块成功，只能说明局部方案成立。真正进入系统后，还要面对接口、供电、通信、装配、配置和上下游依赖。很多工程问题不是代码错误，而是两个都能正常工作的模块，在边界处没有对上。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;这次最大的收获：&lt;/strong&gt; 做系统集成时，应该尽早确认实物、接口和输入输出，而不是等所有软件都写完后，才发现验证所需的硬件条件并不存在。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;写在最后&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#写在最后&#34;&gt;#&lt;/a&gt; 写在最后&lt;/h2&gt;
+&lt;p&gt;从画第一版 PCB，到逐个修改关节 ID，再到把第二台双臂机器人装上实验台，这一阶段做的事情没有特别炫目的算法，但每一步都在让项目从原型更接近真实设备。&lt;/p&gt;
+&lt;p&gt;接下来，一边要继续完成 PCB Layout，让陪伴机器人低成本版本拥有更整洁、可复现的硬件；另一边也要把已经在仿真环境中运行的 VR 遥操作迁移到真实双臂机器人上。&lt;/p&gt;
+&lt;p&gt;相比让一个模块第一次运行起来，我现在更关心的是：它能不能稳定地成为整个系统的一部分。&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

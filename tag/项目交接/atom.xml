@@ -53,6 +53,11 @@
     <category term="双屏显示" />
     <category term="数字麦克风" />
     <category term="硬件调试" />
+    <category term="ESP32" />
+    <category term="具身智能" />
+    <category term="工业相机" />
+    <category term="系统集成" />
+    <category term="世界机器人大会" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/07/20/work-log-july13-july19/</id>
         <title>从项目交接到展会支持——泰安收尾与 APIE2026 现场记录</title>

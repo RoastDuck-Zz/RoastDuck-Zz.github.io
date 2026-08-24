@@ -53,6 +53,11 @@
     <category term="双屏显示" />
     <category term="数字麦克风" />
     <category term="硬件调试" />
+    <category term="ESP32" />
+    <category term="具身智能" />
+    <category term="工业相机" />
+    <category term="系统集成" />
+    <category term="世界机器人大会" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/06/26/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97[6%E6%9C%8822%E6%97%A5-6%E6%9C%8826%E6%97%A5]/</id>
         <title>从项目地图到 PCB 入门——机器人公司第一周工作记录</title>

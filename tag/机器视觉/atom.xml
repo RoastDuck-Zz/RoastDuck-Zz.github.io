@@ -53,6 +53,11 @@
     <category term="双屏显示" />
     <category term="数字麦克风" />
     <category term="硬件调试" />
+    <category term="ESP32" />
+    <category term="具身智能" />
+    <category term="工业相机" />
+    <category term="系统集成" />
+    <category term="世界机器人大会" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/07/24/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%887%E6%9C%8820%E6%97%A5-7%E6%9C%8824%E6%97%A5%EF%BC%89/</id>
         <title>返京后的三天——陪伴机器人验收、Luckfox 烧录与视觉项目重启</title>

@@ -56,6 +56,11 @@
         <category>双屏显示</category>
         <category>数字麦克风</category>
         <category>硬件调试</category>
+        <category>ESP32</category>
+        <category>具身智能</category>
+        <category>工业相机</category>
+        <category>系统集成</category>
+        <category>世界机器人大会</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/07/31/%E8%BF%94%E4%BA%AC%E4%B8%80%E5%91%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</guid>
             <title>从开发板烧录到产线视觉——返京一周嵌入式开发记录</title>
