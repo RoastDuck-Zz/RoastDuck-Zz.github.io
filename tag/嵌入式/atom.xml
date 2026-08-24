@@ -16,48 +16,48 @@
     <category term="跌倒检测" />
     <category term="技术支持" />
     <category term="APIE2026" />
-    <category term="ESP32-S3" />
-    <category term="嵌入式" />
-    <category term="机器视觉" />
-    <category term="YOLOv8" />
-    <category term="3D打印" />
+    <category term="康养机器人" />
+    <category term="视觉" />
+    <category term="MoveNet" />
+    <category term="奥比中光" />
     <category term="工作记录" />
     <category term="车载" />
     <category term="视觉检测" />
     <category term="AD" />
     <category term="RK3566" />
     <category term="PCB" />
-    <category term="康养机器人" />
-    <category term="视觉" />
-    <category term="MoveNet" />
-    <category term="奥比中光" />
-    <category term="陪伴机器人" />
-    <category term="Luckfox" />
-    <category term="小智" />
     <category term="人形机器人" />
+    <category term="机器视觉" />
     <category term="机器人遥操" />
     <category term="VR控制" />
     <category term="工程化部署" />
-    <category term="Luckfox Pico Ultra" />
-    <category term="RV1126B" />
-    <category term="Jetson" />
-    <category term="双臂机器人" />
-    <category term="VR遥操" />
-    <category term="MoveIt" />
-    <category term="RViz" />
-    <category term="CAN" />
-    <category term="SocketCAN" />
-    <category term="Linux" />
-    <category term="关节模组" />
-    <category term="Motorevo" />
+    <category term="ESP32-S3" />
+    <category term="嵌入式" />
+    <category term="YOLOv8" />
+    <category term="3D打印" />
+    <category term="陪伴机器人" />
+    <category term="Luckfox" />
+    <category term="小智" />
     <category term="双屏显示" />
     <category term="数字麦克风" />
     <category term="硬件调试" />
     <category term="ESP32" />
+    <category term="双臂机器人" />
     <category term="具身智能" />
+    <category term="CAN" />
     <category term="工业相机" />
     <category term="系统集成" />
     <category term="世界机器人大会" />
+    <category term="Luckfox Pico Ultra" />
+    <category term="RV1126B" />
+    <category term="Jetson" />
+    <category term="VR遥操" />
+    <category term="MoveIt" />
+    <category term="RViz" />
+    <category term="Linux" />
+    <category term="SocketCAN" />
+    <category term="关节模组" />
+    <category term="Motorevo" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/07/31/%E8%BF%94%E4%BA%AC%E4%B8%80%E5%91%A8%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91%E8%AE%B0%E5%BD%95/</id>
         <title>从开发板烧录到产线视觉——返京一周嵌入式开发记录</title>
@@ -255,9 +255,9 @@
 &lt;p&gt;&lt;strong&gt;一点感悟：&lt;/strong&gt; 回公司上班和远程办公最大的区别不是效率，而是&lt;strong&gt;反馈速度&lt;/strong&gt;。拿到一块新板子烧不上系统，转头问旁边的同事可能十分钟就解决了；远程的话，自己查文档、翻论坛、试错，可能折腾一下午。做硬件尤其如此——很多东西不是文档能写清楚的，需要有人当面点一下。&lt;/p&gt;
 &lt;/blockquote&gt;
 </content>
+        <category term="视觉检测" />
         <category term="ESP32-S3" />
         <category term="嵌入式" />
-        <category term="视觉检测" />
         <category term="陪伴机器人" />
         <category term="Luckfox" />
         <category term="Linux" />
@@ -600,9 +600,9 @@
 &lt;/blockquote&gt;
 </content>
         <category term="机器人" />
+        <category term="机器视觉" />
         <category term="ESP32-S3" />
         <category term="嵌入式" />
-        <category term="机器视觉" />
         <category term="YOLOv8" />
         <category term="3D打印" />
         <updated>2026-02-27T03:43:00.000Z</updated>

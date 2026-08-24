@@ -19,56 +19,56 @@
         <category>跌倒检测</category>
         <category>技术支持</category>
         <category>APIE2026</category>
-        <category>ESP32-S3</category>
-        <category>嵌入式</category>
-        <category>机器视觉</category>
-        <category>YOLOv8</category>
-        <category>3D打印</category>
+        <category>康养机器人</category>
+        <category>视觉</category>
+        <category>MoveNet</category>
+        <category>奥比中光</category>
         <category>工作记录</category>
         <category>车载</category>
         <category>视觉检测</category>
         <category>AD</category>
         <category>RK3566</category>
         <category>PCB</category>
-        <category>康养机器人</category>
-        <category>视觉</category>
-        <category>MoveNet</category>
-        <category>奥比中光</category>
-        <category>陪伴机器人</category>
-        <category>Luckfox</category>
-        <category>小智</category>
         <category>人形机器人</category>
+        <category>机器视觉</category>
         <category>机器人遥操</category>
         <category>VR控制</category>
         <category>工程化部署</category>
-        <category>Luckfox Pico Ultra</category>
-        <category>RV1126B</category>
-        <category>Jetson</category>
-        <category>双臂机器人</category>
-        <category>VR遥操</category>
-        <category>MoveIt</category>
-        <category>RViz</category>
-        <category>CAN</category>
-        <category>SocketCAN</category>
-        <category>Linux</category>
-        <category>关节模组</category>
-        <category>Motorevo</category>
+        <category>ESP32-S3</category>
+        <category>嵌入式</category>
+        <category>YOLOv8</category>
+        <category>3D打印</category>
+        <category>陪伴机器人</category>
+        <category>Luckfox</category>
+        <category>小智</category>
         <category>双屏显示</category>
         <category>数字麦克风</category>
         <category>硬件调试</category>
         <category>ESP32</category>
+        <category>双臂机器人</category>
         <category>具身智能</category>
+        <category>CAN</category>
         <category>工业相机</category>
         <category>系统集成</category>
         <category>世界机器人大会</category>
+        <category>Luckfox Pico Ultra</category>
+        <category>RV1126B</category>
+        <category>Jetson</category>
+        <category>VR遥操</category>
+        <category>MoveIt</category>
+        <category>RViz</category>
+        <category>Linux</category>
+        <category>SocketCAN</category>
+        <category>关节模组</category>
+        <category>Motorevo</category>
         <item>
             <guid isPermalink="true">https://roastduck-zz.github.io/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/</guid>
             <title>从零造一台会「看」的焊接机器人——五自由度机械臂全栈开发手记</title>
             <link>https://roastduck-zz.github.io/2026/02/27/%E4%BA%94%E8%87%AA%E7%94%B1%E5%BA%A6%E6%9C%BA%E6%A2%B0%E8%87%82/</link>
             <category>机器人</category>
+            <category>机器视觉</category>
             <category>ESP32-S3</category>
             <category>嵌入式</category>
-            <category>机器视觉</category>
             <category>YOLOv8</category>
             <category>3D打印</category>
             <pubDate>Fri, 27 Feb 2026 11:43:00 +0800</pubDate>

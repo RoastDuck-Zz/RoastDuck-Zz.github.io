@@ -16,48 +16,48 @@
     <category term="跌倒检测" />
     <category term="技术支持" />
     <category term="APIE2026" />
-    <category term="ESP32-S3" />
-    <category term="嵌入式" />
-    <category term="机器视觉" />
-    <category term="YOLOv8" />
-    <category term="3D打印" />
+    <category term="康养机器人" />
+    <category term="视觉" />
+    <category term="MoveNet" />
+    <category term="奥比中光" />
     <category term="工作记录" />
     <category term="车载" />
     <category term="视觉检测" />
     <category term="AD" />
     <category term="RK3566" />
     <category term="PCB" />
-    <category term="康养机器人" />
-    <category term="视觉" />
-    <category term="MoveNet" />
-    <category term="奥比中光" />
-    <category term="陪伴机器人" />
-    <category term="Luckfox" />
-    <category term="小智" />
     <category term="人形机器人" />
+    <category term="机器视觉" />
     <category term="机器人遥操" />
     <category term="VR控制" />
     <category term="工程化部署" />
-    <category term="Luckfox Pico Ultra" />
-    <category term="RV1126B" />
-    <category term="Jetson" />
-    <category term="双臂机器人" />
-    <category term="VR遥操" />
-    <category term="MoveIt" />
-    <category term="RViz" />
-    <category term="CAN" />
-    <category term="SocketCAN" />
-    <category term="Linux" />
-    <category term="关节模组" />
-    <category term="Motorevo" />
+    <category term="ESP32-S3" />
+    <category term="嵌入式" />
+    <category term="YOLOv8" />
+    <category term="3D打印" />
+    <category term="陪伴机器人" />
+    <category term="Luckfox" />
+    <category term="小智" />
     <category term="双屏显示" />
     <category term="数字麦克风" />
     <category term="硬件调试" />
     <category term="ESP32" />
+    <category term="双臂机器人" />
     <category term="具身智能" />
+    <category term="CAN" />
     <category term="工业相机" />
     <category term="系统集成" />
     <category term="世界机器人大会" />
+    <category term="Luckfox Pico Ultra" />
+    <category term="RV1126B" />
+    <category term="Jetson" />
+    <category term="VR遥操" />
+    <category term="MoveIt" />
+    <category term="RViz" />
+    <category term="Linux" />
+    <category term="SocketCAN" />
+    <category term="关节模组" />
+    <category term="Motorevo" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/08/07/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%888%E6%9C%883%E6%97%A5-8%E6%9C%887%E6%97%A5%EF%BC%89/</id>
         <title>从 Luckfox 视觉检测到 VR 双臂遥操——机器人开发周记</title>
@@ -142,10 +142,10 @@
 </content>
         <category term="周记" />
         <category term="工作记录" />
+        <category term="双臂机器人" />
         <category term="Luckfox Pico Ultra" />
         <category term="RV1126B" />
         <category term="Jetson" />
-        <category term="双臂机器人" />
         <category term="VR遥操" />
         <category term="MoveIt" />
         <category term="RViz" />
@@ -255,9 +255,9 @@
 &lt;p&gt;先把条件准备好，再让每一次测试都回答一个明确的问题。&lt;/p&gt;
 &lt;/blockquote&gt;
 </content>
-        <category term="ESP32-S3" />
-        <category term="机器视觉" />
         <category term="工作记录" />
+        <category term="机器视觉" />
+        <category term="ESP32-S3" />
         <category term="陪伴机器人" />
         <category term="Luckfox" />
         <category term="小智" />

@@ -16,48 +16,48 @@
     <category term="跌倒检测" />
     <category term="技术支持" />
     <category term="APIE2026" />
-    <category term="ESP32-S3" />
-    <category term="嵌入式" />
-    <category term="机器视觉" />
-    <category term="YOLOv8" />
-    <category term="3D打印" />
+    <category term="康养机器人" />
+    <category term="视觉" />
+    <category term="MoveNet" />
+    <category term="奥比中光" />
     <category term="工作记录" />
     <category term="车载" />
     <category term="视觉检测" />
     <category term="AD" />
     <category term="RK3566" />
     <category term="PCB" />
-    <category term="康养机器人" />
-    <category term="视觉" />
-    <category term="MoveNet" />
-    <category term="奥比中光" />
-    <category term="陪伴机器人" />
-    <category term="Luckfox" />
-    <category term="小智" />
     <category term="人形机器人" />
+    <category term="机器视觉" />
     <category term="机器人遥操" />
     <category term="VR控制" />
     <category term="工程化部署" />
-    <category term="Luckfox Pico Ultra" />
-    <category term="RV1126B" />
-    <category term="Jetson" />
-    <category term="双臂机器人" />
-    <category term="VR遥操" />
-    <category term="MoveIt" />
-    <category term="RViz" />
-    <category term="CAN" />
-    <category term="SocketCAN" />
-    <category term="Linux" />
-    <category term="关节模组" />
-    <category term="Motorevo" />
+    <category term="ESP32-S3" />
+    <category term="嵌入式" />
+    <category term="YOLOv8" />
+    <category term="3D打印" />
+    <category term="陪伴机器人" />
+    <category term="Luckfox" />
+    <category term="小智" />
     <category term="双屏显示" />
     <category term="数字麦克风" />
     <category term="硬件调试" />
     <category term="ESP32" />
+    <category term="双臂机器人" />
     <category term="具身智能" />
+    <category term="CAN" />
     <category term="工业相机" />
     <category term="系统集成" />
     <category term="世界机器人大会" />
+    <category term="Luckfox Pico Ultra" />
+    <category term="RV1126B" />
+    <category term="Jetson" />
+    <category term="VR遥操" />
+    <category term="MoveIt" />
+    <category term="RViz" />
+    <category term="Linux" />
+    <category term="SocketCAN" />
+    <category term="关节模组" />
+    <category term="Motorevo" />
     <entry>
         <id>https://roastduck-zz.github.io/2026/08/21/%E5%B7%A5%E4%BD%9C%E5%91%A8%E5%BF%97%EF%BC%888%E6%9C%8817%E6%97%A5-8%E6%9C%8821%E6%97%A5%EF%BC%89/</id>
         <title>从实验台到展台——双臂机器人参展前的最后一次系统联调</title>
@@ -109,6 +109,15 @@
 &lt;/ul&gt;
 &lt;p&gt;这些问题没有唯一答案，而且会互相影响。为了缩短某条走线而移动一个器件，可能会让接口位置变差；为了把板子做小，又可能压缩电源和敏感信号之间的距离。&lt;/p&gt;
 &lt;p&gt;目前这部分还在继续摸索。相比直接用开发板搭原型，PCB Layout 更像是在做一组连续的取舍：尺寸、成本、布线难度和可维护性之间，很难同时取到最优。&lt;/p&gt;
+&lt;h2 id=&#34;周三下午教学研讨与双臂机器人实训台发布&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#周三下午教学研讨与双臂机器人实训台发布&#34;&gt;#&lt;/a&gt; 周三下午：教学研讨与双臂机器人实训台发布&lt;/h2&gt;
+&lt;p&gt;周三下午，现场的重点从设备联调转向了教学研讨。来自吉林、湖南、北京等地职业院校的负责人和教师，与企业技术人员围绕具身智能机器人、柔性制造人才培养以及校企合作展开交流。&lt;/p&gt;
+&lt;p&gt;这场研讨并不是简单讨论“学校采购什么设备”，而是把问题进一步落到了教学过程：企业的真实技术如何转化为课程内容，实训项目怎样对应岗位能力，教师如何持续获得新的工程案例，以及设备交付后如何跟随产业技术迭代。对于机器人这类软硬件耦合程度较高的专业，仅有一套可以演示的设备还不够，还需要把装配、通信、调试、控制和故障排查拆分成学生能够逐步完成的任务。&lt;/p&gt;
+&lt;p&gt;吉林电子信息职业技术学院校长曾繁明在分享中提出“聚力机器人全链条产教共生”，把人才培养放到机器人产业链和专业建设的整体关系中讨论。这类来自职业院校一线的视角，让校企合作不再停留于一次设备交付，而是延伸到课程共建、师资培养、实训项目开发和就业能力衔接。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;/img/work-log-2026-08-17-21/industry-education-symbiosis-jilin.jpg&#34; alt=&#34;吉林电子信息职业技术学院曾繁明校长分享机器人全链条产教共生&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;北京科技职业大学的分享则用“课堂连着车间，学业接着就业”概括了产教融合的目标：实训内容不能与实际生产脱节，学生在课堂上完成的任务，应当能够对应机器人与智能制造岗位中的真实工作流程。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;/img/work-log-2026-08-17-21/classroom-to-workshop-vocational-education.jpg&#34; alt=&#34;北京科技职业大学分享机器人与智造产业人才培养探索&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;我们此前持续装配和联调的双臂机器人实训台，也在这次研讨中完成了对外发布。站在教学应用的角度重新看这套设备，它的价值不只是让两条机械臂完成动作，更在于把关节通信、零点校准、基础运动、双臂协同和异常恢复等环节变成可观察、可重复的实训内容。&lt;/p&gt;
+&lt;p&gt;这也给后续完善提出了更具体的要求：实训台既要稳定运行，也要便于教师讲解和学生操作；既要保留足够完整的工程链路，也要能按难度拆成独立实验；出现问题时，还应有清晰的复位方式、故障记录和维护文档。设备发布不是开发工作的终点，而是它从工程样机转化为教学载体的开始。&lt;/p&gt;
 &lt;h2 id=&#34;到大会现场演示也是系统的一部分&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#到大会现场演示也是系统的一部分&#34;&gt;#&lt;/a&gt; 到大会现场：演示也是系统的一部分&lt;/h2&gt;
 &lt;p&gt;完成主要装配后，我们提前到大会现场进行了彩排和场地准备。除了机器人本身，还需要确认展台位置、设备摆放、人员引导和现场流程。&lt;/p&gt;
 &lt;p&gt;以前做项目时，我通常把系统边界画在机器人周围：传感器、控制器、执行机构和软件组成了完整系统。真正进入展会后才发现，演示流程其实也是系统的一部分。&lt;/p&gt;
@@ -144,8 +153,8 @@
         <category term="机器人" />
         <category term="PCB" />
         <category term="双臂机器人" />
-        <category term="CAN" />
         <category term="具身智能" />
+        <category term="CAN" />
         <category term="系统集成" />
         <category term="世界机器人大会" />
         <updated>2026-08-21T10:00:00.000Z</updated>
@@ -227,10 +236,10 @@
 </content>
         <category term="机器人" />
         <category term="PCB" />
-        <category term="双臂机器人" />
-        <category term="CAN" />
         <category term="ESP32" />
+        <category term="双臂机器人" />
         <category term="具身智能" />
+        <category term="CAN" />
         <category term="工业相机" />
         <updated>2026-08-16T10:00:00.000Z</updated>
     </entry>
@@ -432,8 +441,8 @@
 </content>
         <category term="机器人" />
         <category term="CAN" />
-        <category term="SocketCAN" />
         <category term="Linux" />
+        <category term="SocketCAN" />
         <category term="关节模组" />
         <category term="Motorevo" />
         <updated>2026-08-11T02:49:13.000Z</updated>
@@ -1054,9 +1063,9 @@
 &lt;/blockquote&gt;
 </content>
         <category term="机器人" />
+        <category term="机器视觉" />
         <category term="ESP32-S3" />
         <category term="嵌入式" />
-        <category term="机器视觉" />
         <category term="YOLOv8" />
         <category term="3D打印" />
         <updated>2026-02-27T03:43:00.000Z</updated>
